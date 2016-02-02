@@ -1,0 +1,3 @@
+Na elk level keuze van x deurs
+komt in een looping level, oude level word gedelete en nieuwe word geplaats.
+Per 3 levels een kans op een shop.
