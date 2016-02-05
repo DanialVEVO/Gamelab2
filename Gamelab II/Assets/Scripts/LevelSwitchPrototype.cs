@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelSwitchPrototype : MonoBehaviour {
 
-	public GameObject [] levels;
+	public List <GameObject> levels = new List <GameObject>();
 
 	public Transform levelSpawn;
 	public Transform playerSpawn;
@@ -43,6 +44,7 @@ public class LevelSwitchPrototype : MonoBehaviour {
 	void SpawnLevel (){
 		Instantiate(levels[currentKamer], levelSpawn.position, Quaternion.identity);
 		print(currentKamer);
+		levels.RemoveAt(currentKamer);
 		Destroy(GameObject.FindWithTag("CurrentLevel"));
 		transform.position = playerSpawn.transform.position;
 	}
