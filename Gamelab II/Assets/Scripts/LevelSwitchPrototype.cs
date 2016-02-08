@@ -8,6 +8,8 @@ public class LevelSwitchPrototype : MonoBehaviour {
 	public List <GameObject> levels2 = new List <GameObject>();
 	public List <GameObject> levels3 = new List <GameObject>();
 
+	public GameObject [] allLevels;
+
 	public Transform levelSpawn;
 	public Transform playerSpawn;
 
@@ -21,7 +23,7 @@ public class LevelSwitchPrototype : MonoBehaviour {
 	}
 	
 	void Update () {
-
+		AddNewLevels ();
 	}
 
 	public void SwitchLevel (int switcher) {
@@ -76,6 +78,10 @@ public class LevelSwitchPrototype : MonoBehaviour {
 	}
 
 	public void AddNewLevels (){
-		
+		if(maxCountLevel1 == -1  || maxCountLevel2 == -1 || maxCountLevel3 == -1){
+			levels.Clear();
+			levels2.Clear();
+			levels3.Clear();
+		}
 	}
 }
