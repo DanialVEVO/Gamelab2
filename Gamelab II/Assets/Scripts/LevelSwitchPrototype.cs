@@ -5,46 +5,55 @@ using System.Collections.Generic;
 public class LevelSwitchPrototype : MonoBehaviour {
 
 	public List <GameObject> levels = new List <GameObject>();
+	public List <GameObject> levels2 = new List <GameObject>();
+	public List <GameObject> levels3 = new List <GameObject>();
 
 	public Transform levelSpawn;
 	public Transform playerSpawn;
 
 	public int currentKamer;
 	public int kamerCheck;
-	public int maxCount1, maxCount2, maxCount3;
-	public int minCount1, minCount2, minCount3;
+	public int maxCountLevel1, maxCountLevel2, maxCountLevel3;
+	public int minCountLevel1, minCountLevel2, minCountLevel3;
 
 	void Start () {
 		Instantiate(levels[0], levelSpawn.position, Quaternion.identity);
 	}
 	
 	void Update () {
-	
+
 	}
 
 	public void SwitchLevel (int switcher) {
 		switch (switcher){
 			case 1 : 
-				currentKamer = Random.Range(minCount1, maxCount1);
+				currentKamer = Random.Range(minCountLevel1, maxCountLevel1);
+				Instantiate(levels[currentKamer], levelSpawn.position, Quaternion.identity);
+				levels.RemoveAt(currentKamer);
+				maxCountLevel1 -= 1;
 				SpawnLevel();
 			break;
 
 			case 2 : 
-				currentKamer = Random.Range(minCount2, maxCount2);
+				currentKamer = Random.Range(minCountLevel2, maxCountLevel2);
+				Instantiate(levels2[currentKamer], levelSpawn.position, Quaternion.identity);
+				levels2.RemoveAt(currentKamer);
+				maxCountLevel2 -= 1;
 				SpawnLevel();
 			break;
 
 			case 3 : 
-				currentKamer = Random.Range(minCount3, maxCount3);
+				currentKamer = Random.Range(minCountLevel3, maxCountLevel3);
+				Instantiate(levels3[currentKamer], levelSpawn.position, Quaternion.identity);
+				levels3.RemoveAt(currentKamer);
+				maxCountLevel3 -= 1;
 				SpawnLevel();
 			break;
 		}
 	}
 
 	void SpawnLevel (){
-		Instantiate(levels[currentKamer], levelSpawn.position, Quaternion.identity);
 		print(currentKamer);
-		levels.RemoveAt(currentKamer);
 		Destroy(GameObject.FindWithTag("CurrentLevel"));
 		transform.position = playerSpawn.transform.position;
 	}
@@ -64,5 +73,9 @@ public class LevelSwitchPrototype : MonoBehaviour {
 			kamerCheck = 3;
 			SwitchLevel(kamerCheck);
 		}
+	}
+
+	public void AddNewLevels (){
+		
 	}
 }
