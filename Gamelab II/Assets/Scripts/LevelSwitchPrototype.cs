@@ -82,6 +82,12 @@ public class LevelSwitchPrototype : MonoBehaviour {
 			levels.Clear();
 			levels2.Clear();
 			levels3.Clear();
+			levels.InsertRange (levels.Count, new List <GameObject>{allLevels[0], allLevels[1], allLevels[2]});
+			levels2.InsertRange (levels2.Count, new List <GameObject>{allLevels[3], allLevels[4], allLevels[5]});
+			levels3.InsertRange (levels3.Count, new List <GameObject>{allLevels[6], allLevels[7], allLevels[8]});
+			maxCountLevel1 = 2;
+			maxCountLevel2 = 2;
+			maxCountLevel3 = 2;
 		}
 	}
 }
