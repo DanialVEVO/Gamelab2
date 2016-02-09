@@ -2,16 +2,43 @@
 using System.Collections;
 
 public class MovementSample: MonoBehaviour {
+		
+	public int moveSpeed;			
+	public int newSpeed;				
+	public int oldSpeed;
 
-	public int moveSpeed;					//Int for MoveSpeed;
-	public float rayDistance;				//Float for distance of Raycast;
-	public int newSpeed;					//Int for the sprint Speed;
-	public int oldSpeed;					//Int for resetting the MoveSpeed;
 	public float mouseSpeed;
+	public float rayDistance;
+	public float jumpSpeed;
+	public float groundDistance;
+
+	public bool mayJump;
+
+	public Rigidbody playerRB;
+
+	void Start (){
+		playerRB = GetComponent<Rigidbody>();
+	}
 
 	void Update () {
-		MovementControlls ();				//Calling Function MovementControlls;
+		MovementControlls ();				
 		CamRotHorizontal ();
+	}
+
+	void FixedUpdate (){
+		Jump();
+	}
+
+	void Jump (){
+		if(Physics.Raycast (transform.position, new Vector3 (0, -1, 0), groundDistance)){
+			mayJump = true;
+			if(Input.GetButtonDown("Jump") && mayJump == true){
+				playerRB.velocity = new Vector3 (0, jumpSpeed * Time.deltaTime, 0);
+			}
+		}
+		else{
+			mayJump = false;
+		}
 	}
 
 	void MovementControlls (){
