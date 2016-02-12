@@ -6,10 +6,13 @@ public class MovementSample: MonoBehaviour {
 	public int moveSpeed;			
 	public int newSpeed;				
 	public int oldSpeed;
+	public int upgradeRun;
+	public int upgradeMove;
 
 	public float mouseSpeed;
 	public float rayDistance;
 	public float jumpSpeed;
+	public float extraJumpSpeed;
 	public float groundDistance;
 
 	public bool mayJump;
@@ -41,8 +44,19 @@ public class MovementSample: MonoBehaviour {
 		}
 	}
 
+
+	public void UpgradesJump (){
+		jumpSpeed += extraJumpSpeed;
+	}
+
+	public void UpgradesRun (){
+		moveSpeed += upgradeMove;
+		newSpeed += upgradeRun;
+		oldSpeed += upgradeRun;
+	}
+
 	void MovementControlls (){
-		if (Input.GetAxis ("Vertical") > 0) {																				//Calling the function Input. Also Calling Raycast function. Basic movement;
+		if (Input.GetAxis ("Vertical") > 0) {															
 			if (Physics.Raycast (transform.position, transform.forward, rayDistance)) {
 				print ("Hit");
 			}
