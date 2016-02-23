@@ -58,7 +58,6 @@ public class MovementSample: MonoBehaviour {
 	void MovementControlls (){
 		if (Input.GetAxis ("Vertical") > 0) {															
 			if (Physics.Raycast (transform.position, transform.forward, rayDistance)) {
-				print ("Hit");
 			}
 			else {
 				transform.Translate (Vector3.forward * moveSpeed * Input.GetAxis ("Vertical") * Time.deltaTime);
@@ -67,7 +66,6 @@ public class MovementSample: MonoBehaviour {
 
 		if (Input.GetAxis ("Vertical") < 0) {
 			if (Physics.Raycast (transform.position, -transform.forward, rayDistance)) {
-				print ("Hit");
 			} 
 			else {
 				transform.Translate (Vector3.back * moveSpeed * -Input.GetAxis ("Vertical") * Time.deltaTime);
@@ -76,7 +74,6 @@ public class MovementSample: MonoBehaviour {
 
 		if (Input.GetAxis ("Horizontal") > 0) {
 			if (Physics.Raycast (transform.position, transform.right, rayDistance)) {
-				print ("Hit");
 			} 
 			else {
 				transform.Translate (Vector3.right * moveSpeed * Input.GetAxis ("Horizontal") * Time.deltaTime);
@@ -85,7 +82,6 @@ public class MovementSample: MonoBehaviour {
 
 		if (Input.GetAxis ("Horizontal") < 0) {
 			if (Physics.Raycast (transform.position, -transform.right, rayDistance)) {
-				print ("Hit");
 			} 
 			else {
 				transform.Translate (Vector3.left * moveSpeed * -Input.GetAxis ("Horizontal") * Time.deltaTime);
