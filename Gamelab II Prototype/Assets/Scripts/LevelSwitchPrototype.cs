@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -61,17 +61,20 @@ public class LevelSwitchPrototype : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter (Collision col){
-		if(col.transform.name == "NextLevelKamer1"){
+		if(col.transform.tag == "NextLevelKamer1"){
+			print("Kamer");
 			kamerCheck = 1;
 			SwitchLevel(kamerCheck);
 		}
 
-		if(col.transform.name == "NextLevelKamer2"){
+		if(col.transform.tag == "NextLevelKamer2"){
+			print("Kamer");
 			kamerCheck = 2;
 			SwitchLevel(kamerCheck);
 		}
 
-		if(col.transform.name == "NextLevelKamer3"){
+		if(col.transform.tag == "NextLevelKamer3"){
+			print("Kamer");
 			kamerCheck = 3;
 			SwitchLevel(kamerCheck);
 		}
