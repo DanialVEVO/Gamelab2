@@ -1,15 +1,21 @@
-﻿using UnityEngine;
+﻿/* [Code]
+ * Abstract Weapon Class
+ * Scripted by Danial
+ */
+
+using UnityEngine;
 using System.Collections;
 
-public class WeaponScript : MonoBehaviour {
+abstract public class WeaponScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public abstract void SpawnBullets();
+
+	public abstract void Reload();
+
+	public abstract void AltFire();
+
+	public abstract void GiveDamage();
+
+	public abstract void AmmoPool();
+
 }
