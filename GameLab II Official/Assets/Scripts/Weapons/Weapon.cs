@@ -15,7 +15,7 @@ public class Weapon : WeaponScript {
 	public override void SpawnBullets() {
 		if(Input.GetButtonDown("Fire1")){
 //			Debug.DrawRay(transform.position, Vector3.forward, Color.green, 2f);
-			Physics.Raycast(Vector3.forward);
+			Physics.Raycast(transform.position, Vector3.forward, 2f);
 			Debug.Log("test");
 		}
 	}
