@@ -3,14 +3,14 @@ using System.Collections;
 
 public class Charachter_Controller : MonoBehaviour {
 
-public int moveSpeed;			
+	public int moveSpeed;			
 	public int newSpeed;				
 	public int oldSpeed;
 	public int upgradeRun;
 	public int upgradeMove;
 
 	public float mouseSpeed;
-	public float rayDistance;
+	public float rayDistance, rayDistanceMelee;
 	public float jumpSpeed;
 	public float extraJumpSpeed;
 	public float groundDistance;
@@ -23,20 +23,27 @@ public int moveSpeed;
 	public Rigidbody playerRB;
 
 	void Start (){
+
 		playerRB = GetComponent<Rigidbody>();
+
 	}
 
 	void Update () {
+
 		Sprint();
 		MovementControlls ();				
 		CamRotHorizontal ();
+
 	}
 
 	void FixedUpdate (){
+
 		Jump();
+
 	}
 
 	void Jump (){
+
 		if(Physics.Raycast (transform.position, new Vector3 (0, -1, 0), groundDistance)){
 			mayJump = true;
 			if(Input.GetButtonDown("Jump") && mayJump == true){
@@ -50,16 +57,21 @@ public int moveSpeed;
 
 
 	public void UpgradesJump (){
+
 		jumpSpeed += extraJumpSpeed;
+
 	}
 
 	public void UpgradesRun (){
+
 		moveSpeed += upgradeMove;
 		newSpeed += upgradeRun;
 		oldSpeed += upgradeRun;
+
 	}
 
 	void MovementControlls (){
+
 		if (Input.GetAxis ("Vertical") > 0) {															
 			if (Physics.Raycast (transform.position, transform.forward, rayDistance)) {
 			}
@@ -114,6 +126,18 @@ public int moveSpeed;
 	}
 
 	void CamRotHorizontal (){
+
 		transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeed);
+
+	}
+
+	public void Melee (){
+
+		RaycastHit meleeRayHit;
+		if(Input.GetButtonDown("Melee")){
+			if(Physics.Raycast (transform.position, new Vector3(transform.position.x, 0.5f, transform.position.y), rayDistanceMelee)){
+				
+			}
+		}
 	}
 }
