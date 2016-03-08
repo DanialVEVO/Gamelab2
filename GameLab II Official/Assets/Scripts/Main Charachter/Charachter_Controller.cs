@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Charachter_Controller : MonoBehaviour {
@@ -9,7 +9,8 @@ public class Charachter_Controller : MonoBehaviour {
 	public int upgradeRun;
 	public int upgradeMove;
 
-	public float mouseSpeed;
+	public float mouseSpeedHor, mouseSpeedVer;
+	public float limit;
 	public float rayDistance, rayDistanceMelee;
 	public float jumpSpeed;
 	public float extraJumpSpeed;
@@ -20,11 +21,16 @@ public class Charachter_Controller : MonoBehaviour {
 
 	public bool mayJump;
 
+	public RaycastHit meleeRayHit;
 	public Rigidbody playerRB;
+	public GameObject mainCam;
+
+	private float camRot;
 
 	void Start (){
 
 		playerRB = GetComponent<Rigidbody>();
+		mainCam = GameObject.Find("Main Camera");
 
 	}
 
@@ -33,6 +39,8 @@ public class Charachter_Controller : MonoBehaviour {
 		Sprint();
 		MovementControlls ();				
 		CamRotHorizontal ();
+		Melee ();
+		CamRotVertical();
 
 	}
 
@@ -107,7 +115,7 @@ public class Charachter_Controller : MonoBehaviour {
 
 	public void Sprint (){
 
-		GameObject.Find("Player/Main Camera").GetComponent<Camera>().fieldOfView = camFOV;
+		mainCam.GetComponent<Camera>().fieldOfView = camFOV;
 
 		if(Input.GetAxis("Vertical") > 0 && Input.GetButton("Sprint") || Input.GetAxis("Vertical") < 0 && Input.GetButton("Sprint") || Input.GetAxis("Horizontal") > 0 && Input.GetButton("Sprint")){				//Condition for sprinting;
 			moveSpeed = newSpeed;
@@ -127,16 +135,26 @@ public class Charachter_Controller : MonoBehaviour {
 
 	void CamRotHorizontal (){
 
-		transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeed);
+		transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeedHor);
+
+	}
+
+	void CamRotVertical (){
+
+		camRot -= Input.GetAxis("Mouse Y") * mouseSpeedVer;
+		camRot = Mathf.Clamp(camRot, -limit, limit);
+		mainCam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
 
 	}
 
 	public void Melee (){
 
-		RaycastHit meleeRayHit;
 		if(Input.GetButtonDown("Melee")){
-			if(Physics.Raycast (transform.position, new Vector3(transform.position.x, 0.5f, transform.position.y), rayDistanceMelee)){
-				
+			print("Melee");
+			if(Physics.Raycast (transform.position, transform.forward, out meleeRayHit, rayDistanceMelee)){
+				if(meleeRayHit.transform.tag == "Enemy"){
+					Destroy(meleeRayHit.transform.gameObject);
+				}
 			}
 		}
 	}
