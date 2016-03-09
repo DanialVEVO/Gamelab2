@@ -41,6 +41,7 @@ public class Charachter_Controller : MonoBehaviour {
 		CamRotHorizontal ();
 		Melee ();
 		CamRotVertical();
+		GameOver();
 
 	}
 
@@ -156,6 +157,13 @@ public class Charachter_Controller : MonoBehaviour {
 					Destroy(meleeRayHit.transform.gameObject);
 				}
 			}
+		}
+	}
+
+	public void GameOver (){
+
+		if(GetComponent<Health_TakeDamage_HitLocation>().playerHealth < 0){
+			print("GameOver");
 		}
 	}
 }
