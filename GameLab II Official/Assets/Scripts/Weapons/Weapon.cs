@@ -32,6 +32,7 @@ public class Weapon : WeaponScript {
 			SpawnBullets();
 		}
 		
+		Reload();
 		
 	}
 
@@ -50,7 +51,13 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void Reload(){
-		
+		if(Input.GetButtonDown("Reload") && ammoPool > 0){
+			for (int i=0; i<=maxMagazineSize; i++){
+				loadedMagazine++;
+				ammoPool--;
+			}
+			Debug.Log("Reloaded!");
+		}
 	}
 
 	public override void AltFire(){
