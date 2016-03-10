@@ -10,6 +10,8 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void SpawnBullets();
 
+	public abstract void CalcRateOfFire();
+
 	public abstract void Reload();
 
 	public abstract void AltFire();
