@@ -6,20 +6,20 @@ public class Charachter_Controller : MonoBehaviour {
 	public int moveSpeed;			
 	public int newSpeed;				
 	public int oldSpeed;
-	public int upgradeRun;
-	public int upgradeMove;
+	public int upgradeLevelCharachter;
+	public int upgradePoints;
 
 	public float mouseSpeedHor, mouseSpeedVer;
 	public float limit;
 	public float rayDistance, rayDistanceMelee;
 	public float jumpSpeed;
-	public float extraJumpSpeed;
 	public float groundDistance;
 	public float camFOV;
 	public float minFOV, maxFOV;
 	public float camFOVMultiplier;
 
 	public bool mayJump;
+	public bool mayUpgrade;
 
 	public RaycastHit meleeRayHit;
 	public Rigidbody playerRB;
@@ -31,6 +31,7 @@ public class Charachter_Controller : MonoBehaviour {
 
 		playerRB = GetComponent<Rigidbody>();
 		mainCam = GameObject.Find("Main Camera");
+		mayUpgrade = true;
 
 	}
 
@@ -65,18 +66,48 @@ public class Charachter_Controller : MonoBehaviour {
 	}
 
 
-	public void UpgradesJump (){
+	public void UpgradesCharachter (){
 
-		jumpSpeed += extraJumpSpeed;
+		if(mayUpgrade == true && upgradePoints >= 1){
+			upgradeLevelCharachter += 1;
+			upgradePoints -= 1;
+		}
+		CharachterUpgradesManager(upgradeLevelCharachter);
 
 	}
 
-	public void UpgradesRun (){
+	public void CharachterUpgradesManager (int upgradeLevelMC){
 
-		moveSpeed += upgradeMove;
-		newSpeed += upgradeRun;
-		oldSpeed += upgradeRun;
+		switch (upgradeLevelMC){
 
+			case 1 :
+				moveSpeed = 8;
+				newSpeed = 12;
+				oldSpeed = 8;
+				break;
+
+			case 2 :
+				moveSpeed = 10;
+				newSpeed = 13;
+				oldSpeed = 10;
+				jumpSpeed = 400;
+				break;
+
+			case 3 : 
+				moveSpeed = 12;
+				newSpeed = 14;
+				oldSpeed = 12;
+				jumpSpeed = 400;
+				break;
+
+			case 4 :
+				moveSpeed = 12;
+				newSpeed = 14;
+				oldSpeed = 12;
+				jumpSpeed = 450;
+				mayUpgrade = false;
+				break;
+		}
 	}
 
 	void MovementControlls (){
