@@ -9,11 +9,13 @@ using System.Collections;
 public class Weapon : WeaponScript {
 
 	public	bool	allowFire = true;
-	public	float	rateOfFire;
+	public	bool	reloading = false;
+	private float	rateOfFire;
 	public	float	fireRatePerMinute;
 	public 	float 	cooldown = 0;
 	public	int		loadedMagazine = 6;
 	public 	int 	maxMagazineSize = 6;
+	private	int		tempAmmo;
 	public	int		ammoPool = 12;
 
 	void Start(){
@@ -21,19 +23,19 @@ public class Weapon : WeaponScript {
 	}
 
 	void Update(){
-		if(!allowFire){
-			cooldown -= Time.deltaTime;
-			if(cooldown <= 0){
-				allowFire = true;
-				cooldown = rateOfFire;
+		if(loadedMagazine > 0){
+			if(!allowFire /*&& loadedMagazine > 0*/){
+				cooldown -= Time.deltaTime;
+				if(cooldown <= 0){
+					allowFire = true;
+					cooldown = rateOfFire;
+				}
+			}
+			else{
+				SpawnBullets();
 			}
 		}
-		else{
-			SpawnBullets();
-		}
-		
 		Reload();
-		
 	}
 
 	public override void SpawnBullets(){
@@ -51,11 +53,9 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void Reload(){
-		if(Input.GetButtonDown("Reload") && ammoPool > 0){
-			for (int i=0; i<=maxMagazineSize; i++){
-				loadedMagazine++;
-				ammoPool--;
-			}
+		if(Input.GetButtonDown("Reload") && ammoPool > 0 && reloading == false){
+			reloading = true;
+			
 			Debug.Log("Reloaded!");
 		}
 	}
