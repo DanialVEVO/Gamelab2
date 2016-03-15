@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WeaponSwitch : MonoBehaviour {
 
 	public int curWeapon;
 
-	public GameObject [] weapons;
+	public List <GameObject> weapons = new List <GameObject>();
 
 
 	void Start () {
@@ -24,17 +25,17 @@ public class WeaponSwitch : MonoBehaviour {
 
 		if(Input.GetButtonDown("SwitchWeapon")){
 			curWeapon ++;
-			for(int i = 0; i < weapons.Length; i ++){
-				if(curWeapon == i){
+			for(int i = 0; i < weapons.Count; i ++){
+				if(curWeapon == weapons.Count){
+					curWeapon = 0;
+					i = curWeapon;
+				}
+				if(i == curWeapon){
 					weapons[i].SetActive(true);
-					print(i);
 				}
 				else{
 					weapons[i].SetActive(false);
 				}
-			}
-			if(curWeapon == weapons.Length){
-				curWeapon = 0;
 			}
 		}
 	}
