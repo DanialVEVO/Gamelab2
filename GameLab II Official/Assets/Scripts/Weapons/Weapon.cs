@@ -15,7 +15,7 @@ public class Weapon : WeaponScript {
 	public 	float 	cooldown = 0;
 	public	int		loadedMagazine = 6;
 	public 	int 	maxMagazineSize = 6;
-	private	int		tempAmmo;
+/*	private	int		tempAmmo;*/
 	public	int		ammoPool = 12;
 
 	void Start(){
@@ -53,9 +53,24 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void Reload(){
-		if(Input.GetButtonDown("Reload") && ammoPool > 0 && reloading == false){
+		if(Input.GetButtonDown("Reload") /*&& ammoPool >= 1*/ && reloading == false){
+			int neededAmmo;
+			int projectedTotal;
 			reloading = true;
-			
+			neededAmmo = (maxMagazineSize-loadedMagazine);
+			projectedTotal = (ammoPool-neededAmmo);
+			Debug.Log(neededAmmo);
+			Debug.Log(projectedTotal);
+			if(neededAmmo > ammoPool){
+				loadedMagazine += ammoPool;
+				ammoPool = ammoPool - ammoPool;
+			}
+			else{
+				/*doe normale reload*/ Debug.Log("wew");
+				loadedMagazine = maxMagazineSize;
+				ammoPool -= loadedMagazine;
+			}			
+			reloading = false;
 			Debug.Log("Reloaded!");
 		}
 	}
