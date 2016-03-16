@@ -17,12 +17,14 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 	public bool shieldActivated;
 	public bool mayRecharge;
 
+	public Transform enemyPos;
+
 	void Start () {
 
 		playerHealth = maxHealth;
 		shieldActivated = true;
 		mayUpgrade = true;
-
+		enemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
 	}
 	
 	void Update () {
@@ -111,11 +113,23 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 		}
 	}
 
-	public void HitLocation (){
-		
-	}
-
-	public void OnCollisionEnter (Collision hit){
-
+	public void HitLocation (bool checkHit){
+		if(checkHit == true){
+			Vector3 forward = transform.TransformDirection(Vector3.forward);
+			Vector3 right = transform.TransformDirection(Vector3.right);
+			Vector3 enemyDis = enemyPos.position - transform.position;
+			if(Vector3.Dot(forward, enemyDis) < 0){
+				print("HitBack");
+			}
+			if(Vector3.Dot(forward, enemyDis) > 0){
+				print("HitFront");
+			}
+			if(Vector3.Dot(right, enemyDis) < 0){
+				print("HitLeft");
+			}
+			if(Vector3.Dot(right, enemyDis) > 0){
+				print("HitRight");
+			}
+		}
 	}
 }
