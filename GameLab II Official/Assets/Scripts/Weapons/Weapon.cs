@@ -8,15 +8,30 @@ using System.Collections;
 
 public class Weapon : WeaponScript {
 
-	public	bool	allowFire = true;
-	public	bool	reloading = false;
-	private float	rateOfFire;
-	public	float	fireRatePerMinute;
-	public 	float 	cooldown = 0;
-	public	int		loadedMagazine = 6;
-	public 	int 	maxMagazineSize = 6;
-/*	private	int		tempAmmo;*/
-	public	int		ammoPool = 12;
+	public	bool		allowFire = true;
+	public	bool		reloading = false;
+	public	bool		allowAltFire = false;
+
+	private float		rateOfFire;
+	public	float		fireRatePerMinute;
+	public 	float 		cooldown = 0;
+
+	public	int			loadedMagazine = 6;
+	public 	int 		maxMagazineSize = 6;
+	public	int			ammoPool = 12;
+	public	int			damage = 1;
+
+	public	RaycastHit	hit;
+
+	public	enum	WeaponType{
+					Fist,
+					Revolver,
+					Smg,
+					Ar,
+					Launcher
+	}
+
+	public	WeaponType myWeaponType;
 
 	void Start(){
 		CalcRateOfFire();
@@ -24,7 +39,7 @@ public class Weapon : WeaponScript {
 
 	void Update(){
 		if(loadedMagazine > 0){
-			if(!allowFire /*&& loadedMagazine > 0*/){
+			if(!allowFire){
 				cooldown -= Time.deltaTime;
 				if(cooldown <= 0){
 					allowFire = true;
@@ -41,10 +56,10 @@ public class Weapon : WeaponScript {
 	public override void SpawnBullets(){
 		if(Input.GetButton("Fire1")){
 			allowFire = false;
-			Debug.DrawRay(transform.position, Vector3.forward, Color.green, 2f);
-			Physics.Raycast(transform.position, Vector3.forward, 2f);
+			Debug.DrawRay(transform.position, Vector3.forward, Color.green, Mathf.Infinity);
+			Physics.Raycast(transform.position, Vector3.forward, out hit, Mathf.Infinity);
 			loadedMagazine --;
-			Debug.Log("Fired!");
+			GiveDamage();
 		}
 	}
 
@@ -53,37 +68,39 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void Reload(){
-		if(Input.GetButtonDown("Reload") /*&& ammoPool >= 1*/ && reloading == false){
+		if(Input.GetButtonDown("Reload") && reloading == false){
 			int neededAmmo;
 			int projectedTotal;
 			reloading = true;
 			neededAmmo = (maxMagazineSize-loadedMagazine);
 			projectedTotal = (ammoPool-neededAmmo);
-			Debug.Log(neededAmmo);
-			Debug.Log(projectedTotal);
 			if(neededAmmo > ammoPool){
 				loadedMagazine += ammoPool;
 				ammoPool = ammoPool - ammoPool;
 			}
 			else{
-				/*doe normale reload*/ Debug.Log("wew");
-				loadedMagazine = maxMagazineSize;
-				ammoPool -= loadedMagazine;
+				ammoPool -= neededAmmo;
+				loadedMagazine += neededAmmo;
 			}			
 			reloading = false;
-			Debug.Log("Reloaded!");
 		}
 	}
 
 	public override void AltFire(){
+
+		/* if allow fire true and myweapontype = x (doe alt fire)*/
 		
 	}
 
 	public override void GiveDamage(){
+		if(hit.transform.tag == "Enemy"){
+			hit.transform.GetComponent<EnemyBaseClass>().Health(damage);
+		}
 
 	}
 
 	public override void AmmoPool(){
 
 	}
+
 }
