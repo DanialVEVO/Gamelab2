@@ -110,4 +110,12 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 				break;
 		}
 	}
+
+	public void HitLocation (){
+		
+	}
+
+	public void OnCollisionEnter (Collision hit){
+
+	}
 }
