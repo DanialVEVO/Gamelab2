@@ -29,7 +29,6 @@ public class Interaction : MonoBehaviour {
 				for(int i = 0; i < tagManager.Length; i ++){
 					if(rayHit.transform.tag == tagManager[i])
 						interactionSelector = i;
-						Destroy(rayHit.transform.gameObject);
 				}
 			}
 			InteractionManager(interactionSelector);
@@ -72,6 +71,7 @@ public class Interaction : MonoBehaviour {
 
 			case 8 :
 				print("Loot Chest");
+				GameObject.Find("LootChest").GetComponent<LootChest>().LootChestSelector();
 				break;
 		}
 	}
