@@ -31,6 +31,10 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
 		Shield ();
 
+		if(playerHealth > maxHealth){
+			playerHealth = maxHealth;
+		}
+
 	}
 
 	public void HealthCalculator (int damagePlayer){

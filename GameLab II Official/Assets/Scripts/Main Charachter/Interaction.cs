@@ -4,8 +4,10 @@ using System.Collections;
 public class Interaction : MonoBehaviour {
 
 	public int interactionSelector;
+	public int healthPickup;
 
 	public float rayDis;
+	public float shieldAmountPickup;
 
 	public RaycastHit rayHit;
 	public string [] tagManager;
@@ -27,6 +29,7 @@ public class Interaction : MonoBehaviour {
 				for(int i = 0; i < tagManager.Length; i ++){
 					if(rayHit.transform.tag == tagManager[i])
 						interactionSelector = i;
+						Destroy(rayHit.transform.gameObject);
 				}
 			}
 			InteractionManager(interactionSelector);
@@ -47,10 +50,12 @@ public class Interaction : MonoBehaviour {
 
 			case 3 :
 				print("Health Pickup");
+				GetComponent<Health_TakeDamage_HitLocation>().playerHealth += healthPickup;
 				break;
 
 			case 4 : 
 				print("Shield Energy Pickup");
+				GetComponent<Health_TakeDamage_HitLocation>().shieldAmount += shieldAmountPickup;
 				break;
 
 			case 5 : 

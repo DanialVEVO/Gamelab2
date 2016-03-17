@@ -149,7 +149,7 @@ public class Charachter_Controller : MonoBehaviour {
 
 		mainCam.GetComponent<Camera>().fieldOfView = camFOV;
 
-		if(Input.GetAxis("Vertical") > 0 && Input.GetButton("Sprint") || Input.GetAxis("Vertical") < 0 && Input.GetButton("Sprint") || Input.GetAxis("Horizontal") > 0 && Input.GetButton("Sprint")){				//Condition for sprinting;
+		if(Input.GetAxis("Vertical") > 0 && Input.GetButton("Sprint") || Input.GetAxis("Vertical") < 0 && Input.GetButton("Sprint") || Input.GetAxis("Horizontal") > 0 && Input.GetButton("Sprint")){		
 			moveSpeed = newSpeed;
 			camFOV -= camFOVMultiplier * Time.deltaTime;
 			if(camFOV <  minFOV){
