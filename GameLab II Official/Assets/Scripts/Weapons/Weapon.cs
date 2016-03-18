@@ -23,13 +23,15 @@ public class Weapon : WeaponScript {
 
 	public	RaycastHit	hit;
 
+	public	Transform	muzzle;
+
 	public	enum	WeaponType{
-					Fist,
-					Revolver,
-					Smg,
-					Ar,
-					Launcher
-	}
+						Fist,
+						Revolver,
+						Smg,
+						Ar,
+						Launcher
+					}
 
 	public	WeaponType myWeaponType;
 
@@ -38,6 +40,24 @@ public class Weapon : WeaponScript {
 	}
 
 	void Update(){
+		Reload();
+	}
+
+	public override void SpawnBullets(){
+		if(Input.GetButton("Fire1")){
+			allowFire = false;
+			Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
+			Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity);
+			loadedMagazine --;
+			GiveDamage();
+		}
+	}
+
+	public override void CalcRateOfFire(){
+		rateOfFire = 60/fireRatePerMinute;
+	}
+
+	public override void Reload(){
 		if(loadedMagazine > 0){
 			if(!allowFire){
 				cooldown -= Time.deltaTime;
@@ -50,57 +70,35 @@ public class Weapon : WeaponScript {
 				SpawnBullets();
 			}
 		}
-		Reload();
-	}
-
-	public override void SpawnBullets(){
-		if(Input.GetButton("Fire1")){
-			allowFire = false;
-			Debug.DrawRay(transform.position, Vector3.forward, Color.green, Mathf.Infinity);
-			Physics.Raycast(transform.position, Vector3.forward, out hit, Mathf.Infinity);
-			loadedMagazine --;
-			GiveDamage();
-		}
-	}
-
-	public override void CalcRateOfFire(){
-		rateOfFire = 60/fireRatePerMinute;
-	}
-
-	public override void Reload(){
 		if(Input.GetButtonDown("Reload") && reloading == false){
-			int neededAmmo;
-			int projectedTotal;
-			reloading = true;
-			neededAmmo = (maxMagazineSize-loadedMagazine);
-			projectedTotal = (ammoPool-neededAmmo);
-			if(neededAmmo > ammoPool){
-				loadedMagazine += ammoPool;
-				ammoPool = ammoPool - ammoPool;
-			}
-			else{
-				ammoPool -= neededAmmo;
-				loadedMagazine += neededAmmo;
-			}			
-			reloading = false;
+			AmmoPool();
 		}
 	}
 
 	public override void AltFire(){
-
 		/* if allow fire true and myweapontype = x (doe alt fire)*/
-		
 	}
 
 	public override void GiveDamage(){
 		if(hit.transform.tag == "Enemy"){
 			hit.transform.GetComponent<EnemyBaseClass>().Health(damage);
 		}
-
 	}
 
 	public override void AmmoPool(){
-
+		int neededAmmo;
+		int projectedTotal;
+		reloading = true;
+		neededAmmo = (maxMagazineSize-loadedMagazine);
+		projectedTotal = (ammoPool-neededAmmo);
+		if(neededAmmo < ammoPool){
+			ammoPool -= neededAmmo;
+			loadedMagazine += neededAmmo;
+		}
+		else{
+			loadedMagazine += ammoPool;
+			ammoPool = ammoPool - ammoPool;
+		}			
+		reloading = false;
 	}
-
 }
