@@ -63,6 +63,9 @@ public class Interaction : MonoBehaviour {
 
 			case 6 :
 				print("Treasure");
+				int extraUpgradePoints;
+				extraUpgradePoints = Random.Range(0, 2);
+				GetComponent<Charachter_Controller>().upgradePoints += extraUpgradePoints;
 				break;
 
 			case 7 :
