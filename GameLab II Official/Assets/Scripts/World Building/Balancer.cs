@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/* [Code]
+ * Enemy Balancer Class
+ * Scripted by Danial
+ */
+using UnityEngine;
 using System.Collections;
 
 public class Balancer : MonoBehaviour {
