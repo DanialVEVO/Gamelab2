@@ -18,21 +18,22 @@ public class Interaction : MonoBehaviour {
 	
 	void Update () {
 	
-		InteractionSwitch ();
+		if(Input.GetButtonDown("Interact")){
+			InteractionSwitch ();
+		}
 
 	}
 
 	public void InteractionSwitch (){
 
-		if(Input.GetButtonDown("Interact")){
-			if(Physics.Raycast(transform.position, transform.forward, out rayHit, rayDis)){
-				for(int i = 0; i < tagManager.Length; i ++){
-					if(rayHit.transform.tag == tagManager[i])
-						interactionSelector = i;
-				}
+		if(Physics.Raycast(transform.position, transform.forward, out rayHit, rayDis)){
+			for(int i = 0; i < tagManager.Length; i ++){
+				if(rayHit.transform.tag == tagManager[i])
+					interactionSelector = i;
+					Destroy(rayHit.transform.gameObject);
 			}
-			InteractionManager(interactionSelector);
 		}
+		InteractionManager(interactionSelector);
 	}
 
 	public void InteractionManager (int interaction){

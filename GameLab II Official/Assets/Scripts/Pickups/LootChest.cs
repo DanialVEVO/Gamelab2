@@ -22,7 +22,6 @@ public class LootChest : MonoBehaviour {
 		for(int i = 0; i < loot.Length; i ++){
 			if(i == curLootCheck){
 				Instantiate(loot[i], transform.position, Quaternion.identity);
-				Destroy(gameObject);
 			}
 		}
 	}
