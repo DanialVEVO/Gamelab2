@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Interaction : MonoBehaviour {
 
-	public int interactionSelector;
 	public int healthPickup;
 
 	public float rayDis;
@@ -18,9 +17,7 @@ public class Interaction : MonoBehaviour {
 	
 	void Update () {
 	
-		if(Input.GetButtonDown("Interact")){
-			InteractionSwitch ();
-		}
+		InteractionSwitch ();
 
 	}
 
@@ -28,12 +25,14 @@ public class Interaction : MonoBehaviour {
 
 		if(Physics.Raycast(transform.position, transform.forward, out rayHit, rayDis)){
 			for(int i = 0; i < tagManager.Length; i ++){
-				if(rayHit.transform.tag == tagManager[i])
-					interactionSelector = i;
-					Destroy(rayHit.transform.gameObject);
+				if(rayHit.transform.tag == tagManager[i]){
+					if(Input.GetButtonDown("Interact")){
+						InteractionManager(i);
+						Destroy(rayHit.transform.gameObject);
+					}
+				}
 			}
 		}
-		InteractionManager(interactionSelector);
 	}
 
 	public void InteractionManager (int interaction){
