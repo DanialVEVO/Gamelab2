@@ -8,6 +8,15 @@ using System.Collections;
 
 public class Weapon : WeaponScript {
 
+	public	WeaponType myWeaponType;
+	public	enum	WeaponType{
+						Fist,
+						Revolver,
+						Smg,
+						Ar,
+						Launcher
+					}
+
 	public	bool		allowFire = true;
 	public	bool		reloading = false;
 	public	bool		allowAltFire = false;
@@ -24,16 +33,6 @@ public class Weapon : WeaponScript {
 	public	RaycastHit	hit;
 
 	public	Transform	muzzle;
-
-	public	enum	WeaponType{
-						Fist,
-						Revolver,
-						Smg,
-						Ar,
-						Launcher
-					}
-
-	public	WeaponType myWeaponType;
 
 	void Start(){
 		CalcRateOfFire();
