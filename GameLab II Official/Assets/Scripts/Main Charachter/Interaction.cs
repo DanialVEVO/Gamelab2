@@ -76,6 +76,10 @@ public class Interaction : MonoBehaviour {
 				print("Loot Chest");
 				GameObject.Find("LootChest").GetComponent<LootChest>().LootChestSelector();
 				break;
+
+			case 9 :
+				print("Secret Room");
+				break;
 		}
 	}
 }
