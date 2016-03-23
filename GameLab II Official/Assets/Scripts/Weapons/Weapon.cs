@@ -11,7 +11,7 @@ public class Weapon : WeaponScript {
 	public	enum	WeaponType{
 						Fist,
 						Revolver,
-						Smg,
+						SMG,
 						Ar,
 						Launcher
 					}
@@ -42,27 +42,82 @@ public class Weapon : WeaponScript {
 	}
 
 	void Update(){
-		Reload();
-		AltFire();
-
-	}
-
-	public override void SpawnBullets(){
 		if(Input.GetButton("Fire1")){
-			allowFire = false;
-			Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
-			Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity);
-			loadedMagazine --;
-			GiveDamage();
+			if(allowFire == true){
+				SpawnBullets();
+			}
+			else{
+				//
+			}
+
+		}
+		
+
+		if(allowFire == false){
+			Cooldown();
+		}
+
+
+		if(Input.GetButtonDown("Reload")){
+			if(reloading == false){
+				Reload();
+			}
+			else{
+				//
+			}
+		}
+		
+		if( Input.GetButtonDown("Fire2") ){
+			switch(myWeaponType){
+
+				case WeaponType.Revolver :
+					if(allowAltFire == true ){
+						if(loadedMagazine > revolverAltFire){
+							AltFire();
+						}
+					}
+					else{
+						//
+					}
+					break;
+
+				case WeaponType.SMG :
+					if(allowAltFire == true ){
+						if(loadedMagazine > revolverAltFire){
+							AltFire();
+						}
+					}
+					else{
+						//
+					}
+					break;
+			}
 		}
 	}
 
 	public override void CalcRateOfFire(){
+		print("CalcRateOfFire");
 		rateOfFire = 60/fireRatePerMinute;
 	}
 
-	public override void Reload(){
+	public override void SpawnBullets(){
+		print("SpawnBullets");
+		allowFire = false;
+		Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
+		if(Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity)){
+			if(hit.transform.tag == "Enemy"){
+				GiveDamage();
+			}
+		}
+		loadedMagazine --;
+
+			
+	}
+
+	public override void Cooldown(){
+		print("cooldown");
 		if(loadedMagazine > 0){
+			print("loadedMagazine check");
 			if(!allowFire){
 				cooldown -= Time.deltaTime;
 				if(cooldown <= 0){
@@ -70,30 +125,11 @@ public class Weapon : WeaponScript {
 					cooldown = rateOfFire;
 				}
 			}
-			else{
-				SpawnBullets();
-			}
-		}
-		if(Input.GetButtonDown("Reload") && reloading == false){
-			AmmoPool();
 		}
 	}
 
-	public override void AltFire(){
-		/* if allow fire true and myweapontype = x (doe alt fire)*/
-		if(allowAltFire == true && myWeaponType == WeaponType.Revolver && loadedMagazine > revolverAltFire){
-			Debug.Log("wew");
-			return;
-		}
-	}
-
-	public override void GiveDamage(){
-		if(hit.transform.tag == "Enemy"){
-			hit.transform.GetComponent<EnemyBaseClass>().Health(damage);
-		}
-	}
-
-	public override void AmmoPool(){
+	public override void Reload(){
+		print("Reload");
 		int neededAmmo;
 		int projectedTotal;
 		reloading = true;
@@ -108,5 +144,22 @@ public class Weapon : WeaponScript {
 			ammoPool = ammoPool - ammoPool;
 		}			
 		reloading = false;
+
+	}
+
+	public override void AltFire(){
+		print("AltFire");
+		for (int i = 0; i < revolverAltFire; i++){
+				Debug.Log("wew");
+				SpawnBullets();
+		}
+	}
+
+	public override void GiveDamage(){
+		print("GiveDamage");
+		hit.transform.GetComponent<EnemyBaseClass>().Health(damage);
+	}
+
+	public override void AmmoPool(){
 	}
 }

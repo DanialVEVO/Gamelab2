@@ -8,9 +8,11 @@ using System.Collections;
 
 abstract public class WeaponScript : MonoBehaviour {
 
+	public abstract void CalcRateOfFire();
+
 	public abstract void SpawnBullets();
 
-	public abstract void CalcRateOfFire();
+	public abstract void Cooldown();
 
 	public abstract void Reload();
 
