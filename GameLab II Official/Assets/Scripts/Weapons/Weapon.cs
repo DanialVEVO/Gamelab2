@@ -8,7 +8,6 @@ using System.Collections;
 
 public class Weapon : WeaponScript {
 
-	public	WeaponType myWeaponType;
 	public	enum	WeaponType{
 						Fist,
 						Revolver,
@@ -16,6 +15,8 @@ public class Weapon : WeaponScript {
 						Ar,
 						Launcher
 					}
+	public	WeaponType	myWeaponType;
+	
 
 	public	bool		allowFire = true;
 	public	bool		reloading = false;
@@ -30,6 +31,8 @@ public class Weapon : WeaponScript {
 	public	int			ammoPool = 12;
 	public	int			damage = 1;
 
+	public	int			revolverAltFire = 4;
+
 	public	RaycastHit	hit;
 
 	public	Transform	muzzle;
@@ -40,6 +43,8 @@ public class Weapon : WeaponScript {
 
 	void Update(){
 		Reload();
+		AltFire();
+
 	}
 
 	public override void SpawnBullets(){
@@ -76,6 +81,10 @@ public class Weapon : WeaponScript {
 
 	public override void AltFire(){
 		/* if allow fire true and myweapontype = x (doe alt fire)*/
+		if(allowAltFire == true && myWeaponType == WeaponType.Revolver && loadedMagazine > revolverAltFire){
+			Debug.Log("wew");
+			return;
+		}
 	}
 
 	public override void GiveDamage(){
