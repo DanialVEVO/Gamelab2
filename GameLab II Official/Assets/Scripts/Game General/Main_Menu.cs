@@ -9,11 +9,11 @@ public class Main_Menu : MonoBehaviour {
 
 	void Start () {
 
+		AssignButtons();
+
 		mainMenuButtons.SetActive(true);
 		optionsMenuButtons.SetActive(false);
 		creditsMenu.SetActive(false);
-
-		AssignButtons();
 	
 	}
 	
