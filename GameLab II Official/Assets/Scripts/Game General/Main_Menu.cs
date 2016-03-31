@@ -6,6 +6,7 @@ public class Main_Menu : MonoBehaviour {
 	public GameObject mainMenuButtons;
 	public GameObject optionsMenuButtons;
 	public GameObject creditsMenu;
+	public GameObject graphicsMenu;
 
 	void Start () {
 
@@ -14,6 +15,7 @@ public class Main_Menu : MonoBehaviour {
 		mainMenuButtons.SetActive(true);
 		optionsMenuButtons.SetActive(false);
 		creditsMenu.SetActive(false);
+		graphicsMenu.SetActive(false);
 	
 	}
 	
@@ -55,11 +57,25 @@ public class Main_Menu : MonoBehaviour {
 		print("QuitToDestop");
 	}
 
+	public void OpenGraphics (){
+
+		graphicsMenu.SetActive(true);
+		optionsMenuButtons.SetActive(false);
+
+	}
+
+	public void ReturnToOptions (){
+
+		optionsMenuButtons.SetActive(true);
+		graphicsMenu.SetActive(false);
+	}
+
 	public void AssignButtons (){
 
 		mainMenuButtons = GameObject.Find("MainMenuButtons");
 		optionsMenuButtons = GameObject.Find("OptionMenuButtons");
 		creditsMenu = GameObject.Find("Credits Menu");
+		graphicsMenu = GameObject.Find("Graphics Menu");
 
 
 	}
