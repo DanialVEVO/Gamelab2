@@ -10,7 +10,9 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void CalcRateOfFire();
 
-	public abstract void SpawnBullets();
+	public abstract void FireBullets();
+
+	public abstract void Spread();
 
 	public abstract void Cooldown();
 
@@ -18,7 +20,7 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void AltFire();
 
-	public abstract void GiveDamage();
+	public abstract void GiveDamage(int sumDamage);
 
 	public abstract void AmmoPool();
 

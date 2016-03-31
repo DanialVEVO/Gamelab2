@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyBaseClass : MonoBehaviour {
 
+public int	hp = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -16,5 +17,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
 	public void Health (int takenDamage) {
 		Debug.Log(takenDamage);
+		hp -= takenDamage;
+		print(hp);
 	}
 }
