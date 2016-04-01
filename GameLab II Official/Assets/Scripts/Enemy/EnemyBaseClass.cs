@@ -18,6 +18,5 @@ public int	hp = 10;
 	public void Health (int takenDamage) {
 		Debug.Log(takenDamage);
 		hp -= takenDamage;
-		print(hp);
 	}
 }

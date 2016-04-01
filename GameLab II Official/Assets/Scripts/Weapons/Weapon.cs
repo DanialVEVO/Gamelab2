@@ -47,19 +47,19 @@ public class Weapon : WeaponScript {
 	}
 
 	void Update(){
-
 		if(allowFire == false){
 			Cooldown();
 		}
 
 		if(Input.GetButton("Fire1")){
 			if(allowFire == true){
+				allowFire = false;
 				FireBullets();
 			}
 			else{
 				//
 			}
-		}		
+		}
 
 		if(Input.GetButtonDown("Reload")){
 			if(reloading == false){
@@ -70,7 +70,7 @@ public class Weapon : WeaponScript {
 			}
 		}
 		
-		if( Input.GetButtonDown("Fire2") ){
+		if( Input.GetButton("Fire2") ){
 			switch(myWeaponType){
 
 				case WeaponType.Revolver :
@@ -86,8 +86,8 @@ public class Weapon : WeaponScript {
 
 				case WeaponType.SMG :
 					if(allowAltFire == true ){
-						if(loadedMagazine > revolverAltFire){
-							AltFire();
+						if(false){
+						//
 						}
 					}
 					else{
@@ -108,8 +108,8 @@ public class Weapon : WeaponScript {
 
 				case WeaponType.Launcher :
 					if(allowAltFire == true ){
-						if(loadedMagazine > revolverAltFire){
-							AltFire();
+						if(false){
+						//
 						}
 					}
 					else{
@@ -118,15 +118,30 @@ public class Weapon : WeaponScript {
 					break;
 			}
 		}
+
+		if(Input.GetButtonDown("Reload")){
+			if(reloading == false){
+				Reload();
+			}
+			else{
+				//
+			}
+		}
 	}
 
-	public override void CalcRateOfFire(){
-		print("CalcRateOfFire");
-		rateOfFire = 60/fireRatePerMinute;
+	public override void Cooldown(){
+		if(loadedMagazine > 0){
+			if(!allowFire){
+				cooldown -= Time.deltaTime;
+				if(cooldown <= 0){
+					allowFire = true;
+					cooldown = rateOfFire;
+				}
+			}
+		}
 	}
 
 	public override void FireBullets(){
-		print("FireBullets");
 		allowFire = false;
 		Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
 		if(Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity)){
@@ -143,25 +158,9 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void Spread(){
-
-	}
-
-	public override void Cooldown(){
-		print("cooldown");
-		if(loadedMagazine > 0){
-			print("loadedMagazine check");
-			if(!allowFire){
-				cooldown -= Time.deltaTime;
-				if(cooldown <= 0){
-					allowFire = true;
-					cooldown = rateOfFire;
-				}
-			}
-		}
 	}
 
 	public override void Reload(){
-		print("Reload");
 		int neededAmmo;
 		int projectedTotal;
 		reloading = true;
@@ -182,9 +181,7 @@ public class Weapon : WeaponScript {
 		switch(myWeaponType){
 			
 			case WeaponType.Revolver :
-			print("AltFire");
 			for (int i = 0; i < revolverAltFire; i++)
-			Debug.Log("wew");
 			FireBullets();
 			break;
 	
@@ -200,10 +197,16 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void GiveDamage(int sumDamage){
-		print("GiveDamage");
+		print("Total damage transferd is " +sumDamage);
 		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);
 	}
 
 	public override void AmmoPool(){
+	}
+
+	public override void CalcRateOfFire(){
+		rateOfFire = 60/fireRatePerMinute;
+		cooldown = rateOfFire;
+		print("The rate of fire is 1 bullet per " +rateOfFire +" second(s)");
 	}
 }
