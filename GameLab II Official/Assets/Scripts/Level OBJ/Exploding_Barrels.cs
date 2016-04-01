@@ -25,7 +25,6 @@ public class Exploding_Barrels : MonoBehaviour {
 	}
 
 	public void RotateBarrel (){
-		float rotSpeed;
 		if(mayRot == true){
 			transform.Rotate(new Vector3(rotateBarrel.x = rotationSpeed * Time.deltaTime, rotateBarrel.y = rotationSpeed * Time.deltaTime, rotateBarrel.z = rotationSpeed * Time.deltaTime));
 		}

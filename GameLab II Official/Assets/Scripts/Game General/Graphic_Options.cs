@@ -3,11 +3,10 @@ using System.Collections;
 
 public class Graphic_Options : MonoBehaviour {
 
-	public int qualityLevel;
+	public Rect buttonPos;
 
 	void Start () {
 	
-	qualityLevel = QualitySettings.GetQualityLevel();	
 
 	}
 	
@@ -15,25 +14,18 @@ public class Graphic_Options : MonoBehaviour {
 	
 	}
 
-	public void QualityUp (){
+	public void OnGUI (){
 
 		string[] names = QualitySettings.names;
-		GUILayout.BeginVertical();
+		GUILayout.BeginArea(buttonPos);
 		int i = 0;
 		while (i < names.Length){
-			if(GUILayout.Button(names[1])){
+			if(GUILayout.Button(names[i])){
 				QualitySettings.SetQualityLevel(i, true);
 			}
 			i ++;
 		}
-		GUILayout.EndVertical();
-	}
-
-	public void QualityDown (){
-
-		qualityLevel -= 1;
-		print(qualityLevel);
-
+		GUILayout.EndArea();
 	}
 
 }
