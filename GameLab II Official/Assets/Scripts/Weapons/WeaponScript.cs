@@ -14,6 +14,8 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void Spread();
 
+	public abstract void SpreadReset();
+
 	public abstract void Reload();
 
 	public abstract void AltFire();

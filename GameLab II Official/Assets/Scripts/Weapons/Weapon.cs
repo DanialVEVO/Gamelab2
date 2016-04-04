@@ -25,8 +25,7 @@ public class Weapon : WeaponScript {
 	private float		rateOfFire;
 	public	float		fireRatePerMinute;
 	public 	float 		cooldown = 0;
-	public 	float		spreadMin = -.5f;
-	public	float		spreadMax = .5f;
+
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
@@ -41,6 +40,12 @@ public class Weapon : WeaponScript {
 	public	int			revolverAltFire = 4;
 	public	int			rifleAirDamage = 2;
 	public	float		smgFireRateMultiplier = 1.3f;
+
+	//Spread stats
+	public 	float		xSpreadMin = -.5f;
+	public	float		xSpreadMax = .5f;
+	public	float		YspreadMin = .5f;
+	public	float		YspreadMax = .5f;
 
 	void Start(){
 		CalcRateOfFire();
@@ -160,6 +165,9 @@ public class Weapon : WeaponScript {
 	public override void Spread(){
 	}
 
+	public override void SpreadReset(){
+	}
+
 	public override void Reload(){
 		int neededAmmo;
 		int projectedTotal;
@@ -202,6 +210,7 @@ public class Weapon : WeaponScript {
 	}
 
 	public override void AmmoPool(){
+		//min max clamped pool
 	}
 
 	public override void CalcRateOfFire(){
