@@ -8,13 +8,11 @@ using System.Collections;
 
 abstract public class WeaponScript : MonoBehaviour {
 
-	public abstract void CalcRateOfFire();
+	public abstract void Cooldown();
 
 	public abstract void FireBullets();
 
 	public abstract void Spread();
-
-	public abstract void Cooldown();
 
 	public abstract void Reload();
 
@@ -23,5 +21,7 @@ abstract public class WeaponScript : MonoBehaviour {
 	public abstract void GiveDamage(int sumDamage);
 
 	public abstract void AmmoPool();
+
+	public abstract void CalcRateOfFire();
 
 }

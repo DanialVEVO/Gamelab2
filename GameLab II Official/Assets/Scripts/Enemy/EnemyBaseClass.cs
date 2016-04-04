@@ -18,6 +18,8 @@ public int	hp = 10;
 	public void Health (int takenDamage) {
 		Debug.Log(takenDamage);
 		hp -= takenDamage;
-		print(hp);
+		if(hp < 1){
+			Destroy(gameObject);
+		}
 	}
 }

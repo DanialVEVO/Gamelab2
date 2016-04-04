@@ -7,6 +7,7 @@ public class Main_Menu : MonoBehaviour {
 	public GameObject optionsMenuButtons;
 	public GameObject creditsMenu;
 	public GameObject graphicsMenu;
+	public GameObject audioMenu;
 
 	void Start () {
 
@@ -16,6 +17,7 @@ public class Main_Menu : MonoBehaviour {
 		optionsMenuButtons.SetActive(false);
 		creditsMenu.SetActive(false);
 		graphicsMenu.SetActive(false);
+		audioMenu.SetActive(false);
 	
 	}
 	
@@ -64,10 +66,16 @@ public class Main_Menu : MonoBehaviour {
 
 	}
 
+	public void OpenAudio (){
+		audioMenu.SetActive(true);
+		optionsMenuButtons.SetActive(false);
+	}
+
 	public void ReturnToOptions (){
 
 		optionsMenuButtons.SetActive(true);
 		graphicsMenu.SetActive(false);
+		audioMenu.SetActive(false);
 	}
 
 	public void AssignButtons (){
@@ -76,6 +84,7 @@ public class Main_Menu : MonoBehaviour {
 		optionsMenuButtons = GameObject.Find("OptionMenuButtons");
 		creditsMenu = GameObject.Find("Credits Menu");
 		graphicsMenu = GameObject.Find("Graphics Menu");
+		audioMenu = GameObject.Find("Audio Menu");
 
 
 	}
