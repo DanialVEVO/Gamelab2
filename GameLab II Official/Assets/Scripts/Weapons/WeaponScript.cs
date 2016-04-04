@@ -18,6 +18,8 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void Reload();
 
+	public abstract void AltFireExecute();
+
 	public abstract void AltFire();
 
 	public abstract void GiveDamage(int sumDamage);

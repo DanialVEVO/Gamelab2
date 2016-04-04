@@ -29,7 +29,7 @@ public class Weapon : WeaponScript {
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
-	public	int			ammoPool = 12;
+	public	int			ammoPool = 12/*(Mathf.Clamp(int value, int min, int max))*/;
 	public	int			damage = 1;
 
 	public	RaycastHit	hit;
@@ -76,52 +76,7 @@ public class Weapon : WeaponScript {
 		}
 		
 		if( Input.GetButton("Fire2") ){
-			switch(myWeaponType){
 
-				case WeaponType.Revolver :
-					if(allowAltFire == true ){
-						if(loadedMagazine > revolverAltFire){
-							AltFire();
-						}
-					}
-					else{
-						//
-					}
-					break;
-
-				case WeaponType.SMG :
-					if(allowAltFire == true ){
-						if(false){
-						//
-						}
-					}
-					else{
-						//
-					}
-					break;
-
-				case WeaponType.AR :
-					if(allowAltFire == true){
-						if(false){
-							//
-						}
-					}
-					else{
-						//
-					}
-					break;
-
-				case WeaponType.Launcher :
-					if(allowAltFire == true ){
-						if(false){
-						//
-						}
-					}
-					else{
-						//
-					}
-					break;
-			}
 		}
 
 		if(Input.GetButtonDown("Reload")){
@@ -185,13 +140,62 @@ public class Weapon : WeaponScript {
 		reloading = false;
 	}
 
+	public override void AltFireExecute(){
+		switch(myWeaponType){
+
+			case WeaponType.Revolver :
+				if(allowAltFire == true ){
+					if(loadedMagazine > revolverAltFire){
+						AltFire();
+					}
+				}
+				else{
+					//
+				}
+				break;
+
+			case WeaponType.SMG :
+				if(allowAltFire == true ){
+					if(false){
+					//
+					}
+				}
+				else{
+					//
+				}
+				break;
+
+			case WeaponType.AR :
+				if(allowAltFire == true){
+					if(false){
+						//
+					}
+				}
+				else{
+					//
+				}
+				break;
+
+			case WeaponType.Launcher :
+				if(allowAltFire == true ){
+					if(false){
+					//
+					}
+				}
+				else{
+					//
+				}
+				break;
+			}
+	}
+
 	public override void AltFire(){
 		switch(myWeaponType){
 			
 			case WeaponType.Revolver :
-			for (int i = 0; i < revolverAltFire; i++)
-			FireBullets();
-			break;
+				for (int i = 0; i < revolverAltFire; i++)
+				FireBullets();
+				break;
 	
 			case WeaponType.SMG : 
 				fireRatePerMinute *= smgFireRateMultiplier;
