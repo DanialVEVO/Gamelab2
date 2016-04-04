@@ -15,8 +15,8 @@ public class Upgrades : MonoBehaviour {
 	public int[] goldIncrease;
 	public int[] fuelIncrease;
 	public int[] boostIncrease;
-	public int payAmount;
-	public int payIncrease;
+	public int payAmountFire, payAmountMagazine, payAmountDamage;
+	//public int payIncrease;
 	public GameObject[] button;
 
 	void Start(){
@@ -63,8 +63,8 @@ public class Upgrades : MonoBehaviour {
 				fireRateUpGrade = (FireRateUpGrade)number;
 			}
 
-			CheckGold();
-			Paying();
+			CheckFireRate();
+			PayingFireRate();
 		//}
 
 	}
@@ -81,8 +81,8 @@ public class Upgrades : MonoBehaviour {
 				magazineSizeUpgrade = (MagazineSizeUrade)number;
 			}
 
-			CheckFuel();
-			Paying();
+			CheckMagazine();
+			PayingMagazine();
 
 		//}
 	}
@@ -99,12 +99,24 @@ public class Upgrades : MonoBehaviour {
 				damageUpgrade = (DamageUpGrade)number;
 			}
 
-			CheckBoost();
-			Paying();
+			CheckDamage();
+			PayingDamage();
 		//}
 	}
 
-	void Paying(){
+	void PayingFireRate(){
+		//goldScript.gold-= payAmount;
+		payAmount += payIncrease;
+		payIncrease *= 2;
+	}
+
+	void PayingMagazine(){
+		//goldScript.gold-= payAmount;
+		payAmount += payIncrease;
+		payIncrease *= 2;
+	}
+
+	void PayingDamage(){
 		//goldScript.gold-= payAmount;
 		payAmount += payIncrease;
 		payIncrease *= 2;
@@ -118,7 +130,7 @@ public class Upgrades : MonoBehaviour {
 
 	}
 
-	void CheckGold(){
+	void CheckFireRate(){
 		//goldScript.getPerMeter = goldIncrease[number-1];
 
 		if(number == 3){
@@ -126,7 +138,7 @@ public class Upgrades : MonoBehaviour {
 		}
 	}
 
-	void CheckFuel(){
+	void CheckMagazine(){
 		//boostScript.startFuel = fuelIncrease[number-1];
 
 		if(number == 3){
@@ -135,7 +147,7 @@ public class Upgrades : MonoBehaviour {
 		}
 	}
 
-	void CheckBoost(){
+	void CheckDamage(){
 		//boostScript.rocketBoostStart = boostIncrease[number-1];
 
 		if(number == 3){
