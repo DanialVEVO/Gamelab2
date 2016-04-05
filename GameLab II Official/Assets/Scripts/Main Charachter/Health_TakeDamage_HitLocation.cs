@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
-	public int maxHealth;
-	public int shield;
-	public int playerHealth;
 	public int upgradeLevelShield;
 
+	public float maxHealth;
+	public float shield;
+	public float playerHealth;
 	public float shieldRecharge;
 	public float rechargeSpeed;
 	public float shieldAmount;
@@ -37,7 +37,7 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
 	}
 
-	public void HealthCalculator (int damagePlayer){
+	public void HealthCalculator (float damagePlayer){
 
 		if(shieldActivated == true){
 			playerHealth -= damagePlayer / shield;
