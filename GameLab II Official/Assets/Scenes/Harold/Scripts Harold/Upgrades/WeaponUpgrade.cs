@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Upgrades : MonoBehaviour {
+public class WeaponUpgrade : MonoBehaviour {
 	public GameObject player;
 	public GameObject spawnCube;
 	public FireRateUpGrade fireRateUpGrade;
@@ -10,7 +10,7 @@ public class Upgrades : MonoBehaviour {
 	public int number;
 	public int payAmountFire, payAmountMagazine, payAmountDamage;
 	public int[] payFireList, payMagazineList, payDamageList;
-	public GameObject[] button;
+	//public GameObject[] button;
 	public int money;
 
 	void Start(){
@@ -108,6 +108,10 @@ public class Upgrades : MonoBehaviour {
 		payAmountFire = payFireList[number-1];
 	}
 
+	public void WeaponSwitch(){
+
+	}
+
 	public void PickDone()
 	{
 		//boostScript.ReStart();
@@ -120,7 +124,7 @@ public class Upgrades : MonoBehaviour {
 		//goldScript.getPerMeter = goldIncrease[number-1];
 
 		if(number == 3){
-			button[0].SetActive(false);
+			//button[0].SetActive(false);
 		}
 	}
 
@@ -129,7 +133,7 @@ public class Upgrades : MonoBehaviour {
 
 		if(number == 3){
 
-			button[1].SetActive(false);
+			//button[1].SetActive(false);
 		}
 	}
 
@@ -137,7 +141,7 @@ public class Upgrades : MonoBehaviour {
 		//boostScript.rocketBoostStart = boostIncrease[number-1];
 
 		if(number == 3){
-			button[2].SetActive(false);
+			//button[2].SetActive(false);
 		}
 	}
 
