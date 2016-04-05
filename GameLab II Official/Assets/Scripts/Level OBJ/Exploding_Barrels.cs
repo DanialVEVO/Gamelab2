@@ -7,10 +7,9 @@ public class Exploding_Barrels : MonoBehaviour {
 	public float power;
 	public float upModifier;
 	public float rotationSpeed;
+	public float explodingDamage;
 
 	public Vector3 rotateBarrel;
-
-	public int explodingDamage;
 
 	private bool mayRot;
 
@@ -39,7 +38,7 @@ public class Exploding_Barrels : MonoBehaviour {
 			if(rb != null){
 				rb.AddExplosionForce(power, explosionPos, radius, upModifier);
 				mayRot = true;
-				if(hit.transform.name == "Player"){
+				if(hit.transform.name == "PlayerTest"){
 					GivePlayerDamage();
 				}
 			}
@@ -48,9 +47,9 @@ public class Exploding_Barrels : MonoBehaviour {
 	}
 
 	public void GivePlayerDamage (){
-		GameObject.Find("Player").GetComponent<Health_TakeDamage_HitLocation>().HealthCalculator(explodingDamage);
-		if(GameObject.Find("Player").GetComponent<Health_TakeDamage_HitLocation>().shieldActivated == true){
-			GameObject.Find("Player").GetComponent<Health_TakeDamage_HitLocation>().shieldAmount -= 90f;
+		GameObject.Find("PlayerTest").GetComponent<Health_TakeDamage_HitLocation>().HealthCalculator(explodingDamage);
+		if(GameObject.Find("PlayerTest").GetComponent<Health_TakeDamage_HitLocation>().shieldActivated == true){
+			GameObject.Find("PlayerTest").GetComponent<Health_TakeDamage_HitLocation>().shieldAmount -= 90f;
 		}
 	}
 
