@@ -52,7 +52,7 @@ public class Weapon : WeaponScript {
 
 	void Update(){
 		if(Input.GetKeyDown("j")){
-			ammoPool += 600;
+			CalcAmmoPool(-220);
 		}
 
 		if(allowFire == false){
@@ -130,14 +130,10 @@ public class Weapon : WeaponScript {
 		int neededAmmo;
 		reloading = true;
 		neededAmmo = (maxMagazineSize-loadedMagazine);
-		if(neededAmmo < ammoPool){
-			ammoPool -= neededAmmo;
+		if(neededAmmo > 0){
+			CalcAmmoPool(neededAmmo);
 			loadedMagazine += neededAmmo;
 		}
-		else{
-			loadedMagazine += ammoPool;
-			ammoPool = ammoPool - ammoPool;
-		}			
 		reloading = false;
 	}
 
@@ -214,12 +210,12 @@ public class Weapon : WeaponScript {
 		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);
 	}
 
-	public override void SetAmmo(int ammo){
+	public override void CalcAmmoPool(int ammo){
 		ammoPool -= ammo;
-		ammoPool = Mathf.Clamp(ammoPool, 0,ammoPool);
+		ammoPool = Mathf.Clamp(ammoPool, 0,500);
 	}
 
-	public override void CalcAmmoPool(int poolUpgrade){
+	public override void SetAmmoPool(int poolUpgrade){
 		ammoPool += poolUpgrade;
 	}
 

@@ -24,9 +24,9 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void GiveDamage(int sumDamage);
 
-	public abstract void CalcAmmoPool(int poolUpgrade);
+	public abstract void CalcAmmoPool(int ammo);
 
-	public abstract void SetAmmo(int ammo);
+	public abstract void SetAmmoPool(int poolUpgrade);
 
 	public abstract void CalcRateOfFire();
 
