@@ -17,11 +17,7 @@ public class HudBar : MonoBehaviour {
 	}
 
 
-	void Update () {
-		if(Input.GetButtonDown("Jump")){
-			DamageCheck(damager);
-		}	
-			
+	void Update () {	
 
 		if(newBarAmount < currentBarAmount){
 			currentBarAmount-=  0.01F * Time.deltaTime * slideSpeed; 
