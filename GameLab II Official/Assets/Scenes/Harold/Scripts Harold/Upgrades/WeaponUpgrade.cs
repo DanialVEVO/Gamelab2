@@ -4,27 +4,17 @@ using System.Collections;
 public class Upgrades : MonoBehaviour {
 	public GameObject player;
 	public GameObject spawnCube;
-	//public CubeSpawner spawnScript;
-	//public GoldMaker goldScript;
-	//public BoosterScript boostScript;
 	public FireRateUpGrade fireRateUpGrade;
 	public MagazineSizeUrade magazineSizeUpgrade;
 	public DamageUpGrade damageUpgrade;
-	//public WindowUpgrade windowUpgrade;
 	public int number;
-	public int[] goldIncrease;
-	public int[] fuelIncrease;
-	public int[] boostIncrease;
 	public int payAmountFire, payAmountMagazine, payAmountDamage;
-	//public int payIncrease;
+	public int[] payFireList, payMagazineList, payDamageList;
 	public GameObject[] button;
+	public int money;
 
 	void Start(){
-		//windowUpgrade = GetComponent<WindowUpgrade>();
-		//goldScript = player.GetComponent<GoldMaker>();
-		//boostScript = player.GetComponent<BoosterScript>();
-		//spawnScript = spawnCube.GetComponent<CubeSpawner>();
-
+		money = 99999;
 	}
 
 	public enum FireRateUpGrade{
@@ -53,7 +43,7 @@ public class Upgrades : MonoBehaviour {
 
 
 	public void PickFireRate(){
-		//if(goldScript.gold >= payAmount){
+		if(money >= payAmountFire){
 			number  = (int)fireRateUpGrade;
 			int maxTemp = (int)FireRateUpGrade.FireRateUpgrade4;
 
@@ -65,13 +55,12 @@ public class Upgrades : MonoBehaviour {
 
 			CheckFireRate();
 			PayingFireRate();
-		//}
-
+		}
 	}
 
 	public void PickMagazineSize(){
-		//if(goldScript.gold >= payAmount)
-		//{
+		if(money >= payAmountMagazine)
+		{
 			number  = (int)magazineSizeUpgrade;
 			int maxTemp = (int)MagazineSizeUrade.MagazineUpgrade4;
 
@@ -84,12 +73,12 @@ public class Upgrades : MonoBehaviour {
 			CheckMagazine();
 			PayingMagazine();
 
-		//}
+		}
 	}
 
 	public void PickDamage(){
-		//if(goldScript.gold >= payAmount)
-		//{
+		if(money >= payAmountDamage)
+		{
 			number = (int)damageUpgrade;
 			int maxTemp = (int)DamageUpGrade.DamageUpgrade4;
 
@@ -101,25 +90,22 @@ public class Upgrades : MonoBehaviour {
 
 			CheckDamage();
 			PayingDamage();
-		//}
+		}
 	}
 
 	void PayingFireRate(){
-		//goldScript.gold-= payAmount;
-		//payAmount += payIncrease;
-		//payIncrease *= 2;
+		money -= payAmountFire;
+		payAmountFire = payFireList[number-1];
 	}
 
 	void PayingMagazine(){
-		//goldScript.gold-= payAmount;
-		//payAmount += payIncrease;
-		//payIncrease *= 2;
+		money -= payAmountFire;
+		payAmountFire = payFireList[number-1];
 	}
 
 	void PayingDamage(){
-		//goldScript.gold-= payAmount;
-		//payAmount += payIncrease;
-		//payIncrease *= 2;
+		money -= payAmountFire;
+		payAmountFire = payFireList[number-1];
 	}
 
 	public void PickDone()
