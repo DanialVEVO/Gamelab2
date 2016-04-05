@@ -106,20 +106,20 @@ public class Upgrades : MonoBehaviour {
 
 	void PayingFireRate(){
 		//goldScript.gold-= payAmount;
-		payAmount += payIncrease;
-		payIncrease *= 2;
+		//payAmount += payIncrease;
+		//payIncrease *= 2;
 	}
 
 	void PayingMagazine(){
 		//goldScript.gold-= payAmount;
-		payAmount += payIncrease;
-		payIncrease *= 2;
+		//payAmount += payIncrease;
+		//payIncrease *= 2;
 	}
 
 	void PayingDamage(){
 		//goldScript.gold-= payAmount;
-		payAmount += payIncrease;
-		payIncrease *= 2;
+		//payAmount += payIncrease;
+		//payIncrease *= 2;
 	}
 
 	public void PickDone()
