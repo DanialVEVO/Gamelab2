@@ -16,7 +16,6 @@ public class Weapon : WeaponScript {
 						Launcher
 					}
 	public	WeaponType	myWeaponType;
-	
 
 	public	bool		allowFire = true;
 	public	bool		reloading = false;
@@ -29,7 +28,7 @@ public class Weapon : WeaponScript {
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
-	public	int			ammoPool = 12/*(Mathf.Clamp(int value, int min, int max))*/;
+	public	int			ammoPool = 12;
 	public	int			damage = 1;
 
 	public	RaycastHit	hit;
@@ -52,6 +51,10 @@ public class Weapon : WeaponScript {
 	}
 
 	void Update(){
+		if(Input.GetKeyDown("j")){
+			ammoPool += 600;
+		}
+
 		if(allowFire == false){
 			Cooldown();
 		}
@@ -125,10 +128,8 @@ public class Weapon : WeaponScript {
 
 	public override void Reload(){
 		int neededAmmo;
-		int projectedTotal;
 		reloading = true;
 		neededAmmo = (maxMagazineSize-loadedMagazine);
-		projectedTotal = (ammoPool-neededAmmo);
 		if(neededAmmo < ammoPool){
 			ammoPool -= neededAmmo;
 			loadedMagazine += neededAmmo;
@@ -144,7 +145,7 @@ public class Weapon : WeaponScript {
 		switch(myWeaponType){
 
 			case WeaponType.Revolver :
-				if(allowAltFire == true ){
+				if(allowAltFire == true){
 					if(loadedMagazine > revolverAltFire){
 						AltFire();
 					}
@@ -155,36 +156,36 @@ public class Weapon : WeaponScript {
 				break;
 
 			case WeaponType.SMG :
-				if(allowAltFire == true ){
-					if(false){
-					//
-					}
-				}
-				else{
-					//
-				}
+				// if(allowAltFire == true){
+				// 	if(){
+				// 	//
+				// 	}
+				// }
+				// else{
+				// 	//
+				// }
 				break;
 
 			case WeaponType.AR :
-				if(allowAltFire == true){
-					if(false){
-						//
-					}
-				}
-				else{
-					//
-				}
+				// if(allowAltFire == true){
+				// if(){
+				// 		//
+				// 	}
+				// }
+				// else{
+				// 	//
+				// }
 				break;
 
 			case WeaponType.Launcher :
-				if(allowAltFire == true ){
-					if(false){
-					//
-					}
-				}
-				else{
-					//
-				}
+				// if(allowAltFire == true){
+				// 	if(){
+				// 	//
+				// 	}
+				// }
+				// else{
+				// 	//
+				// }
 				break;
 			}
 	}
@@ -213,8 +214,13 @@ public class Weapon : WeaponScript {
 		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);
 	}
 
-	public override void AmmoPool(){
-		//min max clamped pool
+	public override void SetAmmo(int ammo){
+		ammoPool -= ammo;
+		ammoPool = Mathf.Clamp(ammoPool, 0,ammoPool);
+	}
+
+	public override void CalcAmmoPool(int poolUpgrade){
+		ammoPool += poolUpgrade;
 	}
 
 	public override void CalcRateOfFire(){
