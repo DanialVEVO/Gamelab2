@@ -7,14 +7,17 @@ public class WeaponUpgrade : MonoBehaviour {
 	public FireRateUpGrade fireRateUpGrade;
 	public MagazineSizeUrade magazineSizeUpgrade;
 	public DamageUpGrade damageUpgrade;
-	public int number;
+	public int number, maxUpgradeNumber;
 	public int payAmountFire, payAmountMagazine, payAmountDamage;
 	public int[] payFireList, payMagazineList, payDamageList;
 	//public GameObject[] button;
 	public int money;
+	public UpgradeIndex indexScript;
 
 	void Start(){
 		money = 99999;
+		indexScript = GetComponent<UpgradeIndex>();
+		maxUpgradeNumber = (int)DamageUpGrade.DamageUpgrade5 + (int)MagazineSizeUrade.MagazineUpgrade5 + (int)DamageUpGrade.DamageUpgrade5;
 	}
 
 	public enum FireRateUpGrade{
@@ -22,7 +25,8 @@ public class WeaponUpgrade : MonoBehaviour {
 		FireRateUpgrade1,
 		FireRateUpgrade2,
 		FireRateUpgrade3,
-		FireRateUpgrade4
+		FireRateUpgrade4,
+		FireRateUpgrade5
 	}
 
 	public enum MagazineSizeUrade{
@@ -30,7 +34,8 @@ public class WeaponUpgrade : MonoBehaviour {
 		MagazineUpgrade1,
 		MagazineUpgrade2,
 		MagazineUpgrade3,
-		MagazineUpgrade4
+		MagazineUpgrade4,
+		MagazineUpgrade5
 	}
 
 	public enum DamageUpGrade{
@@ -38,14 +43,15 @@ public class WeaponUpgrade : MonoBehaviour {
 		DamageUpgrade1,
 		DamageUpgrade2,
 		DamageUpgrade3,
-		DamageUpgrade4
+		DamageUpgrade4,
+		DamageUpgrade5
 	}
 
 
 	public void PickFireRate(){
 		if(money >= payAmountFire){
 			number  = (int)fireRateUpGrade;
-			int maxTemp = (int)FireRateUpGrade.FireRateUpgrade4;
+			int maxTemp = (int)FireRateUpGrade.FireRateUpgrade5;
 
 			if(number < maxTemp)
 			{
@@ -55,6 +61,7 @@ public class WeaponUpgrade : MonoBehaviour {
 
 			CheckFireRate();
 			PayingFireRate();
+			CheckFull();
 		}
 	}
 
@@ -62,7 +69,7 @@ public class WeaponUpgrade : MonoBehaviour {
 		if(money >= payAmountMagazine)
 		{
 			number  = (int)magazineSizeUpgrade;
-			int maxTemp = (int)MagazineSizeUrade.MagazineUpgrade4;
+			int maxTemp = (int)MagazineSizeUrade.MagazineUpgrade5;
 
 			if(number < maxTemp)
 			{
@@ -72,6 +79,7 @@ public class WeaponUpgrade : MonoBehaviour {
 
 			CheckMagazine();
 			PayingMagazine();
+			CheckFull();
 
 		}
 	}
@@ -80,7 +88,7 @@ public class WeaponUpgrade : MonoBehaviour {
 		if(money >= payAmountDamage)
 		{
 			number = (int)damageUpgrade;
-			int maxTemp = (int)DamageUpGrade.DamageUpgrade4;
+			int maxTemp = (int)DamageUpGrade.DamageUpgrade5;
 
 			if(number < maxTemp)
 			{
@@ -90,6 +98,7 @@ public class WeaponUpgrade : MonoBehaviour {
 
 			CheckDamage();
 			PayingDamage();
+			CheckFull();
 		}
 	}
 
@@ -106,6 +115,35 @@ public class WeaponUpgrade : MonoBehaviour {
 	void PayingDamage(){
 		money -= payAmountFire;
 		payAmountFire = payFireList[number-1];
+	}
+
+	void CheckFull(){
+		int number1 = (int)fireRateUpGrade;
+		int number2  = (int)magazineSizeUpgrade;
+		int number3 = (int)damageUpgrade;
+
+		if(number1 + number2 + number3 == maxUpgradeNumber){
+			//currentweaponBonus = true;
+		}
+	}
+
+	public void SaveIndex(int currentWeapon){
+		indexScript.fireRateUpgradeNumber[currentWeapon] = (int)fireRateUpGrade;
+		indexScript.magazineUpgradeNumbeer[currentWeapon] = (int)magazineSizeUpgrade;
+		indexScript.damageUpgradeNumber[currentWeapon] = (int)damageUpgrade;
+		indexScript.payAmountFireNumber[currentWeapon] = payAmountFire;
+		indexScript.payAmountMagazineNumber[currentWeapon] = payAmountMagazine;
+		indexScript.payAmountDamageNumber[currentWeapon] = payAmountDamage;
+	}
+
+	public void IndexLoad(int currentWeapon){
+		fireRateUpGrade = (FireRateUpGrade)indexScript.fireRateUpgradeNumber[currentWeapon];
+		magazineSizeUpgrade = (MagazineSizeUrade)indexScript.magazineUpgradeNumbeer[currentWeapon];
+		damageUpgrade = (DamageUpGrade)indexScript.damageUpgradeNumber[currentWeapon];
+		payAmountFire = indexScript.payAmountFireNumber[currentWeapon];
+		payAmountMagazine = indexScript.payAmountFireNumber[currentWeapon];
+		payAmountDamage = indexScript.damageUpgradeNumber[currentWeapon];
+
 	}
 
 	public void WeaponSwitch(){
