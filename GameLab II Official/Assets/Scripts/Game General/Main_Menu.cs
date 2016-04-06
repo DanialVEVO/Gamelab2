@@ -8,26 +8,71 @@ public class Main_Menu : MonoBehaviour {
 	public GameObject creditsMenu;
 	public GameObject graphicsMenu;
 	public GameObject audioMenu;
+	public GameObject pauzeMenu;
+
+	public int checkLevel;
+
+	public bool pauzeCheck;
 
 	void Start () {
 
-		AssignButtons();
+		if(Application.loadedLevel == 0){
 
-		mainMenuButtons.SetActive(true);
-		optionsMenuButtons.SetActive(false);
-		creditsMenu.SetActive(false);
-		graphicsMenu.SetActive(false);
-		audioMenu.SetActive(false);
+			print(Application.loadedLevel);
+
+			AssignButtons();
+
+			mainMenuButtons.SetActive(true);
+			optionsMenuButtons.SetActive(false);
+			creditsMenu.SetActive(false);
+			graphicsMenu.SetActive(false);
+			audioMenu.SetActive(false);
+			pauzeMenu.SetActive(false);
+
+		}
 	
 	}
 	
 	void Update () {
+
+		OpenPauzeMenu ();
+
+		if(Application.loadedLevel == 1 && checkLevel == 0){
+
+			print(Application.loadedLevel);
+
+			checkLevel ++;
+
+			mainMenuButtons.SetActive(false);
+			optionsMenuButtons.SetActive(false);
+			creditsMenu.SetActive(false);
+			graphicsMenu.SetActive(false);
+			audioMenu.SetActive(false);
+
+		}
+
+		if(Application.loadedLevel == 0 && checkLevel == 1){
+
+			print(Application.loadedLevel);
+
+			checkLevel --;
+
+			mainMenuButtons.SetActive(true);
+			optionsMenuButtons.SetActive(false);
+			creditsMenu.SetActive(false);
+			graphicsMenu.SetActive(false);
+			audioMenu.SetActive(false);
+			pauzeMenu.SetActive(false);
+
+		}
+
 	
 	}
 
 	public void StartGame (){
 
 		Application.LoadLevel(1);
+
 
 	}
 
@@ -63,19 +108,37 @@ public class Main_Menu : MonoBehaviour {
 
 		graphicsMenu.SetActive(true);
 		optionsMenuButtons.SetActive(false);
+		pauzeMenu.SetActive(false);
 
 	}
 
 	public void OpenAudio (){
 		audioMenu.SetActive(true);
 		optionsMenuButtons.SetActive(false);
+		pauzeMenu.SetActive(false);
 	}
 
 	public void ReturnToOptions (){
 
-		optionsMenuButtons.SetActive(true);
-		graphicsMenu.SetActive(false);
-		audioMenu.SetActive(false);
+		if(Application.loadedLevel == 0){
+			optionsMenuButtons.SetActive(true);
+			graphicsMenu.SetActive(false);
+			audioMenu.SetActive(false);
+		}
+
+		if(Application.loadedLevel == 1){
+			pauzeMenu.SetActive(true);
+			graphicsMenu.SetActive(false);
+			audioMenu.SetActive(false);
+		}
+
+	}
+
+	public void QuitToMainMenu (){
+
+		Application.LoadLevel(0);
+		pauzeMenu.SetActive(false);
+
 	}
 
 	public void AssignButtons (){
@@ -85,7 +148,33 @@ public class Main_Menu : MonoBehaviour {
 		creditsMenu = GameObject.Find("Credits Menu");
 		graphicsMenu = GameObject.Find("Graphics Menu");
 		audioMenu = GameObject.Find("Audio Menu");
+		pauzeMenu = GameObject.Find("Pauze Menu");
 
 
+	}
+
+	public void ReturnToGame (){
+
+		pauzeMenu.SetActive(false);
+		if(pauzeCheck == true){
+			Time.timeScale = 1f;
+			pauzeCheck = false;
+			GameObject.Find("PlayerTest").GetComponent<Charachter_Controller>().enabled = true;
+		}
+
+	}
+
+	public void OpenPauzeMenu (){
+
+		if(Input.GetButtonDown("Cancel")){
+			if(pauzeCheck == false){
+				Time.timeScale = 0f;
+				pauzeCheck = true;
+				GameObject.Find("PlayerTest").GetComponent<Charachter_Controller>().enabled = false;
+				if(Application.loadedLevel == 1){
+					pauzeMenu.SetActive(true);
+				}
+			}
+		}
 	}
 }
