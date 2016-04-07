@@ -1,18 +1,15 @@
 ﻿/* [Code]
- * Abstract Raycast Weapon Class
+ * Abstract Projectile Weapon Class
  * Scripted by Danial
  */
 
 using UnityEngine;
 using System.Collections;
 
-public class RaycastWeapon : WeaponScript {
+public class ProjectileWeapon : WeaponScript {
 
 	public	enum	WeaponType{
-						Fist,
-						Revolver,
-						SMG,
-						AR,
+						Launcher
 					}
 	public	WeaponType	myWeaponType;
 
@@ -34,10 +31,14 @@ public class RaycastWeapon : WeaponScript {
 
 	public	Transform	muzzle;
 
+	//Grenade/Rocket Launcher
+	public 	GameObject	grenade;
+	public	GameObject	rocket;
+
+
 	//Alt fire stats
-	public	int			revolverAltFire = 4;
-	public	int			rifleAirDamage = 2;
-	public	float		smgFireRateMultiplier = 1.3f;
+	public	int			altDamage = 2;
+	public	float		altFireSpeed = 1000f;
 
 	//Spread stats
 	public 	float		xSpreadMin = -.5f;
@@ -98,23 +99,23 @@ public class RaycastWeapon : WeaponScript {
 
 
 	public override void FireBullets(){
-		allowFire = false;
-		Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
-		if(Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity)){
-			if(hit.transform.tag == "Enemy"){
-				GiveDamage(damage);
-			}
-			if(hit.transform.tag == "FlyingEnemy" && allowAltFire == true){
-				int airEnemyDamage;
-				airEnemyDamage = damage + rifleAirDamage;
-				GiveDamage(airEnemyDamage);
-			}
-		}
-		loadedMagazine --;
+		// allowFire = false;
+		// Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
+		// if(Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity)){
+		// 	if(hit.transform.tag == "Enemy"){
+		// 		GiveDamage(damage);
+		// 	}
+		// 	if(hit.transform.tag == "FlyingEnemy" && allowAltFire == true){
+		// 		int airEnemyDamage;
+		// 		airEnemyDamage = damage + rifleAirDamage;
+		// 		GiveDamage(airEnemyDamage);
+		// 	}
+		// }
+		// loadedMagazine --;
 	}
 
 	public override void FireProjectile(){
-
+		
 	}
 
 	public override void Spread(){
@@ -135,18 +136,7 @@ public class RaycastWeapon : WeaponScript {
 	public override void AltFireExecute(){
 		switch(myWeaponType){
 
-			case WeaponType.Revolver :
-				if(allowAltFire == true){
-					if(loadedMagazine > revolverAltFire){
-						AltFire();
-					}
-				}
-				else{
-					//
-				}
-				break;
-
-			case WeaponType.SMG :
+			case WeaponType.Launcher :
 				// if(allowAltFire == true){
 				// 	if(){
 				// 	//
@@ -156,37 +146,18 @@ public class RaycastWeapon : WeaponScript {
 				// 	//
 				// }
 				break;
-
-			case WeaponType.AR :
-				// if(allowAltFire == true){
-				// if(){
-				// 		//
-				// 	}
-				// }
-				// else{
-				// 	//
-				// }
-				break;
-
 			}
 	}
 
 	public override void AltFire(){
 		switch(myWeaponType){
 			
-			case WeaponType.Revolver :
-				for (int i = 0; i < revolverAltFire; i++)
-				FireBullets();
-				break;
-	
-			case WeaponType.SMG : 
-				fireRatePerMinute *= smgFireRateMultiplier;
-				break;
-			
 
-			case WeaponType.AR : 
 
+			case WeaponType.Launcher :
+				//
 				break;
+
 		}
 	}
 
