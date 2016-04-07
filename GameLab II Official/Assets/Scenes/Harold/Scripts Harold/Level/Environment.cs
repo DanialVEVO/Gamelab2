@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Environment : MonoBehaviour {
 
-	public int lavaDamage;
+	public float lavaDamage;
 	public float burnDamage;
 	public float burnTime;
 	public float  overTimePercentageDamage;
-	public int instaPercentageDamage;
-	public int totalLavaDamage; // remove later
+	public float instaPercentageDamage;
+	public float totalLavaDamage; // remove later
 	public float totalBurnDamage;
 	public bool burner, inLava;
 
@@ -24,8 +24,8 @@ public class Environment : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if(other.transform.tag == "Lava"){
 			inLava = true;
-			lavaDamage = 200 / 100 * instaPercentageDamage; // 200 = currenthealth
-			burnDamage = 200 / burnTime / 100 * overTimePercentageDamage; // 200 = maxhealth
+			lavaDamage = GetComponent<Health_TakeDamage_HitLocation>().playerHealth / 100 * instaPercentageDamage; // 200 = currenthealth
+			burnDamage = GetComponent<Health_TakeDamage_HitLocation>().maxHealth / burnTime / 100 * overTimePercentageDamage; // 200 = maxhealth
 			LavaDamage();
 		}
 	}
