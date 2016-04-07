@@ -12,6 +12,7 @@ public class WeaponUpgrade : MonoBehaviour {
 	public int[] payFireList, payMagazineList, payDamageList;
 	//public GameObject[] button;
 	public int money;
+	public int weaponNumber;
 	public UpgradeIndex indexScript;
 
 	void Start(){
@@ -134,6 +135,7 @@ public class WeaponUpgrade : MonoBehaviour {
 		indexScript.payAmountFireNumber[currentWeapon] = payAmountFire;
 		indexScript.payAmountMagazineNumber[currentWeapon] = payAmountMagazine;
 		indexScript.payAmountDamageNumber[currentWeapon] = payAmountDamage;
+		print(currentWeapon);
 	}
 
 	public void IndexLoad(int currentWeapon){
@@ -143,6 +145,7 @@ public class WeaponUpgrade : MonoBehaviour {
 		payAmountFire = indexScript.payAmountFireNumber[currentWeapon];
 		payAmountMagazine = indexScript.payAmountFireNumber[currentWeapon];
 		payAmountDamage = indexScript.damageUpgradeNumber[currentWeapon];
+		print(currentWeapon);
 
 	}
 
