@@ -20,6 +20,7 @@ public class ProjectileWeapon : WeaponScript {
 	private float		rateOfFire;
 	public	float		fireRatePerMinute;
 	public 	float 		cooldown = 0;
+	public	float		FireSpeed = 200;
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
@@ -99,19 +100,6 @@ public class ProjectileWeapon : WeaponScript {
 
 
 	public override void FireBullets(){
-		// allowFire = false;
-		// Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
-		// if(Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity)){
-		// 	if(hit.transform.tag == "Enemy"){
-		// 		GiveDamage(damage);
-		// 	}
-		// 	if(hit.transform.tag == "FlyingEnemy" && allowAltFire == true){
-		// 		int airEnemyDamage;
-		// 		airEnemyDamage = damage + rifleAirDamage;
-		// 		GiveDamage(airEnemyDamage);
-		// 	}
-		// }
-		// loadedMagazine --;
 	}
 
 	public override void FireProjectile(){
