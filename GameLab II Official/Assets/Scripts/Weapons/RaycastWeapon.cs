@@ -1,18 +1,19 @@
 ﻿/* [Code]
- * Abstract Raycast Weapon Class
+ * Abstract Weapon Class
  * Scripted by Danial
  */
 
 using UnityEngine;
 using System.Collections;
 
-public class RaycastWeapon : WeaponScript {
+public class Weapon : WeaponScript {
 
 	public	enum	WeaponType{
 						Fist,
 						Revolver,
 						SMG,
 						AR,
+						Launcher
 					}
 	public	WeaponType	myWeaponType;
 
@@ -27,12 +28,12 @@ public class RaycastWeapon : WeaponScript {
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
 	public	int			ammoPool = 12;
-	public	int			maxPool= 48;
 	public	int			damage = 1;
 
 	public	RaycastHit	hit;
 
 	public	Transform	muzzle;
+
 
 	//Alt fire stats
 	public	int			revolverAltFire = 4;
@@ -114,7 +115,7 @@ public class RaycastWeapon : WeaponScript {
 	}
 
 	public override void FireProjectile(){
-
+		
 	}
 
 	public override void Spread(){
@@ -168,6 +169,16 @@ public class RaycastWeapon : WeaponScript {
 				// }
 				break;
 
+			case WeaponType.Launcher :
+				// if(allowAltFire == true){
+				// 	if(){
+				// 	//
+				// 	}
+				// }
+				// else{
+				// 	//
+				// }
+				break;
 			}
 	}
 
@@ -197,7 +208,7 @@ public class RaycastWeapon : WeaponScript {
 
 	public override void CalcAmmoPool(int ammo){
 		ammoPool -= ammo;
-		ammoPool = Mathf.Clamp(ammoPool, 0,maxPool);
+		ammoPool = Mathf.Clamp(ammoPool, 0,500);
 	}
 
 	public override void SetAmmoPool(int poolUpgrade){
