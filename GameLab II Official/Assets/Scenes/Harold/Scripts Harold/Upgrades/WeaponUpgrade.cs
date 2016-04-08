@@ -109,13 +109,13 @@ public class WeaponUpgrade : MonoBehaviour {
 	}
 
 	void PayingMagazine(){
-		money -= payAmountFire;
-		payAmountFire = payFireList[number-1];
+		money -= payAmountMagazine;
+		payAmountMagazine = payMagazineList[number-1];
 	}
 
 	void PayingDamage(){
-		money -= payAmountFire;
-		payAmountFire = payFireList[number-1];
+		money -= payAmountDamage;
+		payAmountDamage = payDamageList[number-1];
 	}
 
 	void CheckFull(){
@@ -143,8 +143,8 @@ public class WeaponUpgrade : MonoBehaviour {
 		magazineSizeUpgrade = (MagazineSizeUrade)indexScript.magazineUpgradeNumbeer[currentWeapon];
 		damageUpgrade = (DamageUpGrade)indexScript.damageUpgradeNumber[currentWeapon];
 		payAmountFire = indexScript.payAmountFireNumber[currentWeapon];
-		payAmountMagazine = indexScript.payAmountFireNumber[currentWeapon];
-		payAmountDamage = indexScript.damageUpgradeNumber[currentWeapon];
+		payAmountMagazine = indexScript.payAmountMagazineNumber[currentWeapon];
+		payAmountDamage = indexScript.payAmountDamageNumber[currentWeapon];
 		print(currentWeapon);
 
 	}
