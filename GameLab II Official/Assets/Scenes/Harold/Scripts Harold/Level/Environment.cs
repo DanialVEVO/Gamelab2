@@ -36,14 +36,15 @@ public class Environment : MonoBehaviour {
 
 	void LavaDamage(){
 		//GetComponent<healthscript>().health-= lavaDamage;
-		totalLavaDamage+= lavaDamage; // remove later
+		totalLavaDamage += lavaDamage; // remove later
 	}
 
 	void AfterBurner(bool isBurning){
 		if(isBurning == true){
 			totalBurnDamage+= burnDamage * Time.deltaTime;
 			if(totalBurnDamage >= 1){
-				//GetComponent<healthscript>().health-= lavaDamage * time	.DeltaTime;
+				GetComponent<Health_TakeDamage_HitLocation>().playerHealth -= lavaDamage * Time.deltaTime;
+				GameObject.Find("HealthBar").GetComponent<HudBar>().DamageCheck(lavaDamage * Time.deltaTime);
 				print("Ouch"); // remove later
 				totalBurnDamage = 0;
 
