@@ -19,6 +19,8 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
 	public Transform enemyPos;
 
+	public GameObject healthBar, shieldBar;
+
 	void Start () {
 
 		playerHealth = maxHealth;
@@ -26,14 +28,14 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 		mayUpgrade = true;
 		enemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
 
-		GameObject.Find("HealthBar").GetComponent<HudBar>().maxBarNumber = maxHealth;
-		GameObject.Find("ShieldBar").GetComponent<HudBar>().maxBarNumber = maxShield;
+		healthBar.GetComponent<HudBar>().maxBarNumber = maxHealth;
+		shieldBar.GetComponent<HudBar>().maxBarNumber = maxShield;
 	}
 	
 	void Update () {
 
-		GameObject.Find("HealthBar").GetComponent<HudBar>().currentBarNumber = playerHealth;
-		GameObject.Find("ShieldBar").GetComponent<HudBar>().currentBarNumber = shieldAmount;
+		healthBar.GetComponent<HudBar>().currentBarNumber = playerHealth;
+		shieldBar.GetComponent<HudBar>().currentBarNumber = shieldAmount;
 
 		Shield ();
 
@@ -50,21 +52,21 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 		if(shieldActivated == true){
 			finalDamage = damagePlayer / shield;
 			playerHealth -= finalDamage;
-			GameObject.Find("HealthBar").GetComponent<HudBar>().DamageCheck(finalDamage);
+			healthBar.GetComponent<HudBar>().DamageCheck(finalDamage);
+			shieldBar.GetComponent<HudBar>().DamageCheck(-shieldAmount);
 		}
 
 		else{
 			playerHealth -= damagePlayer;
-			GameObject.Find("HealthBar").GetComponent<HudBar>().DamageCheck(damagePlayer);
+			healthBar.GetComponent<HudBar>().DamageCheck(damagePlayer);
 		}
 
 		StartCoroutine(ShieldRecharge());
 	}
 
 	public void Shield (){
-
 		if(mayRecharge == false){
-			GameObject.Find("ShieldBar").GetComponent<HudBar>().DamageCheck(0f);
+			shieldBar.GetComponent<HudBar>().DamageCheck(0f);
 		}
 
 		if(shieldAmount > 0){
@@ -76,9 +78,10 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
 		if(mayRecharge == true){
 			shieldAmount += rechargeSpeed * Time.deltaTime;
-			GameObject.Find("ShieldBar").GetComponent<HudBar>().DamageCheck(-shieldAmount);
+			shieldBar.GetComponent<HudBar>().DamageCheck(-0f);
 		}
 		if(shieldAmount >= maxShield){
+			mayRecharge = false;
 			shieldAmount = maxShield;
 		}
 		if(shieldAmount <= 0){
@@ -110,18 +113,24 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
 			case 1 :
 				maxShield = 110;
+				shieldBar.GetComponent<HudBar>().maxBarNumber = maxShield;
+				StartCoroutine(ShieldRecharge());
 				break;
 
 			case 2 :
 				maxShield = 125;
 				rechargeSpeed = 5;
 				shield = 3;
+				shieldBar.GetComponent<HudBar>().maxBarNumber = maxShield;
+				StartCoroutine(ShieldRecharge());
 				break;
 
 			case 3 :
 				maxShield = 150;
 				rechargeSpeed = 5;
 				shield = 3;
+				shieldBar.GetComponent<HudBar>().maxBarNumber = maxShield;
+				StartCoroutine(ShieldRecharge());
 				break;
 
 			case 4 :
@@ -129,6 +138,8 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 				rechargeSpeed = 10;
 				mayUpgrade = false;
 				shield = 4;
+				shieldBar.GetComponent<HudBar>().maxBarNumber = maxShield;
+				StartCoroutine(ShieldRecharge());
 				break;
 		}
 	}

@@ -194,6 +194,7 @@ public class Charachter_Controller : MonoBehaviour {
 	public void GameOver (){
 
 		if(GetComponent<Health_TakeDamage_HitLocation>().playerHealth < 0){
+			Destroy(gameObject);
 			print("GameOver");
 		}
 	}
