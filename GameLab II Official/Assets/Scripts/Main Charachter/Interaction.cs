@@ -50,6 +50,7 @@ public class Interaction : MonoBehaviour {
 			case 3 :
 				print("Health Pickup");
 				GetComponent<Health_TakeDamage_HitLocation>().playerHealth += healthPickup;
+				GameObject.Find("HealthBar").GetComponent<HudBar>().DamageCheck(-healthPickup);
 				break;
 
 			case 4 : 
