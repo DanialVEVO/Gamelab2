@@ -10,7 +10,7 @@ public class EnemyBody : MonoBehaviour {
 
 	public void Damage(float givenDamage){
 		//mainEnemy = GameObject.FindGameObjectWithTag("EnemyMain");
-		mainEnemy = transform.parent.gameObject;
+		mainEnemy = transform.root.gameObject;
 		enemyMainHealth = mainEnemy.GetComponent<EnemyBaseClass>();
 		calculatedDamage = givenDamage * damageModifier;
 		int roundedDamage = Mathf.CeilToInt(calculatedDamage);

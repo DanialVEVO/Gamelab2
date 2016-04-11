@@ -9,7 +9,9 @@ public class WeaponUpgrade : MonoBehaviour {
 	public DamageUpGrade damageUpgrade;
 	public int number, maxUpgradeNumber;
 	public int payAmountFire, payAmountMagazine, payAmountDamage;
+	public int upgradeFire, upgradeMagine, upgradeDamage;
 	public int[] payFireList, payMagazineList, payDamageList;
+	public int[] upgradeFireList, upgradeMagazineList, upgradeDamageList;
 	//public GameObject[] button;
 	public int money;
 	public int weaponNumber;
@@ -135,6 +137,9 @@ public class WeaponUpgrade : MonoBehaviour {
 		indexScript.payAmountFireNumber[currentWeapon] = payAmountFire;
 		indexScript.payAmountMagazineNumber[currentWeapon] = payAmountMagazine;
 		indexScript.payAmountDamageNumber[currentWeapon] = payAmountDamage;
+		indexScript.upgradeFireNumber[currentWeapon] = upgradeFire;
+		indexScript.upgradeMagazineNumber[currentWeapon] = upgradeMagine;
+		indexScript.upgradeDamageNumber[currentWeapon] = upgradeDamage;
 		print(currentWeapon);
 	}
 
@@ -145,14 +150,13 @@ public class WeaponUpgrade : MonoBehaviour {
 		payAmountFire = indexScript.payAmountFireNumber[currentWeapon];
 		payAmountMagazine = indexScript.payAmountMagazineNumber[currentWeapon];
 		payAmountDamage = indexScript.payAmountDamageNumber[currentWeapon];
+		upgradeFire = indexScript.upgradeFireNumber[currentWeapon];
+		upgradeMagine = indexScript.upgradeMagazineNumber[currentWeapon];
+		upgradeDamage = indexScript.upgradeDamageNumber[currentWeapon];
 		print(currentWeapon);
 
 	}
-
-	public void WeaponSwitch(){
-
-	}
-
+		
 	public void PickDone()
 	{
 		//boostScript.ReStart();
@@ -163,6 +167,7 @@ public class WeaponUpgrade : MonoBehaviour {
 
 	void CheckFireRate(){
 		//goldScript.getPerMeter = goldIncrease[number-1];
+		upgradeFire = upgradeFireList[number-1];
 
 		if(number == 3){
 			//button[0].SetActive(false);
@@ -171,6 +176,7 @@ public class WeaponUpgrade : MonoBehaviour {
 
 	void CheckMagazine(){
 		//boostScript.startFuel = fuelIncrease[number-1];
+		upgradeMagine = upgradeMagazineList[number-1];
 
 		if(number == 3){
 
@@ -180,6 +186,7 @@ public class WeaponUpgrade : MonoBehaviour {
 
 	void CheckDamage(){
 		//boostScript.rocketBoostStart = boostIncrease[number-1];
+		upgradeDamage = upgradeDamageList[number-1];
 
 		if(number == 3){
 			//button[2].SetActive(false);
