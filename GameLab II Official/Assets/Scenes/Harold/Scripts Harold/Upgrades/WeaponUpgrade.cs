@@ -16,6 +16,7 @@ public class WeaponUpgrade : MonoBehaviour {
 	public int money;
 	public int weaponNumber;
 	public UpgradeIndex indexScript;
+	public GameObject currentWeapon;
 
 	void Start(){
 		money = 99999;
