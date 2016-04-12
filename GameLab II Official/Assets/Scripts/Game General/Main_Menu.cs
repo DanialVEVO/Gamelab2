@@ -14,6 +14,19 @@ public class Main_Menu : MonoBehaviour {
 
 	public bool pauzeCheck;
 
+	public static Main_Menu Instance { get; private set; }
+
+	void Awake () {
+
+		if(Instance != null && Instance != this){
+			Destroy(gameObject);
+		}
+
+		Instance = this;
+
+		DontDestroyOnLoad(gameObject);
+	}
+
 	void Start () {
 
 		if(Application.loadedLevel == 0){
@@ -65,15 +78,12 @@ public class Main_Menu : MonoBehaviour {
 			pauzeMenu.SetActive(false);
 
 		}
-
-	
 	}
 
 	public void StartGame (){
 
 		Application.LoadLevel(1);
-
-
+		
 	}
 
 	public void OpenOptions (){
