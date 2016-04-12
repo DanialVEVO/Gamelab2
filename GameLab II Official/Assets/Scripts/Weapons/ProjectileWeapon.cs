@@ -20,13 +20,13 @@ public class ProjectileWeapon : WeaponScript {
 	private float		rateOfFire;
 	public	float		fireRatePerMinute;
 	public 	float 		cooldown = 0;
-	public	float		FireSpeed = 200;
+	public	float		fireSpeed = 500f;
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
 	public	int			ammoPool = 12;
 	public	int			maxPool= 48;
-	public	int			damage = 1;
+	public	int			damage = 1;  //check for remove
 
 	public	RaycastHit	hit;
 
@@ -38,14 +38,14 @@ public class ProjectileWeapon : WeaponScript {
 
 
 	//Alt fire stats
-	public	int			altDamage = 2;
-	public	float		altFireSpeed = 1000f;
+	public	int			altDamage = 2; //check for remove
+	public	float		altFireSpeed = 3000f;
 
 	//Spread stats
-	public 	float		xSpreadMin = -.5f;
-	public	float		xSpreadMax = .5f;
-	public	float		YspreadMin = .5f;
-	public	float		YspreadMax = .5f;
+	public 	float		xSpreadMin = 0f;
+	public	float		xSpreadMax = 0f;
+	public	float		YspreadMin = 0f;
+	public	float		YspreadMax = 0f;
 
 	void Start(){
 		CalcRateOfFire();
@@ -63,7 +63,7 @@ public class ProjectileWeapon : WeaponScript {
 		if(Input.GetButton("Fire1")){
 			if(allowFire == true){
 				allowFire = false;
-				FireBullets();
+				FireProjectile(fireSpeed, grenade);
 			}
 			else{
 				//
@@ -100,10 +100,15 @@ public class ProjectileWeapon : WeaponScript {
 
 
 	public override void FireBullets(){
+		
 	}
 
-	public override void FireProjectile(){
-		
+	public override void FireProjectile(float power, GameObject explosive){
+		allowFire = false;
+		GameObject projectileInstance;
+        projectileInstance = (GameObject)Instantiate(explosive, muzzle.position, muzzle.rotation);
+        projectileInstance.GetComponent<Rigidbody>().AddForce(muzzle.forward * power);
+	    loadedMagazine --;
 	}
 
 	public override void Spread(){
@@ -125,11 +130,9 @@ public class ProjectileWeapon : WeaponScript {
 		switch(myWeaponType){
 
 			case WeaponType.Launcher :
-				// if(allowAltFire == true){
-				// 	if(){
-				// 	//
-				// 	}
-				// }
+				if(allowAltFire == true){
+					FireProjectile(altFireSpeed, rocket);
+				}
 				// else{
 				// 	//
 				// }
@@ -150,8 +153,7 @@ public class ProjectileWeapon : WeaponScript {
 	}
 
 	public override void GiveDamage(int sumDamage){
-		print("Total damage transferd is " +sumDamage);
-		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);
+
 	}
 
 	public override void CalcAmmoPool(int ammo){

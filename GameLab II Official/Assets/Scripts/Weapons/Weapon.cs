@@ -113,7 +113,7 @@ public class RaycastWeapon : WeaponScript {
 		loadedMagazine --;
 	}
 
-	public override void FireProjectile(){
+	public override void FireProjectile(float power, GameObject explosive){
 
 	}
 

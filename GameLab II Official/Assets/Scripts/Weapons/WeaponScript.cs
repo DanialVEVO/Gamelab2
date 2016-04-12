@@ -12,7 +12,7 @@ abstract public class WeaponScript : MonoBehaviour {
 
 	public abstract void FireBullets();
 
-	public abstract void FireProjectile();
+	public abstract void FireProjectile(float power, GameObject explosive);
 
 	public abstract void Spread();
 

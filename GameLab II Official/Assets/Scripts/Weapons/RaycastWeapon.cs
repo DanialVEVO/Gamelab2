@@ -1,4 +1,4 @@
-﻿/* [Code]
+/* [Code]
  * Abstract Weapon Class
  * Scripted by Danial
  */
@@ -13,7 +13,6 @@ public class Weapon : WeaponScript {
 						Revolver,
 						SMG,
 						AR,
-						Launcher
 					}
 	public	WeaponType	myWeaponType;
 
@@ -28,6 +27,7 @@ public class Weapon : WeaponScript {
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
 	public	int			ammoPool = 12;
+	public	int			maxPool = 48;
 	public	int			damage = 1;
 
 	public	RaycastHit	hit;
@@ -114,7 +114,7 @@ public class Weapon : WeaponScript {
 		loadedMagazine --;
 	}
 
-	public override void FireProjectile(){
+	public override void FireProjectile(float power, GameObject explosive){
 		
 	}
 
@@ -169,16 +169,6 @@ public class Weapon : WeaponScript {
 				// }
 				break;
 
-			case WeaponType.Launcher :
-				// if(allowAltFire == true){
-				// 	if(){
-				// 	//
-				// 	}
-				// }
-				// else{
-				// 	//
-				// }
-				break;
 			}
 	}
 
@@ -208,7 +198,7 @@ public class Weapon : WeaponScript {
 
 	public override void CalcAmmoPool(int ammo){
 		ammoPool -= ammo;
-		ammoPool = Mathf.Clamp(ammoPool, 0,500);
+		ammoPool = Mathf.Clamp(ammoPool, 0,maxPool);
 	}
 
 	public override void SetAmmoPool(int poolUpgrade){
