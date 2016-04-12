@@ -6,12 +6,16 @@ public class WeaponSwitch : MonoBehaviour {
 
 	public int curWeapon;
 
+	public GameObject weaponManager;
+
 	public List <GameObject> weapons = new List <GameObject>();
 
 
 	void Start () {
 	
 		weapons[0].SetActive(true);
+
+		weaponManager = GameObject.Find("WeaponUpgradeManager");
 
 	}
 	
@@ -32,6 +36,7 @@ public class WeaponSwitch : MonoBehaviour {
 				}
 				if(i == curWeapon){
 					weapons[i].SetActive(true);
+					weaponManager.GetComponent<WeaponUpgrade>().currentWeapon = weapons[i];
 				}
 				else{
 					weapons[i].SetActive(false);
