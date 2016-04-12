@@ -7,7 +7,7 @@ public class Game_Manager : MonoBehaviour {
 
 	public Transform spawnPos;
 
-	private int instantiateCounter;
+	public int instantiateCounter;
 
 	public static Game_Manager Instance { get; private set; }
 
@@ -38,6 +38,11 @@ public class Game_Manager : MonoBehaviour {
 			Instantiate(player, spawnPos.position, Quaternion.identity);
 			GameObject.Find("ExplodingBarrel").GetComponent<Exploding_Barrels>().player = GameObject.Find("PlayerTest(Clone)");
 			instantiateCounter += 1;
+		}
+		
+		if(Application.loadedLevel == 0 && instantiateCounter == 1){
+			instantiateCounter = 0;
+			Time.timeScale = 1f;
 		}
 	}
 }

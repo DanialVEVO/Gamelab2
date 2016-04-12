@@ -9,6 +9,7 @@ public class Main_Menu : MonoBehaviour {
 	public GameObject graphicsMenu;
 	public GameObject audioMenu;
 	public GameObject pauzeMenu;
+	public GameObject gameManager;
 
 	public int checkLevel;
 
@@ -159,6 +160,7 @@ public class Main_Menu : MonoBehaviour {
 		graphicsMenu = GameObject.Find("Graphics Menu");
 		audioMenu = GameObject.Find("Audio Menu");
 		pauzeMenu = GameObject.Find("Pauze Menu");
+		gameManager = GameObject.Find("_GameManager");
 
 
 	}
@@ -169,7 +171,7 @@ public class Main_Menu : MonoBehaviour {
 		if(pauzeCheck == true){
 			Time.timeScale = 1f;
 			pauzeCheck = false;
-			GameObject.Find("PlayerTest").GetComponent<Charachter_Controller>().enabled = true;
+			GameObject.Find("PlayerTest(Clone)").GetComponent<Charachter_Controller>().enabled = true;
 		}
 
 	}
@@ -180,7 +182,7 @@ public class Main_Menu : MonoBehaviour {
 			if(pauzeCheck == false){
 				Time.timeScale = 0f;
 				pauzeCheck = true;
-				GameObject.Find("PlayerTest").GetComponent<Charachter_Controller>().enabled = false;
+				GameObject.Find("PlayerTest(Clone)").GetComponent<Charachter_Controller>().enabled = false;
 				if(Application.loadedLevel == 1){
 					pauzeMenu.SetActive(true);
 				}
