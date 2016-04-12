@@ -36,6 +36,7 @@ public class Game_Manager : MonoBehaviour {
 
 		if(Application.loadedLevel == 1 && instantiateCounter == 0){
 			Instantiate(player, spawnPos.position, Quaternion.identity);
+			GameObject.Find("ExplodingBarrel").GetComponent<Exploding_Barrels>().player = GameObject.Find("PlayerTest(Clone)");
 			instantiateCounter += 1;
 		}
 	}

@@ -13,6 +13,8 @@ public class Exploding_Barrels : MonoBehaviour {
 
 	private bool mayRot;
 
+	public GameObject player;
+
 	void Start () {
 
 	}
@@ -38,7 +40,7 @@ public class Exploding_Barrels : MonoBehaviour {
 			if(rb != null){
 				rb.AddExplosionForce(power, explosionPos, radius, upModifier);
 				mayRot = true;
-				if(hit.transform.name == "PlayerTest"){
+				if(hit.transform.name == "PlayerTest(Clone)"){
 					GivePlayerDamage();
 				}
 			}
@@ -47,9 +49,9 @@ public class Exploding_Barrels : MonoBehaviour {
 	}
 
 	public void GivePlayerDamage (){
-		GameObject.Find("PlayerTest").GetComponent<Health_TakeDamage_HitLocation>().HealthCalculator(explodingDamage);
-		if(GameObject.Find("PlayerTest").GetComponent<Health_TakeDamage_HitLocation>().shieldActivated == true){
-			GameObject.Find("PlayerTest").GetComponent<Health_TakeDamage_HitLocation>().shieldAmount -= 90f;
+		player.GetComponent<Health_TakeDamage_HitLocation>().HealthCalculator(explodingDamage);
+		if(player.GetComponent<Health_TakeDamage_HitLocation>().shieldActivated == true){
+			player.GetComponent<Health_TakeDamage_HitLocation>().shieldAmount -= 90f;
 		}
 	}
 
