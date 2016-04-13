@@ -20,7 +20,7 @@ public class ProjectileWeapon : WeaponScript {
 	private float		rateOfFire;
 	public	float		fireRatePerMinute;
 	public 	float 		cooldown = 0;
-	public	float		fireSpeed = 500f;
+	public	float		fireSpeed = 25f;
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
@@ -39,7 +39,7 @@ public class ProjectileWeapon : WeaponScript {
 
 	//Alt fire stats
 	public	int			altDamage = 2; //check for remove
-	public	float		altFireSpeed = 3000f;
+	public	float		altFireSpeed = 100f;
 
 	//Spread stats
 	public 	float		xSpreadMin = 0f;
@@ -48,17 +48,14 @@ public class ProjectileWeapon : WeaponScript {
 	public	float		YspreadMax = 0f;
 
 	void Start(){
+		Screen.lockCursor = true;
+ 		Cursor.visible = false;
+
+
 		CalcRateOfFire();
 	}
 
-	void Update(){
-		if(Input.GetKeyDown("j")){
-			CalcAmmoPool(-220);
-		}
-
-		if(allowFire == false){
-			Cooldown();
-		}
+	void FixedUpdate(){
 
 		if(Input.GetButton("Fire1")){
 			if(allowFire == true){
@@ -70,18 +67,30 @@ public class ProjectileWeapon : WeaponScript {
 			}
 		}
 
+		if(Input.GetButton("Fire2")){
+			if(allowFire == true){
+				AltFireExecute();
+			}
+		}
+	}
+
+	void Update(){
+		if(Input.GetKeyDown("j")){
+			CalcAmmoPool(-220);
+		}
+
+		if(allowFire == false){
+			Cooldown();
+		}
+
+
+
 		if(Input.GetButtonDown("Reload")){
 			if(reloading == false){
 				Reload();
 			}
 			else{
 				//
-			}
-		}
-		
-		if(Input.GetButton("Fire2")){
-			if(allowFire == true){
-				AltFireExecute();
 			}
 		}
 	}
@@ -107,7 +116,7 @@ public class ProjectileWeapon : WeaponScript {
 		allowFire = false;
 		GameObject projectileInstance;
         projectileInstance = (GameObject)Instantiate(explosive, muzzle.position, muzzle.rotation);
-        projectileInstance.GetComponent<Rigidbody>().AddForce(muzzle.forward * power);
+        projectileInstance.GetComponent<Rigidbody>().velocity = muzzle.forward * power;
 	    loadedMagazine --;
 	}
 
