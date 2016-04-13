@@ -22,7 +22,7 @@ public class HitlocationTest : MonoBehaviour {
 	public void ShootRaycast (){
 
 		if(Physics.Raycast(transform.position, Vector3.forward, out rayHit, rayDis)){
-			if(rayHit.transform.tag == "Player"){
+			if(rayHit.transform.tag == "PlayerTest(Clone)"){
 				checkHitBool = true;
 				rayHit.transform.gameObject.GetComponent<Health_TakeDamage_HitLocation>().HitLocation(checkHitBool);
 			}

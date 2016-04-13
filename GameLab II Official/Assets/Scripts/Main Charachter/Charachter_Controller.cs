@@ -23,7 +23,10 @@ public class Charachter_Controller : MonoBehaviour {
 
 	public RaycastHit meleeRayHit;
 	public Rigidbody playerRB;
+
+	public GameObject gameOverCamera;
 	public GameObject mainCam;
+	public GameObject mainCanvas;
 
 	private float camRot;
 
@@ -31,7 +34,11 @@ public class Charachter_Controller : MonoBehaviour {
 
 		playerRB = GetComponent<Rigidbody>();
 		mainCam = GameObject.Find("Main Camera");
+		mainCanvas = GameObject.Find("MainCharachterCanvas");
 		mayUpgrade = true;
+
+		gameOverCamera = GameObject.Find("GameOverCamera");
+		gameOverCamera.SetActive(false);
 
 	}
 
@@ -63,17 +70,6 @@ public class Charachter_Controller : MonoBehaviour {
 		else{
 			mayJump = false;
 		}
-	}
-
-
-	public void UpgradesCharachter (){
-
-		if(mayUpgrade == true && upgradePoints >= 1){
-			upgradeLevelCharachter += 1;
-			upgradePoints -= 1;
-		}
-		CharachterUpgradesManager(upgradeLevelCharachter);
-
 	}
 
 	public void CharachterUpgradesManager (int upgradeLevelMC){
@@ -195,6 +191,9 @@ public class Charachter_Controller : MonoBehaviour {
 
 		if(GetComponent<Health_TakeDamage_HitLocation>().playerHealth < 0){
 			Destroy(gameObject);
+			gameOverCamera.SetActive(true);
+			mainCanvas.SetActive(false);
+			gameOverCamera.GetComponent<GameOverCam>().mayMove = true;
 			print("GameOver");
 		}
 	}

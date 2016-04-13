@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Health_TakeDamage_HitLocation : MonoBehaviour {
 
-	public int upgradeLevelShield;
-
 	public float maxHealth;
 	public float shield;
 	public float playerHealth;
@@ -98,16 +96,6 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 		yield return new WaitForSeconds(shieldRecharge);
 		print("Recharge");
 		mayRecharge = true;
-	}
-
-	public void UpgradeShield (){
-
-		if(mayUpgrade == true && GetComponent<Charachter_Controller>().upgradePoints >= 1){
-			upgradeLevelShield += 1;
-			GetComponent<Charachter_Controller>().upgradePoints -= 1;
-		}
-		ShieldUpgradeManager(upgradeLevelShield);
-
 	}
 
 	public void ShieldUpgradeManager (int upgradeLevel){
