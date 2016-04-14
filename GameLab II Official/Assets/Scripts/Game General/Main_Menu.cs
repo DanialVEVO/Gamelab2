@@ -169,6 +169,7 @@ public class Main_Menu : MonoBehaviour {
 
 		pauzeMenu.SetActive(false);
 		if(pauzeCheck == true){
+			Screen.lockCursor = true;
 			Time.timeScale = 1f;
 			pauzeCheck = false;
 			GameObject.Find("PlayerTest(Clone)").GetComponent<Charachter_Controller>().enabled = true;
@@ -180,6 +181,7 @@ public class Main_Menu : MonoBehaviour {
 
 		if(Input.GetButtonDown("Cancel")){
 			if(pauzeCheck == false){
+				Screen.lockCursor = false;
 				Time.timeScale = 0f;
 				pauzeCheck = true;
 				GameObject.Find("PlayerTest(Clone)").GetComponent<Charachter_Controller>().enabled = false;
