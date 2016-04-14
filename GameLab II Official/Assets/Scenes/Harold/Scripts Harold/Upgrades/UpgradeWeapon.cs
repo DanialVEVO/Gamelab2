@@ -3,15 +3,9 @@ using System.Collections;
 
 public class UpgradeWeapon : MonoBehaviour {
 
-	public enum UpGrade{
-		Upgrade0,
-		Upgrade1,
-		Upgrade2,
-		Upgrade3,
-		Upgrade4,
-		Upgrade5
-	}
-
+	public int[] upgradeIndex, upgradeCastIndex;
+	public int currentIndex;
+	public GameObject currentWeapon;
 
 	void Start () {
 	
@@ -22,6 +16,8 @@ public class UpgradeWeapon : MonoBehaviour {
 	}
 
 	public void Upgrade(){
-		
+		//for(int i = 0; upgradeIndex[i] <= currentWeapon; i++){
+			
+		//}
 	}
 }
