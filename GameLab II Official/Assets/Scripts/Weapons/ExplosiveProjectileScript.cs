@@ -16,11 +16,37 @@ public class ExplosiveProjectileScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+		IdentifyMe();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void IdentifyMe () {
+		switch(myExplosiveType){
+
+			case Explosives.Grenade :
+				Grenade();
+
+				break;
+
+			case Explosives.Rocket :
+				Rocket();
+
+				break;
+		}
+
+	}
+
+	void Grenade () {
+		print("myExplosiveType");
+	}
+
+	void Rocket (){
+		print("myExplosiveType");
 	}
 }

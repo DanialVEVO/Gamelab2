@@ -48,8 +48,6 @@ public class ProjectileWeapon : WeaponScript {
 	public	float		YspreadMax = 0f;
 
 	void Start(){
-		Screen.lockCursor = true;
- 		Cursor.visible = false;
 
 
 		CalcRateOfFire();
@@ -151,8 +149,6 @@ public class ProjectileWeapon : WeaponScript {
 
 	public override void AltFire(){
 		switch(myWeaponType){
-			
-
 
 			case WeaponType.Launcher :
 				//
