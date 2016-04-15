@@ -15,16 +15,16 @@ public class ShopHud : MonoBehaviour {
 	}
 
 	public void changeCosts(){
-		if(shopManger.weaponCounter == 1){
+		//if(shopManger.weaponCounter == 1){
 			//change numbers string
-		}
+		//}
 
-		if(shopManger.weaponCounter == 2){
+		//if(shopManger.weaponCounter == 2){
 			//change numbers string
-		}
+		//}
 
-		if(shopManger.weaponCounter == 3){
+		//if(shopManger.weaponCounter == 3){
 			//change numbers string
-		}
+		//}
 	}
 }
