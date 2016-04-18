@@ -27,6 +27,7 @@ public class Charachter_Controller : MonoBehaviour {
 	public GameObject gameOverCamera;
 	public GameObject mainCam;
 	public GameObject mainCanvas;
+	public GameObject gameOverCanvas;
 
 	private float camRot;
 
@@ -39,6 +40,8 @@ public class Charachter_Controller : MonoBehaviour {
 
 		gameOverCamera = GameObject.Find("GameOverCamera");
 		gameOverCamera.SetActive(false);
+		gameOverCanvas = GameObject.Find("GameOverCanvas");
+		gameOverCanvas.SetActive(false);
 
 	}
 
@@ -194,6 +197,8 @@ public class Charachter_Controller : MonoBehaviour {
 			gameOverCamera.SetActive(true);
 			mainCanvas.SetActive(false);
 			gameOverCamera.GetComponent<GameOverCam>().mayMove = true;
+			Screen.lockCursor = false;
+			gameOverCanvas.SetActive(true);
 			print("GameOver");
 		}
 	}
