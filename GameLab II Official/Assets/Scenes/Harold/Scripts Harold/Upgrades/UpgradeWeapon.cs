@@ -8,9 +8,12 @@ public class UpgradeWeapon : MonoBehaviour {
 	public GameObject currentWeapon;
 	public int forNumber;
 	public int tempAmmo;
+	public GameObject shopObject;
+	public ShopHud shopChangeScript;
 
 	void Start () {
 		tempAmmo = 9999;
+		shopChangeScript = shopObject.GetComponent<ShopHud>();
 	}
 
 	void Update () {
@@ -26,5 +29,6 @@ public class UpgradeWeapon : MonoBehaviour {
 				break;
 			}
 		}
+		shopChangeScript.changeCosts(currentIndex);
 	}
 }
