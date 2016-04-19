@@ -47,6 +47,8 @@ public class ProjectileWeapon : WeaponScript {
 	public	float		YspreadMin = 0f;
 	public	float		YspreadMax = 0f;
 
+	// public	float[]		UpgradeVariables = new float[8];		
+
 	void Start(){
 
 
@@ -174,5 +176,13 @@ public class ProjectileWeapon : WeaponScript {
 		rateOfFire = 60/fireRatePerMinute;
 		cooldown = rateOfFire;
 		print("The rate of fire is 1 bullet per " +rateOfFire +" second(s)");
+	}
+
+	public override void CalcUpgradeArray(){
+
+	}
+
+	public override void SetUpgrades(){
+
 	}
 }

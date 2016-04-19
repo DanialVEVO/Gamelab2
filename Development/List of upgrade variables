@@ -1,0 +1,20 @@
+fireRatePerMinute < needs to be casted
+maxMagazineSize
+maxPool
+Damage < needs to be casted
+xSpreadMin
+xSpreadMax
+ySpreadMin
+ySpreadMax
+
+//projectile weapon specific
+fireSpeed
+
+
+Do not put in list now -
+//projectile ammo specific
+fuseTimer
+power
+radius
+playerDamage
+enemyDamage < needs to be casted

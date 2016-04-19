@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class RaycastWeapon : WeaponScript {
+public class Weapon : WeaponScript {
 
 	public	enum	WeaponType{
 						Fist,
@@ -27,7 +27,7 @@ public class RaycastWeapon : WeaponScript {
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
 	public	int			ammoPool = 12;
-	public	int			maxPool= 48;
+	public	int			maxPool = 48;
 	public	int			damage = 1;
 
 	public	RaycastHit	hit;
@@ -208,5 +208,13 @@ public class RaycastWeapon : WeaponScript {
 		rateOfFire = 60/fireRatePerMinute;
 		cooldown = rateOfFire;
 		print("The rate of fire is 1 bullet per " +rateOfFire +" second(s)");
+	}
+
+	public override void CalcUpgradeArray(){
+
+	}
+
+	public override void SetUpgrades(){
+
 	}
 }

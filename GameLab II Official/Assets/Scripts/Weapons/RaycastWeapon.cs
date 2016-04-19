@@ -5,8 +5,9 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Weapon : WeaponScript {
+public class RaycastWeapon : WeaponScript {
 
 	public	enum	WeaponType{
 						Fist,
@@ -34,7 +35,6 @@ public class Weapon : WeaponScript {
 
 	public	Transform	muzzle;
 
-
 	//Alt fire stats
 	public	int			revolverAltFire = 4;
 	public	int			rifleAirDamage = 2;
@@ -43,8 +43,10 @@ public class Weapon : WeaponScript {
 	//Spread stats
 	public 	float		xSpreadMin = -.5f;
 	public	float		xSpreadMax = .5f;
-	public	float		YspreadMin = .5f;
-	public	float		YspreadMax = .5f;
+	public	float		ySpreadMin = .5f;
+	public	float		ySpreadMax = .5f;
+
+	public List <float> levels = new List <float>();
 
 	void Start(){
 		CalcRateOfFire();
@@ -209,5 +211,13 @@ public class Weapon : WeaponScript {
 		rateOfFire = 60/fireRatePerMinute;
 		cooldown = rateOfFire;
 		print("The rate of fire is 1 bullet per " +rateOfFire +" second(s)");
+	}
+
+	public override void CalcUpgradeArray(){
+
+	}
+
+	public override void SetUpgrades(){
+
 	}
 }

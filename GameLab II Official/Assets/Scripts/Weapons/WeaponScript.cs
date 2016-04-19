@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 abstract public class WeaponScript : MonoBehaviour {
 
@@ -31,5 +32,9 @@ abstract public class WeaponScript : MonoBehaviour {
 	public abstract void SetAmmoPool(int poolUpgrade);
 
 	public abstract void CalcRateOfFire();
+
+	public abstract void CalcUpgradeArray();
+
+	public abstract void SetUpgrades();
 
 }
