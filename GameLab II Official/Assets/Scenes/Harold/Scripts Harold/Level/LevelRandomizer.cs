@@ -12,7 +12,7 @@ public class LevelRandomizer : LevelSpawn {
 	}
 
 	public void PickRandomLevel(){
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		GameObject player = GameObject.FindGameObjectWithTag("LevelManager");
 		LevelSpawner levelSpawner = player.GetComponent<LevelSpawner>();
 
 		switch (levelSpawner.levelCounter){

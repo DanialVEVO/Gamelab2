@@ -4,6 +4,9 @@ using System.Collections;
 public class Game_Manager : MonoBehaviour {
 
 	public GameObject player;
+	public GameObject levelManager;
+
+	public LevelSpawner levelSpawner;
 
 	public Transform spawnPos;
 
@@ -23,6 +26,8 @@ public class Game_Manager : MonoBehaviour {
 	}
 
 	void Start () {
+
+		
 	
 	}
 	
@@ -35,8 +40,11 @@ public class Game_Manager : MonoBehaviour {
 	public void InstantiatePlayer () {
 
 		if(Application.loadedLevel == 1 && instantiateCounter == 0){
-			Instantiate(player, spawnPos.position, Quaternion.identity);
+			levelManager = GameObject.Find("LevelSpawnManager");
+			levelSpawner = levelManager.GetComponent<LevelSpawner>();
+			Instantiate(player, levelSpawner.spawnPosition, Quaternion.identity);
 			GameObject.Find("ExplodingBarrel").GetComponent<Exploding_Barrels>().player = GameObject.Find("PlayerTest(Clone)");
+			levelSpawner.randomLevelMizer.PickRandomLevel();
 			instantiateCounter += 1;
 		}
 		

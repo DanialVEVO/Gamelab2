@@ -10,8 +10,8 @@ public class LevelSpawner : MonoBehaviour {
 	public GameObject spawnPlatform;
 	public GameObject currentLevel;
 	public GameObject shopLevel, itemLevel, afterSpecialLevel, startLevel;
+	public GameObject player;
 	public Vector3 spawnPosition;
-	public GameObject levelManager;
 	public LevelRandomizer randomLevelMizer;
 	public int blockCounter, levelCounter, maxBlockAmount;
 	public int randomNumLevel, randomNumShop;
@@ -22,10 +22,9 @@ public class LevelSpawner : MonoBehaviour {
 	void Start () {
 		blockCounter = 1;
 		maxBlockAmount = Random.Range(4,6);
-		levelManager = GameObject.FindGameObjectWithTag("LevelManager");
-		randomLevelMizer = levelManager.GetComponent<LevelRandomizer>();
-		randomLevelMizer.PickRandomLevel();
+		randomLevelMizer = GetComponent<LevelRandomizer>();
 		currentLevel = Instantiate(startLevel, new Vector3(0,0,0), transform.rotation) as GameObject;
+		SetSpawn();
 
 	}
 
@@ -74,7 +73,6 @@ public class LevelSpawner : MonoBehaviour {
 
 	}
 
-
 	void BuildNew(int number){
 		print(number);
 		blockCounter++;
@@ -106,6 +104,7 @@ public class LevelSpawner : MonoBehaviour {
 
 	void SetSpawn(){
 		spawnPlatform =  GameObject.FindGameObjectWithTag("spawnplatform");
+		player = GameObject.FindGameObjectWithTag("Player");
 		spawnPosition = spawnPlatform.transform.position;
 		spawnPosition.y+= 3;
 	}
@@ -122,7 +121,7 @@ public class LevelSpawner : MonoBehaviour {
 			CheckForNewLevel();
 			BuildNew(0);
 			SetSpawn();
-			transform.position = spawnPosition;
+			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
 		}
 
@@ -130,7 +129,7 @@ public class LevelSpawner : MonoBehaviour {
 			CheckForNewLevel();
 			BuildNew(1);
 			SetSpawn();
-			transform.position = spawnPosition;
+			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
 		}
 
@@ -138,7 +137,7 @@ public class LevelSpawner : MonoBehaviour {
 			CheckForNewLevel();
 			BuildNew(2);
 			SetSpawn();
-			transform.position = spawnPosition;
+			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
 		}
 
@@ -146,7 +145,7 @@ public class LevelSpawner : MonoBehaviour {
 			Destroy(currentLevel);
 			currentLevel = Instantiate(afterSpecialLevel, new Vector3(0,0,0),  currentLevel.transform.rotation) as GameObject;
 			SetSpawn();
-			transform.position = spawnPosition;
+			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
 		}
 	}
