@@ -40,11 +40,11 @@ public class Game_Manager : MonoBehaviour {
 	public void InstantiatePlayer () {
 
 		if(Application.loadedLevel == 1 && instantiateCounter == 0){
+			print("Check");
 			levelManager = GameObject.Find("LevelSpawnManager");
 			levelSpawner = levelManager.GetComponent<LevelSpawner>();
 			Instantiate(player, levelSpawner.spawnPosition, Quaternion.identity);
 			GameObject.Find("ExplodingBarrel").GetComponent<Exploding_Barrels>().player = GameObject.Find("PlayerTest(Clone)");
-			levelSpawner.randomLevelMizer.PickRandomLevel();
 			instantiateCounter += 1;
 		}
 		

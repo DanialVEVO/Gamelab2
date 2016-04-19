@@ -25,7 +25,7 @@ public class LevelSpawner : MonoBehaviour {
 		randomLevelMizer = GetComponent<LevelRandomizer>();
 		currentLevel = Instantiate(startLevel, new Vector3(0,0,0), transform.rotation) as GameObject;
 		SetSpawn();
-
+		StartCoroutine(SetLevel());
 	}
 
 	public void AddObjects(){
@@ -104,7 +104,6 @@ public class LevelSpawner : MonoBehaviour {
 
 	void SetSpawn(){
 		spawnPlatform =  GameObject.FindGameObjectWithTag("spawnplatform");
-		player = GameObject.FindGameObjectWithTag("Player");
 		spawnPosition = spawnPlatform.transform.position;
 		spawnPosition.y+= 3;
 	}
@@ -116,37 +115,52 @@ public class LevelSpawner : MonoBehaviour {
 			maxBlockAmount = Random.Range(4,6);
 		}
 	}
-	void OnCollisionEnter(Collision hit){
-		if(hit.transform.tag == "trigger1"){
+
+	public void TriggerDetect (int twister){
+
+		switch (twister){
+
+		case 1:
 			CheckForNewLevel();
 			BuildNew(0);
 			SetSpawn();
 			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
-		}
+		break;
 
-		if(hit.transform.tag == "trigger2"){
+		case 2:
 			CheckForNewLevel();
 			BuildNew(1);
 			SetSpawn();
 			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
-		}
+		break;
 
-		if(hit.transform.tag == "trigger3"){
+		case 3:
 			CheckForNewLevel();
 			BuildNew(2);
 			SetSpawn();
 			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
-		}
+		break;
 
-		if(hit.transform.tag == "triggerX"){
+		case 4:
 			Destroy(currentLevel);
 			currentLevel = Instantiate(afterSpecialLevel, new Vector3(0,0,0),  currentLevel.transform.rotation) as GameObject;
 			SetSpawn();
 			player.transform.position = spawnPosition;
 			randomLevelMizer.PickRandomLevel();
+		break;
+
 		}
+	}
+
+	public IEnumerator SetLevel (){
+
+		yield return new WaitForEndOfFrame ();
+
+			randomLevelMizer.PickRandomLevel();
+			player = GameObject.FindGameObjectWithTag("Player");
+
 	}
 }
