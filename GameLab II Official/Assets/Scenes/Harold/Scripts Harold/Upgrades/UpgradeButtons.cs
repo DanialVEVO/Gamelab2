@@ -7,35 +7,23 @@ public class UpgradeButtons : MonoBehaviour {
 	public GameObject upgradeManager;
 	public GameObject currentWeapon;
 	public int temp;
+	public float temper;
 
 	void Start () {
 		upgradeScript = upgradeManager.GetComponent<UpgradeWeapon>();
 	}
 
 	void Update () {
-	
-	}
-
-	public void upgradeFireRate(){
-		upgradeScript.currentIndex = 1;// 1 = currentWeapon.fireRate;
-		upgradeScript.currentWeapon = currentWeapon;
-		upgradeScript.Upgrade();
-		temp = upgradeScript.currentIndex; // temp = currentWeapno.firerate
-	}
-
-	public void upgradeDamage(){
-		upgradeScript.currentIndex = 2;// 2 =currentWeapon.damage;
-		upgradeScript.currentWeapon = currentWeapon;
-		upgradeScript.Upgrade();
-		temp = upgradeScript.currentIndex; // temp = currentWeapno.damage
 
 	}
 
-	public void upgradeMagazine(){
-		upgradeScript.currentIndex = 2;// 2 =currentWeapon.magzine;
+	public void UpgradeButton(int index){
+		putIn();
+		upgradeScript.currentUpgrade = index;
+		upgradeScript.currentIndex = 0;// 0 = currentWeapon.list[index];
 		upgradeScript.currentWeapon = currentWeapon;
 		upgradeScript.Upgrade();
-		temp = upgradeScript.currentIndex; // temp = currentWeapno.magazine
-
+		temp = upgradeScript.currentIndex; // temp = currentenWeapon.list[index];
+		pullOut();
 	}
 }

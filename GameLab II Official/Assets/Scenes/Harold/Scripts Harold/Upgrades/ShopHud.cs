@@ -5,7 +5,8 @@ public class ShopHud : MonoBehaviour {
 
 	public ShopManager shopManger;
 	public GameObject shopManagerObject;
-	public GameObject[] costList;
+	public int[] costList;
+	public int[] amountList;
 
 	void Start () {
 		shopManger = shopManagerObject.GetComponent<ShopManager>();
@@ -15,18 +16,7 @@ public class ShopHud : MonoBehaviour {
 		
 	}
 
-	public void changeCosts(int number){
-		if(shopManger.weaponCounter == 0){
-			//change numbers string
-
-		}
-
-		if(shopManger.weaponCounter == 1){
-			//change numbers string
-		}
-
-		if(shopManger.weaponCounter == 2){
-			//change numbers string
-		}
+	public void changeHud(int index){
+		
 	}
 }
