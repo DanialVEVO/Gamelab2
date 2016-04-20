@@ -46,10 +46,12 @@ public class RaycastWeapon : WeaponScript {
 	public	float		ySpreadMin = .5f;
 	public	float		ySpreadMax = .5f;
 
-	public List <float> levels = new List <float>();
+	// public List <float> levels = new List <float>();
+	public float[]		upgradeVariables = new float[8];
 
 	void Start(){
 		CalcRateOfFire();
+		CalcUpgradeArray();
 	}
 
 	void Update(){
@@ -214,10 +216,26 @@ public class RaycastWeapon : WeaponScript {
 	}
 
 	public override void CalcUpgradeArray(){
-
+		upgradeVariables[0] = (float)fireRatePerMinute;
+		upgradeVariables[1] = (float)maxMagazineSize;
+		upgradeVariables[2] = (float)maxPool;
+		upgradeVariables[3] = (float)damage;
+		upgradeVariables[4] = xSpreadMin;
+		upgradeVariables[5] = xSpreadMax;
+		upgradeVariables[6] = ySpreadMin;
+		upgradeVariables[7] = ySpreadMax;
 	}
 
 	public override void SetUpgrades(){
+		fireRatePerMinute	= (int)upgradeVariables[0];
+		maxMagazineSize		= (int)upgradeVariables[1];
+		maxPool				= (int)upgradeVariables[2];
+		damage				= (int)upgradeVariables[3];
+		xSpreadMin			= upgradeVariables[4];
+		xSpreadMax			= upgradeVariables[5];
+		ySpreadMin			= upgradeVariables[6];
+		ySpreadMax			= upgradeVariables[7];
 
+		CalcRateOfFire();
 	}
 }
