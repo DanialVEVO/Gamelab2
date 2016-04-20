@@ -26,9 +26,11 @@ public class UpgradeWeapon : MonoBehaviour {
 			if(upgradeIndex[i] > currentIndex){
 				currentIndex = upgradeIndex[i];
 				tempAmmo -= upgradeCostIndex[i];//9999 = currentWeapon.ammo
+				afterForNumber = i;
 				break;
 			}
 		}
-		shopChangeScript.changeHud(currentIndex);
+		afterForNumber++;
+		shopChangeScript.changeHud(afterForNumber);
 	}
 }

@@ -24,6 +24,7 @@ public class UpgradeButtons : MonoBehaviour {
 		upgradeScript.currentWeapon = currentWeapon;
 		upgradeScript.Upgrade();
 		temp = upgradeScript.currentIndex; // temp = currentenWeapon.list[index];
+
 		//pullOut();
 	}
 }
