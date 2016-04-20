@@ -18,12 +18,12 @@ public class UpgradeButtons : MonoBehaviour {
 	}
 
 	public void UpgradeButton(int index){
-		putIn();
+		//putIn();
 		upgradeScript.currentUpgrade = index;
 		upgradeScript.currentIndex = 0;// 0 = currentWeapon.list[index];
 		upgradeScript.currentWeapon = currentWeapon;
 		upgradeScript.Upgrade();
 		temp = upgradeScript.currentIndex; // temp = currentenWeapon.list[index];
-		pullOut();
+		//pullOut();
 	}
 }
