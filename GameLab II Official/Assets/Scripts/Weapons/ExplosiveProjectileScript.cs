@@ -25,12 +25,11 @@ public class ExplosiveProjectileScript : MonoBehaviour {
 
 	public	RaycastHit	hit;
 
+	public	float[]		upgradeVariables = new float[8];
 
 	// Use this for initialization
 	void Start(){
-
-		
-
+		CalcUpgradeArray();
 	}
 	
 	// Update is called once per frame
@@ -97,6 +96,7 @@ public class ExplosiveProjectileScript : MonoBehaviour {
 	}
 
 	public void DestroyMe(){
+		Instantiate(particle,transform.position, Quaternion.identity);
 		Destroy(gameObject);
 	}
 
@@ -106,6 +106,22 @@ public class ExplosiveProjectileScript : MonoBehaviour {
 
 	public void GivePlayerDamage(float damage, Rigidbody rb){
 		rb.transform.GetComponent<Health_TakeDamage_HitLocation>().HealthCalculator(damage);
+	}
+
+	public void CalcUpgradeArray(){
+		upgradeVariables[0] = fuseTimer;
+		upgradeVariables[1] = power;
+		upgradeVariables[2] = radius;
+		upgradeVariables[3] = playerDamage;
+		upgradeVariables[4] = (float)enemyDamage;
+	}
+
+	public void SetUpgrades(){
+		fuseTimer			= upgradeVariables[0];
+		power				= upgradeVariables[1];
+		radius				= upgradeVariables[2];
+		playerDamage		= upgradeVariables[3];
+		enemyDamage			= (int)upgradeVariables[4];
 	}
 
 

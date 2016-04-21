@@ -1,4 +1,4 @@
-﻿/* [Code]
+/* [Code]
  * Abstract Projectile Weapon Class
  * Scripted by Danial
  */
@@ -47,12 +47,13 @@ public class ProjectileWeapon : WeaponScript {
 	public	float		YspreadMin = 0f;
 	public	float		YspreadMax = 0f;
 
-	// public	float[]		UpgradeVariables = new float[8];		
+	// public	float[]		UpgradeVariables = new float[8];
+	public float[]		upgradeVariables = new float[8];		
 
 	void Start(){
 
-
 		CalcRateOfFire();
+		CalcUpgradeArray();
 	}
 
 	void FixedUpdate(){
@@ -179,10 +180,20 @@ public class ProjectileWeapon : WeaponScript {
 	}
 
 	public override void CalcUpgradeArray(){
-
+		upgradeVariables[0] = (float)fireRatePerMinute;
+		upgradeVariables[1] = (float)maxMagazineSize;
+		upgradeVariables[2] = (float)maxPool;
+		upgradeVariables[3] = (float)damage;
+		upgradeVariables[4] = fireSpeed;
 	}
 
 	public override void SetUpgrades(){
+		fireRatePerMinute	= (int)upgradeVariables[0];
+		maxMagazineSize		= (int)upgradeVariables[1];
+		maxPool				= (int)upgradeVariables[2];
+		damage				= (int)upgradeVariables[3];
+		fireSpeed			= upgradeVariables[4];
 
+		CalcRateOfFire();
 	}
 }
