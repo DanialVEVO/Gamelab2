@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 2060ae1687759a14789310092baf4cb5
+timeCreated: 1461315450
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 0_1_1
+    100002: 10_1
+    100004: 2_1
+    100006: 3_1
+    100008: 4_1
+    100010: 5_1
+    100012: 6_1
+    100014: 7_1
+    100016: 8_1
+    100018: 9_1
+    100020: Box006
+    100022: Box014
+    100024: Box016
+    100026: Box017
+    100028: Box018
+    100030: Box020
+    100032: Box021
+    100034: Component_
+    100036: Cylinder002
+    100038: Mesh11
+    100040: Mesh20
+    100042: Mesh51
+    100044: Model
+    100046: Plane008
+    100048: Plane009
+    100050: r1
+    100052: //RootNode
+    100054: up1
+    400000: 0_1_1
+    400002: 10_1
+    400004: 2_1
+    400006: 3_1
+    400008: 4_1
+    400010: 5_1
+    400012: 6_1
+    400014: 7_1
+    400016: 8_1
+    400018: 9_1
+    400020: Box006
+    400022: Box014
+    400024: Box016
+    400026: Box017
+    400028: Box018
+    400030: Box020
+    400032: Box021
+    400034: Component_
+    400036: Cylinder002
+    400038: Mesh11
+    400040: Mesh20
+    400042: Mesh51
+    400044: Model
+    400046: Plane008
+    400048: Plane009
+    400050: r1
+    400052: //RootNode
+    400054: up1
+    2300000: Box006
+    2300002: Box014
+    2300004: Box016
+    2300006: Box017
+    2300008: Box018
+    2300010: Box020
+    2300012: Box021
+    2300014: Cylinder002
+    2300016: Mesh11
+    2300018: Mesh20
+    2300020: Mesh51
+    2300022: Plane008
+    2300024: Plane009
+    3300000: Box006
+    3300002: Box014
+    3300004: Box016
+    3300006: Box017
+    3300008: Box018
+    3300010: Box020
+    3300012: Box021
+    3300014: Cylinder002
+    3300016: Mesh11
+    3300018: Mesh20
+    3300020: Mesh51
+    3300022: Plane008
+    3300024: Plane009
+    4300000: Cylinder002
+    4300002: Box006
+    4300004: Mesh11
+    4300006: Mesh20
+    4300008: Mesh51
+    4300010: Box014
+    4300012: Box016
+    4300014: Box017
+    4300016: Box018
+    4300018: Plane008
+    4300020: Plane009
+    4300022: Box020
+    4300024: Box021
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
