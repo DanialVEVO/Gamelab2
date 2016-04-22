@@ -4,12 +4,13 @@ using System.Collections;
 public class UpgradeWeapon : MonoBehaviour {
 
 	public int[] upgradeIndex, upgradeCostIndex;
-	public int currentIndex, currentUpgrade;
+	public float currentUpgrade;
 	public GameObject currentWeapon;
-	public int forNumber, afterForNumber;
+	public int forNumber, afterForNumber, upgradeAmount, currentIndex;
 	public int tempAmmo;
 	public GameObject shopObject;
 	public ShopHud shopChangeScript;
+	public RaycastWeapon weaponScript;
 
 	void Start () {
 		tempAmmo = 9999;
@@ -21,16 +22,17 @@ public class UpgradeWeapon : MonoBehaviour {
 	}
 
 	public void Upgrade(){
-		forNumber = 0 * 5; // 0 = currentindex;
+		forNumber = currentIndex * upgradeAmount;
 		for(int i = forNumber; i <= upgradeIndex.Length; i++){
-			if(upgradeIndex[i] > currentIndex){
-				currentIndex = upgradeIndex[i];
-				tempAmmo -= upgradeCostIndex[i];//9999 = currentWeapon.ammo
+			if(upgradeIndex[i] > currentUpgrade){
+				currentUpgrade = upgradeIndex[i];
+				weaponScript.ammoPool -= upgradeCostIndex[i];//9999 = currentWeapon.ammo
 				afterForNumber = i;
+				Debug.Log(currentUpgrade);
 				break;
 			}
 		}
 		afterForNumber++;
-		shopChangeScript.changeHud(afterForNumber);
+		//shopChangeScript.changeHud(afterForNumber);
 	}
 }
