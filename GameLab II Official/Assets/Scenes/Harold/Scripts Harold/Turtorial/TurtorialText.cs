@@ -18,7 +18,7 @@ public class TurtorialText : MonoBehaviour {
 				TextActivator();
 				if(textCounter > 1){
 					textList[textCounter-2].SetActive(false);
-					if(textCounter = textList.Length){
+					if(textCounter == textList.Length){
 						//move allowed
 					}
 				}
