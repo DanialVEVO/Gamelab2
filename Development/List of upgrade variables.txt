@@ -1,0 +1,43 @@
+fireRatePerMinute < needs to be casted
+maxMagazineSize
+maxPool
+Damage < needs to be casted
+xSpreadMin
+xSpreadMax
+ySpreadMin
+ySpreadMax
+
+//projectile weapon specific
+fireSpeed
+
+
+Do not put in list now -
+//projectile ammo specific
+fuseTimer
+power
+radius
+playerDamage
+enemyDamage < needs to be casted
+
+// Things that can be upgraded on raycast weapons
+fireRatePerMinute < needs to be casted
+maxMagazineSize
+maxPool
+Damage < needs to be casted
+xSpreadMin
+xSpreadMax
+ySpreadMin
+ySpreadMax
+
+// Things that can be upgraded on projectile weapons
+fireRatePerMinute < needs to be casted
+maxMagazineSize
+maxPool
+power
+
+	// Things that can be upgraded on explosives
+	fuseTimer
+	radius
+	playerDamage
+	enemyDamage < needs to be casted
+
