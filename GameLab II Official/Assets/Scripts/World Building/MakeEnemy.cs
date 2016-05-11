@@ -27,8 +27,8 @@ public class MakeEnemy : MonoBehaviour {
 
 	[Range(0,100)]
 	public	int		chanceMelee;
-	[Range(0,100)]
-	public	int		chanceShooting;
+//	[Range(0,100)]
+//	public	int		chanceShooting;
 	
 	[Range(0,100)]
 	public	int		chanceNormal;
@@ -45,17 +45,28 @@ public class MakeEnemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		RollEnemey();
+		int test = 0;
+		test = RollChance();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+//		print(RollChance());
+	}
+
+	public int RollChance (){
+		Random.Range(0, maxChance);
+		return;
 	}
 
 	public void RollEnemey (){
 		levelManager.GetComponent<Balancer>();
-		if(walking == true){
+//		if(walking == true){
+//
+//		}
 
-		}
+//		if(chanceMelee 
+
 	}
 
 	public void ChooseMovementType (){

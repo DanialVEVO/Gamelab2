@@ -20,7 +20,7 @@ public class Balancer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(currentWeight <= currentWeight){
+		if(currentWeight <= weightLimit){
 			Debug.Log(ChooseEnemy());
 		}
 	}
