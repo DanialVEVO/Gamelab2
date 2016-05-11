@@ -45,7 +45,6 @@ public class Game_Manager : MonoBehaviour {
 			levelManager = GameObject.Find("LevelSpawnManager");
 			levelSpawner = levelManager.GetComponent<LevelSpawner>();
 			Instantiate(player, levelSpawner.spawnPosition, Quaternion.identity);
-			Instantiate(weaponCam, levelSpawner.spawnPosition, Quaternion.identity);
 			//GameObject.Find("ExplodingBarrel").GetComponent<Exploding_Barrels>().player = GameObject.Find("PlayerTest(Clone)");
 			instantiateCounter += 1;
 		}

@@ -36,7 +36,7 @@ public class Charachter_Controller : MonoBehaviour {
 
 		playerRB = GetComponent<Rigidbody>();
 		mainCam = GameObject.Find("Main Camera");
-		weaponCam = GameObject.Find("WeaponCam(Clone)");
+		weaponCam = GameObject.Find("WeaponCam");
 		mainCanvas = GameObject.Find("MainCharachterCanvas");
 		mayUpgrade = true;
 
