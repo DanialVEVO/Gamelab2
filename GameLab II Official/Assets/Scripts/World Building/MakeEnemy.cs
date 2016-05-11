@@ -1,45 +1,80 @@
-﻿// /* [Code]
-//  * Enemy Creation Class
-//  * Scripted by Danial
-//  */
-// using UnityEngine;
-// using System.Collections;
+﻿/* [Code]
+ * Enemy Creation Class
+ * Scripted by Danial
+ */
+using UnityEngine;
+using System.Collections;
 
-// public class MakeEnemy : MonoBehaviour {
+public class MakeEnemy : MonoBehaviour {
 
-// 	public	bool	flying;
-// 	public	bool	walking;
-// 	public	bool	melee;
-// 	public	bool	shooting;
+	public	GameObject	walkingShooting;
+	public	GameObject	walkingMelee;
+	public	GameObject	flyingShooting;
+	public	GameObject	flyingMelee;
+	public	GameObject	championWalkingShooting;
+	public	GameObject	championWalkingMelee;
+	public	GameObject	championFlyingShooting;
+	public	GameObject	championFlyingMelee;
 
-// 	public	int		minChance = 0;
-// 	public	int		maxChance = 100;
-// 	public	int		rolledChance;
+	public	bool	flying;
+	public	bool	walking;
+	public	bool	melee;
+	public	bool	shooting;
 
-// 	public	int		chanceMelee;
-// 	public	int		chanceShooting;
+	public	int		minChance = 0;
+	public	int		maxChance = 101;
+	public	int		rolledChance;
 
-// 	public	int		chanceChampion;
-// 	public	int		chanceNormal;
-// 	public	int		chanceMidget;
-
-// 	public	int		weight;
-// 	public	GameObject	levelManager;
-
-// 	// Use this for initialization
-// 	void Start () {
-		
-// 	}
+	[Range(0,100)]
+	public	int		chanceMelee;
+	[Range(0,100)]
+	public	int		chanceShooting;
 	
-// 	// Update is called once per frame
-// 	void Update () {
-// 		balancer.weightLimit += 1;
-// 	}
+	[Range(0,100)]
+	public	int		chanceNormal;
+	public	int		weightNormal;
+	[Range(0,100)]
+	public	int		chanceChampion;
+	public	int		weightChampion;
+	[Range(0,100)]
+	public	int		chanceMidget;
 
-// 	public void RollEnemey (){
-// 		Component balancer = levelManager.GetComponent<Balancer>();
-// 		if(walking == true){
+	public	int		weight;
+	public	GameObject	levelManager;
 
-// 		}
-// 	}
-// }
+	// Use this for initialization
+	void Start () {
+		RollEnemey();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	}
+
+	public void RollEnemey (){
+		levelManager.GetComponent<Balancer>();
+		if(walking == true){
+
+		}
+	}
+
+	public void ChooseMovementType (){
+		//
+	}
+
+	public void ChooseAttackType (){
+
+	}
+
+	public void ChooseType (){
+
+	}
+
+	public void SpawnEnemy(){
+
+	}
+
+	public void SendWeight(){
+
+	}
+}

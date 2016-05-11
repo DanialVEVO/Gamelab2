@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class Balancer : MonoBehaviour {
 
 	public	int	weightLimit;
-			int currentWeight;
+	public	int currentWeight;
 	public	int	chosenEnemy;
 	public List<Transform> enemyList = new List<Transform>();
 
@@ -28,5 +28,9 @@ public class Balancer : MonoBehaviour {
 	public int ChooseEnemy () {
 		chosenEnemy = Random.Range(0, enemyList.Count);
 		return chosenEnemy;
+	}
+
+	public void CalcWeigth (int weightReceived){
+		
 	}
 }
