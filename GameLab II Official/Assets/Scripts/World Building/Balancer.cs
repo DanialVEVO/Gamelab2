@@ -30,7 +30,7 @@ public class Balancer : MonoBehaviour {
 		return chosenEnemy;
 	}
 
-	public void CalcWeigth (int weightReceived){
+	public void CalcWeight (int weightReceived){
 		
 	}
 }

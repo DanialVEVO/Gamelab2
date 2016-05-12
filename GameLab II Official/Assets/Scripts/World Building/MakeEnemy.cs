@@ -7,6 +7,8 @@ using System.Collections;
 
 public class MakeEnemy : MonoBehaviour {
 
+	public	GameObject	levelManager;
+
 	public	GameObject	walkingShooting;
 	public	GameObject	walkingMelee;
 	public	GameObject	flyingShooting;
@@ -20,53 +22,46 @@ public class MakeEnemy : MonoBehaviour {
 	public	bool	walking;
 	public	bool	melee;
 	public	bool	shooting;
-
-	public	int		minChance = 0;
-	public	int		maxChance = 101;
-	public	int		rolledChance;
+	public	bool	champion;
 
 	[Range(0,100)]
 	public	int		chanceMelee;
-//	[Range(0,100)]
-//	public	int		chanceShooting;
-	
+
 	[Range(0,100)]
 	public	int		chanceNormal;
-	public	int		weightNormal;
-	[Range(0,100)]
-	public	int		chanceChampion;
-	public	int		weightChampion;
-	[Range(0,100)]
-	public	int		chanceMidget;
 
-	public	int		weight;
-	public	GameObject	levelManager;
+	public	int		normalWalkingMeleeWeight;
+	public	int		normalWalkingShootingWeight;
+	public	int		normalFlyingMeleeWeight;
+	public	int		normalFlyingShootingWeight;
+	public	int		championWalkingMeleeWeight;
+	public	int		championWalkingShootingWeight;
+	public	int		championFlyingMeleeWeight;
+	public	int		championFlyingShootingWeight;
 
-	// Use this for initialization
+	public	int		myWeight;
+
+//	public	int		minChance = 0;
+	public	int		maxChance = 101;
+	public	int		rolledChance;
+
 	void Start () {
-		RollEnemey();
-		int test = 0;
-		test = RollChance();
+		RollEnemy();
 	}
 	
-	// Update is called once per frame
 	void Update () {
-//		print(RollChance());
+		if (Input.GetKeyDown("f")){
+			RollEnemy();
+		}
 	}
 
-	public int RollChance (){
-		Random.Range(0, maxChance);
-		return;
+	public void RollChance (){
+		rolledChance = Random.Range(0, maxChance);
 	}
 
-	public void RollEnemey (){
-		levelManager.GetComponent<Balancer>();
-//		if(walking == true){
-//
-//		}
-
-//		if(chanceMelee 
-
+	public void RollEnemy(){
+		ChooseAttackType ();
+		ChooseType ();
 	}
 
 	public void ChooseMovementType (){
@@ -74,11 +69,21 @@ public class MakeEnemy : MonoBehaviour {
 	}
 
 	public void ChooseAttackType (){
-
+		RollChance();
+		if(rolledChance <= chanceMelee){
+			melee = true;
+		} 
+		else{
+			shooting = true;
+		}
+			
 	}
 
 	public void ChooseType (){
-
+		RollChance();
+		if(rolledChance > chanceNormal){
+			champion = true;
+		}
 	}
 
 	public void SpawnEnemy(){
@@ -86,6 +91,6 @@ public class MakeEnemy : MonoBehaviour {
 	}
 
 	public void SendWeight(){
-
+		levelManager.GetComponent<Balancer>().CalcWeight(myWeight);
 	}
 }
