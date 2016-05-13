@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TurtorialAmmo : MonoBehaviour {
+public class TutorialAmmo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

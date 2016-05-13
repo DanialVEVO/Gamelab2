@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TurtorialText : MonoBehaviour {
+public class TutorialText : MonoBehaviour {
 
 	public GameObject[] textList;
 	public int textCounter;
@@ -30,5 +30,5 @@ public class TurtorialText : MonoBehaviour {
 		textList[textCounter].SetActive(true);
 		textCounter++;
 	}
-		
+
 }
