@@ -21,7 +21,7 @@ public class Balancer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(currentWeight <= weightLimit){
-			Debug.Log(ChooseEnemy());
+			
 		}
 	}
 
@@ -31,6 +31,7 @@ public class Balancer : MonoBehaviour {
 	}
 
 	public void CalcWeight (int weightReceived){
-		
+		currentWeight += weightReceived;
+		print("weight is calculated");
 	}
 }

@@ -18,17 +18,16 @@ public class MakeEnemy : MonoBehaviour {
 	public	GameObject	championFlyingShooting;
 	public	GameObject	championFlyingMelee;
 
-	public	bool	flying;
 	public	bool	walking;
+	public	bool	flying;
 	public	bool	melee;
 	public	bool	shooting;
 	public	bool	champion;
 
 	[Range(0,100)]
 	public	int		chanceMelee;
-
 	[Range(0,100)]
-	public	int		chanceNormal;
+	public	int		chanceChampion;
 
 	public	int		normalWalkingMeleeWeight;
 	public	int		normalWalkingShootingWeight;
@@ -39,20 +38,18 @@ public class MakeEnemy : MonoBehaviour {
 	public	int		championFlyingMeleeWeight;
 	public	int		championFlyingShootingWeight;
 
-	public	int		myWeight;
-
-//	public	int		minChance = 0;
 	public	int		maxChance = 101;
 	public	int		rolledChance;
 
 	void Start () {
-		RollEnemy();
+		if(flying == true || walking == true){
+			RollEnemy();
+			SpawnEnemy();
+		}
 	}
 	
 	void Update () {
-		if (Input.GetKeyDown("f")){
-			RollEnemy();
-		}
+		
 	}
 
 	public void RollChance (){
@@ -62,10 +59,6 @@ public class MakeEnemy : MonoBehaviour {
 	public void RollEnemy(){
 		ChooseAttackType ();
 		ChooseType ();
-	}
-
-	public void ChooseMovementType (){
-		//
 	}
 
 	public void ChooseAttackType (){
@@ -81,16 +74,64 @@ public class MakeEnemy : MonoBehaviour {
 
 	public void ChooseType (){
 		RollChance();
-		if(rolledChance > chanceNormal){
+		if(rolledChance <= chanceChampion){
 			champion = true;
 		}
 	}
 
 	public void SpawnEnemy(){
+		if(walking == true && flying == false){
+			if(melee == true && shooting == false && champion == false){
+				Instantiate(walkingMelee, transform.position, Quaternion.identity);
+				SendWeight(normalWalkingMeleeWeight);
+				DestroyMe();
+			}
+			if(melee == false && shooting == true && champion == false){
+				Instantiate(walkingShooting, transform.position, Quaternion.identity);
+				SendWeight(normalWalkingShootingWeight);
+				DestroyMe();
+			}
+			if(melee == true && shooting == false && champion == true){
+				Instantiate(championWalkingMelee, transform.position, Quaternion.identity);
+				SendWeight(championWalkingMeleeWeight);
+				DestroyMe();
+			}
+			if(melee == false && shooting == true && champion == true){
+				Instantiate(championWalkingShooting, transform.position, Quaternion.identity);
+				SendWeight(championWalkingShootingWeight);
+				DestroyMe();
+			}
+		}
 
+		if(flying == true && walking == false){
+			if(melee == true && shooting == false && champion == false){
+				Instantiate(flyingMelee, transform.position, Quaternion.identity);
+				SendWeight(normalFlyingMeleeWeight);
+				DestroyMe();
+			}
+			if(melee == false && shooting == true && champion == false){
+				Instantiate(flyingShooting, transform.position, Quaternion.identity);
+				SendWeight(normalFlyingShootingWeight);
+				DestroyMe();
+			}
+			if(melee == true && shooting == false && champion == true){
+				Instantiate(championFlyingMelee, transform.position, Quaternion.identity);
+				SendWeight(championFlyingMeleeWeight);
+				DestroyMe();
+			}
+			if(melee == false && shooting == true && champion == true){
+				Instantiate(championFlyingShooting, transform.position, Quaternion.identity);
+				SendWeight(championFlyingShootingWeight);
+				DestroyMe();
+			}
+		}
 	}
 
-	public void SendWeight(){
+	public void SendWeight(int myWeight){
 		levelManager.GetComponent<Balancer>().CalcWeight(myWeight);
+	}
+
+	public void DestroyMe(){
+		Destroy(gameObject);
 	}
 }
