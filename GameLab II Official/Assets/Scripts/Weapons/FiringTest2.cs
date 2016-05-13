@@ -2,7 +2,7 @@
 using UnityEditor.Animations;
 using System.Collections;
 
-public class FiringTest : MonoBehaviour {
+public class FiringTest2 : MonoBehaviour {
 
 	public GameObject particle;
 	public Transform muzzle;
