@@ -19,6 +19,10 @@ public class Interaction : MonoBehaviour {
 	
 		InteractionSwitch ();
 
+		if(Input.GetButtonDown("Interact")){
+			Debug.DrawRay(transform.position, transform.forward, Color.red, rayDis);
+		}
+
 	}
 
 	public void InteractionSwitch (){
@@ -75,7 +79,7 @@ public class Interaction : MonoBehaviour {
 
 			case 8 :
 				print("Loot Chest");
-				GameObject.Find("LootChest").GetComponent<LootChest>().LootChestSelector();
+				rayHit.transform.gameObject.GetComponent<LootChest>().LootChestSelector();
 				break;
 
 			case 9 :
