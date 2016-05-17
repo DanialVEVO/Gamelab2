@@ -5,7 +5,17 @@ public class JumpPad : MonoBehaviour {
 
 	private Rigidbody playerRb;
 
+	public GameObject player;
+
 	public float boost;
+	public float boostForward;
+
+	public enum BoostTypes {
+		Trampoline,
+		Boost,
+	}
+
+	public BoostTypes myBoostTypes;
 
 	void Start () {
 	
@@ -19,14 +29,23 @@ public class JumpPad : MonoBehaviour {
 
 		if(hit.transform.tag == "Player"){
 			playerRb = hit.transform.gameObject.GetComponent<Rigidbody>();
+			player = GameObject.Find("PlayerTest(Clone)");
 			JumpBoost();
 		}
 	}
 
 	public void JumpBoost (){
 
-		playerRb.velocity = new Vector3(0, boost, 0);
+		switch (myBoostTypes){
 
+			case BoostTypes.Trampoline:
+				playerRb.velocity = transform.up * boost;
+			break;
 
+			case BoostTypes.Boost:
+				playerRb.velocity = new Vector3 (0, player.transform.position.y * boost * Time.deltaTime, boostForward * Time.deltaTime);
+			break;
+
+		}
 	}
 }
