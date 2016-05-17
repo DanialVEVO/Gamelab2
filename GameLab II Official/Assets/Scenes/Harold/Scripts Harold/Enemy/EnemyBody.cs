@@ -16,6 +16,7 @@ public class EnemyBody : MonoBehaviour {
 			GameObject tutorialSpwaner = GameObject.FindGameObjectWithTag("TutorialSpawner");
 			TutorialEnemy tutorialSpawnClass = tutorialSpwaner.GetComponent<TutorialEnemy>();
 			tutorialSpawnClass.respawn = true;
+			Destroy(tutorialSpawnClass.currentEnemy);
 
 		}
 		else{

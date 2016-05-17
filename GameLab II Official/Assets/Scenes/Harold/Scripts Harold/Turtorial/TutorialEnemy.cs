@@ -4,6 +4,7 @@ using System.Collections;
 public class TutorialEnemy : MonoBehaviour {
 
 	public GameObject turtorialEnemy;
+	public GameObject currentEnemy;
 	public Vector3 spawnPosition;
 	public bool respawn;
 
@@ -28,6 +29,6 @@ public class TutorialEnemy : MonoBehaviour {
 	}
 
 	public void Respawner(){
-		Instantiate(turtorialEnemy, spawnPosition, transform.rotation);
+		currentEnemy = Instantiate(turtorialEnemy, spawnPosition, transform.rotation) as GameObject;
 	}
 }
