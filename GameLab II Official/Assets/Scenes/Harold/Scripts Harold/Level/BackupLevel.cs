@@ -12,7 +12,7 @@ public class BackupLevel : MonoBehaviour {
 	public GameObject shopLevel, itemLevel, afterSpecialLevel, startLevel;
 	public Vector3 spawnPosition;
 	public GameObject levelManager;
-	public LevelRandomizer randomLevelMizer;
+	public uUpRandomBack randomLevelMizer;
 	public int blockCounter, levelCounter, maxBlockAmount;
 	public int randomNumLevel, randomNumShop;
 	public int shopChance;
@@ -23,7 +23,7 @@ public class BackupLevel : MonoBehaviour {
 		blockCounter = 1;
 		maxBlockAmount = Random.Range(4,6);
 		levelManager = GameObject.FindGameObjectWithTag("LevelManager");
-		randomLevelMizer = levelManager.GetComponent<LevelRandomizer>();
+		randomLevelMizer = levelManager.GetComponent<uUpRandomBack>();
 		randomLevelMizer.PickRandomLevel();
 		currentLevel = Instantiate(startLevel, new Vector3(0,0,0), transform.rotation) as GameObject;
 

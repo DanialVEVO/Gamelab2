@@ -17,6 +17,8 @@ public class Exploding_Barrels : MonoBehaviour {
 
 	void Start () {
 
+		player = GameObject.Find("PlayerTest(Clone)");
+
 	}
 	
 	void Update () {

@@ -28,6 +28,7 @@ public class Charachter_Controller : MonoBehaviour {
 	public GameObject mainCam;
 	public GameObject mainCanvas;
 	public GameObject gameOverCanvas;
+	public GameObject weaponCam;
 
 	private float camRot;
 
@@ -35,6 +36,7 @@ public class Charachter_Controller : MonoBehaviour {
 
 		playerRB = GetComponent<Rigidbody>();
 		mainCam = GameObject.Find("Main Camera");
+		weaponCam = GameObject.Find("WeaponCam");
 		mainCanvas = GameObject.Find("MainCharachterCanvas");
 		mayUpgrade = true;
 
@@ -167,6 +169,7 @@ public class Charachter_Controller : MonoBehaviour {
 	void CamRotHorizontal (){
 
 		transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeedHor);
+		weaponCam.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeedHor);
 
 	}
 
@@ -175,6 +178,7 @@ public class Charachter_Controller : MonoBehaviour {
 		camRot -= Input.GetAxis("Mouse Y") * mouseSpeedVer;
 		camRot = Mathf.Clamp(camRot, -limit, limit);
 		mainCam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
+		weaponCam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
 
 	}
 

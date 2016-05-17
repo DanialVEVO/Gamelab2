@@ -13,7 +13,7 @@ public class uUpRandomBack : LevelSpawn {
 
 	public void PickRandomLevel(){
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		LevelSpawner levelSpawner = player.GetComponent<LevelSpawner>();
+		BackupLevel levelSpawner = player.GetComponent<BackupLevel>();
 
 		switch (levelSpawner.levelCounter){
 		case 0:

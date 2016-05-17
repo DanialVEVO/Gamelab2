@@ -11,9 +11,19 @@ public class EnemyBody : MonoBehaviour {
 	public void Damage(float givenDamage){
 		//mainEnemy = GameObject.FindGameObjectWithTag("EnemyMain");
 		mainEnemy = transform.root.gameObject;
-		enemyMainHealth = mainEnemy.GetComponent<EnemyBaseClass>();
-		calculatedDamage = givenDamage * damageModifier;
-		int roundedDamage = Mathf.CeilToInt(calculatedDamage);
-		enemyMainHealth.Health(roundedDamage);
+
+		if(mainEnemy.tag == "TutorialEnemy"){
+			GameObject tutorialSpwaner = GameObject.FindGameObjectWithTag("TutorialSpawner");
+			TutorialEnemy tutorialSpawnClass = tutorialSpwaner.GetComponent<TutorialEnemy>();
+			tutorialSpawnClass.respawn = true;
+
+		}
+		else{
+			
+			enemyMainHealth = mainEnemy.GetComponent<EnemyBaseClass>();
+			calculatedDamage = givenDamage * damageModifier;
+			int roundedDamage = Mathf.CeilToInt(calculatedDamage);
+			enemyMainHealth.Health(roundedDamage);
+		}
 	}
 }
