@@ -3,13 +3,31 @@ using System.Collections;
 
 public class TutorialAmmo : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public GameObject currentWeapon;
+	public RaycastWeapon weaponScript;
+	public  float time, waitTime;
+
+	void Start (){ 
+		currentWeapon = GameObject.FindGameObjectWithTag("StartWeapon");
+		weaponScript = currentWeapon.GetComponent<RaycastWeapon>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void Update (){
+		if(time >= 0){
+			time-= Time.deltaTime;
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+		if(other.tag == "Player"){
+			if(time <= 0){
+				weaponScript.ammoPool = weaponScript.maxPool;
+				time = waitTime;
+			}
+		}
+	}
+
+	void respawnAmmo(){
+		
 	}
 }
