@@ -5,6 +5,10 @@ using System.Collections.Generic;
 public class WeaponSwitch : MonoBehaviour {
 
 	public int curWeapon;
+	public int arAmmoStore, revolverAmmoStore, smgAmmoStore, launcherAmmoStore;
+	public int ammoPickupCount;
+	public int checkAmmo;
+
 
 	public GameObject weaponManager;
 
@@ -43,5 +47,51 @@ public class WeaponSwitch : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void AmmoPickup (int wichAmmo){
+
+		switch (wichAmmo){
+
+			case 1 :
+
+			break;
+
+			case 2 :
+
+			break;
+
+			case 3 :
+
+			break;
+
+			case 4 :
+
+			break;
+
+
+		}
+
+	}
+
+
+	void OnTriggerEnter (Collider trigger){
+
+		if(trigger.transform.tag == "ARAmmo"){
+			AmmoPickup (1);
+		}
+
+		if(trigger.transform.tag == "SMGAmmo"){
+			AmmoPickup (2);
+		}
+
+		if(trigger.transform.tag == "RevolverAmmo"){
+			AmmoPickup (3);
+		}
+
+		if(trigger.transform.tag == "LauncherAmmo"){
+			AmmoPickup (4);
+		}
+
 	}
 }
