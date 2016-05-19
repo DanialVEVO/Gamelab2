@@ -26,6 +26,7 @@ public class WeaponSwitch : MonoBehaviour {
 	void Update () {
 		
 		WeaponSwitcher ();
+		StoreAmmo ();
 
 	}
 
@@ -54,24 +55,39 @@ public class WeaponSwitch : MonoBehaviour {
 		switch (wichAmmo){
 
 			case 1 :
+				print("ARAmmo");
+				ammoPickupCount = Random.Range(10, 20);
+				arAmmoStore = ammoPickupCount;
 
 			break;
 
 			case 2 :
+				print("SMGAmmo");
 
 			break;
 
 			case 3 :
+				print("RevolverAmmo");
 
 			break;
 
 			case 4 :
+				print("LauncherAmmo");
 
 			break;
 
 
 		}
 
+	}
+
+	public void StoreAmmo (){
+
+		if(weapons[3].activeInHierarchy == true){
+			weapons[3].GetComponent<RaycastWeapon>().ammoPool += ammoPickupCount;
+			ammoPickupCount = 0;
+			arAmmoStore = 0;
+		}
 	}
 
 
