@@ -27,6 +27,7 @@ public class TutorialText : MonoBehaviour {
 	}
 
 	public void TextActivator(){
+		print(textCounter);
 		textList[textCounter].SetActive(true);
 		textCounter++;
 	}
