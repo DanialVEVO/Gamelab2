@@ -6,12 +6,14 @@ public class UpgradeButtons : MonoBehaviour {
 	public UpgradeWeapon upgradeScript;
 	public GameObject upgradeManager;
 	public GameObject currentWeapon;
-	public RaycastWeapon weaponScript;
+	//public RaycastWeapon weaponScript;
+	public Upgraders upgradeIndexer;
 	//public int temp;
 	public float temper;
 
 	void Start () {
 		upgradeScript = upgradeManager.GetComponent<UpgradeWeapon>();
+		upgradeIndexer = upgradeManager.GetComponent<Upgraders>();
 
 	}
 
@@ -20,14 +22,17 @@ public class UpgradeButtons : MonoBehaviour {
 	}
 
 	public void UpgradeButton(int index){
-		weaponScript = currentWeapon.GetComponent<RaycastWeapon>();
-		weaponScript.CalcUpgradeArray();
+		currentWeapon = upgradeScript.currentWeapon;
+		//weaponScript = currentWeapon.GetComponent<RaycastWeapon>();
+		//weaponScript.CalcUpgradeArray();
+		upgradeIndexer.GetVariables(currentWeapon);
 		upgradeScript.currentIndex = index;
-		upgradeScript.currentUpgrade = weaponScript.upgradeVariables[index];// 0 = currentWeapon.list[index];
-		upgradeScript.currentWeapon = currentWeapon;
-		upgradeScript.weaponScript = weaponScript;
+		upgradeScript.currentUpgrade = upgradeIndexer.upgradeVariables[index]; //weaponScript.upgradeVariables[index];// 0 = currentWeapon.list[index];
+		//upgradeScript.currentWeapon = currentWeapon;
+		//upgradeScript.weaponScript = weaponScript;
 		upgradeScript.Upgrade();
-		weaponScript.upgradeVariables[index] = upgradeScript.currentUpgrade; // temp = currentenWeapon.list[index];
-		weaponScript.SetUpgrades();
+		upgradeIndexer.upgradeVariables[index] = upgradeScript.currentUpgrade; // temp = currentenWeapon.list[index];
+		upgradeIndexer.SetVariables(currentWeapon);
+		//weaponScript.SetUpgrades();
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections;
 public class UpgradeWeapon : MonoBehaviour {
 
 	public int[] upgradeIndex, upgradeCostIndex;
-	public float currentUpgrade;
+	public int currentUpgrade;
 	public GameObject currentWeapon;
 	public int forNumber, afterForNumber, upgradeAmount, currentIndex;
 	public int tempAmmo;
