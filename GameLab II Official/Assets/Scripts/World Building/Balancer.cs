@@ -11,11 +11,11 @@ public class Balancer : MonoBehaviour {
 	public	int	weightLimit;
 	public	int currentWeight;
 	public	int	chosenEnemy;
-	public List<Transform> enemyList = new List<Transform>();
+	public	List<GameObject> enemyList = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
-	 
+		FindSpawnPoints ();
 	}
 	
 	// Update is called once per frame
@@ -25,8 +25,13 @@ public class Balancer : MonoBehaviour {
 		}
 	}
 
+	void FindSpawnPoints () { 
+		enemyList.AddRange(GameObject.FindGameObjectsWithTag("SpawnPoint"));
+		//list.removeat[1]
+	}
+
 	public int ChooseEnemy () {
-		chosenEnemy = Random.Range(0, enemyList.Count);
+		int chosenEnemy = Random.Range(0, enemyList.Count);
 		return chosenEnemy;
 	}
 
