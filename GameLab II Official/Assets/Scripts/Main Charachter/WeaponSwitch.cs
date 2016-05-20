@@ -63,16 +63,22 @@ public class WeaponSwitch : MonoBehaviour {
 
 			case 2 :
 				print("SMGAmmo");
+				ammoPickupCount = Random.Range(10, 20);
+				smgAmmoStore = ammoPickupCount;
 
 			break;
 
 			case 3 :
 				print("RevolverAmmo");
+				ammoPickupCount = Random.Range(5, 10);
+				revolverAmmoStore = ammoPickupCount;
 
 			break;
 
 			case 4 :
 				print("LauncherAmmo");
+				ammoPickupCount = Random.Range(1, 2);
+				launcherAmmoStore = ammoPickupCount;
 
 			break;
 
@@ -83,10 +89,28 @@ public class WeaponSwitch : MonoBehaviour {
 
 	public void StoreAmmo (){
 
-		if(weapons[3].activeInHierarchy == true){
-			weapons[3].GetComponent<RaycastWeapon>().ammoPool += ammoPickupCount;
+		if(weapons[curWeapon].transform.name == "AR"){
+			weapons[curWeapon].GetComponent<RaycastWeapon>().ammoPool += arAmmoStore;
 			ammoPickupCount = 0;
 			arAmmoStore = 0;
+		}
+
+		if(weapons[curWeapon].transform.name == "SMG"){
+			weapons[curWeapon].GetComponent<RaycastWeapon>().ammoPool += smgAmmoStore;
+			ammoPickupCount = 0;
+			smgAmmoStore = 0;
+		}
+
+		if(weapons[curWeapon].transform.name == "Revolver"){
+			weapons[curWeapon].GetComponent<RaycastWeapon>().ammoPool += revolverAmmoStore;
+			ammoPickupCount = 0;
+			revolverAmmoStore = 0;
+		}
+
+		if(weapons[curWeapon].transform.name == "Launcher"){
+			weapons[curWeapon].GetComponent<ProjectileWeapon>().ammoPool += launcherAmmoStore;
+			ammoPickupCount = 0;
+			launcherAmmoStore = 0;
 		}
 	}
 
