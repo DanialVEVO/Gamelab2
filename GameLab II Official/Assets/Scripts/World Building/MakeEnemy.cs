@@ -1,45 +1,23 @@
-﻿/* [Code]
+/* [Code]
  * Enemy Creation Class
  * Scripted by Danial
  */
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 
 public class MakeEnemy : MonoBehaviour {
 
 	public	GameObject	levelManager;
 
-	public	GameObject	walkingShooting;
-	public	GameObject	walkingMelee;
-	public	GameObject	flyingShooting;
-	public	GameObject	flyingMelee;
-	public	GameObject	championWalkingShooting;
-	public	GameObject	championWalkingMelee;
-	public	GameObject	championFlyingShooting;
-	public	GameObject	championFlyingMelee;
-
 	public	bool	walking;
 	public	bool	flying;
-	public	bool	melee;
-	public	bool	shooting;
-	public	bool	champion;
-
+	
 	[Range(0,100)]
 	public	int		chanceMelee;
 	[Range(0,100)]
 	public	int		chanceChampion;
 
-	public	int		normalWalkingMeleeWeight;
-	public	int		normalWalkingShootingWeight;
-	public	int		normalFlyingMeleeWeight;
-	public	int		normalFlyingShootingWeight;
-	public	int		championWalkingMeleeWeight;
-	public	int		championWalkingShootingWeight;
-	public	int		championFlyingMeleeWeight;
-	public	int		championFlyingShootingWeight;
 
-	public	int		maxChance = 101;
-	public	int		rolledChance;
 
 	void Start () {
 		if(flying == true || walking == true){
@@ -52,18 +30,25 @@ public class MakeEnemy : MonoBehaviour {
 		
 	}
 
-	public void RollChance (){
-		rolledChance = Random.Range(0, maxChance);
+	public void CreateMe() {
+		if(flying == true || walking == true){
+			RollEnemy();
+			SpawnEnemy();
+		}
 	}
 
-	public void RollEnemy(){
+	int RollChance (){
+		int rolledChance = Random.Range(0, maxChance);
+		return rolledChance;
+	}
+
+	public void RollEnemy (){
 		ChooseAttackType ();
 		ChooseType ();
 	}
 
 	public void ChooseAttackType (){
-		RollChance();
-		if(rolledChance <= chanceMelee){
+		if(RollChance() <= chanceMelee){
 			melee = true;
 		} 
 		else{
@@ -73,13 +58,12 @@ public class MakeEnemy : MonoBehaviour {
 	}
 
 	public void ChooseType (){
-		RollChance();
-		if(rolledChance <= chanceChampion){
+		if(RollChance() <= chanceChampion){
 			champion = true;
 		}
 	}
 
-	public void SpawnEnemy(){
+	public void SpawnEnemy (){
 		if(walking == true && flying == false){
 			if(melee == true && shooting == false && champion == false){
 				Instantiate(walkingMelee, transform.position, Quaternion.identity);
@@ -127,11 +111,12 @@ public class MakeEnemy : MonoBehaviour {
 		}
 	}
 
-	public void SendWeight(int myWeight){
+	public void SendWeight (int myWeight){
 		levelManager.GetComponent<Balancer>().CalcWeight(myWeight);
 	}
 
-	public void DestroyMe(){
+	public void DestroyMe (){
 		Destroy(gameObject);
 	}
 }
+*/
