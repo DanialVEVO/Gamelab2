@@ -17,7 +17,6 @@ public class Balancer : MonoBehaviour {
 	public	GameObject	championFlyingShooting;
 	public	GameObject	championFlyingMelee;
 
-
 	public	bool	melee;
 	public	bool	shooting;
 	public	bool	champion;
@@ -31,18 +30,23 @@ public class Balancer : MonoBehaviour {
 	public	int		championFlyingMeleeWeight;
 	public	int		championFlyingShootingWeight;
 
-	public	int		maxChance = 101;
+	private	int		maxChance = 101;
+	public	int		chosenEnemy;
+	public	int		weightLimit;
+	public	int 	currentWeight;
 
-	public	int	weightLimit;
-	public	int currentWeight;
-	public	int	chosenEnemy;
 	public	List<GameObject> enemyList = new List<GameObject>();
 
-	public GameObject tempSpawnPoint;
+	public	GameObject tempSpawnPoint;
+	private	int		chanceMelee;
+	private	int		chanceChampion;
+
+
 
 	// Use this for initialization
 	void Start () {
-		FindSpawnPoints ();
+		FindSpawnPoints();
+		SetTempObjects ();
 	}
 	
 	// Update is called once per frame
@@ -64,21 +68,103 @@ public class Balancer : MonoBehaviour {
 	}
 
 	// Set Temp GameObjects
+	public void SetTempObjects () {
+		tempSpawnPoint = enemyList[ChooseEnemy()];
+	}
 
-	// Read & Set Values
+	// Read & Copy Temp GameObject values
 
-	// Function to calc chances
+	// Function to roll chance
+	int RollChance (){
+		int rolledChance = Random.Range(0, maxChance);
+		return rolledChance;
+	}
 
 	// Set enemytype (melee/shooting, champion)
+	public void RollEnemy (){
+		ChooseAttackType ();
+		ChooseType ();
+	}
 
-	// Instantiate on chosen transform
+	public void ChooseAttackType (){
+		if(RollChance() <= tempSpawnPoint.GetComponent<MakeEnemy>().chanceMelee){
+			melee = true;
+		} 
+		else{
+			shooting = true;
+		}		
+	}
 
-	// Destroy Transform
+	public void ChooseType (){
+		if(RollChance() <= tempSpawnPoint.GetComponent<MakeEnemy>().chanceMelee){
+			champion = true;
+		}
+	}
+
+	//Instantiate enemy on chosen transform
+	public void SpawnEnemy (){
+		if(tempSpawnPoint.GetComponent<MakeEnemy>().walking == true && tempSpawnPoint.GetComponent<MakeEnemy>() == false){
+			if(melee == true && shooting == false && champion == false){
+				Instantiate(walkingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(normalWalkingMeleeWeight);
+			}
+
+			if(melee == false && shooting == true && champion == false){
+				Instantiate(walkingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(normalWalkingShootingWeight);
+			}
+
+			if(melee == true && shooting == false && champion == true){
+				Instantiate(championWalkingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(championWalkingMeleeWeight);
+			}
+
+			if(melee == false && shooting == true && champion == true){
+				Instantiate(championWalkingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(championWalkingShootingWeight);
+			}
+		}
+
+		if(tempSpawnPoint.GetComponent<MakeEnemy>().flying == true && tempSpawnPoint.GetComponent<MakeEnemy>().walking == false){
+			if(melee == true && shooting == false && champion == false){
+				Instantiate(flyingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(normalFlyingMeleeWeight);
+
+			}
+			if(melee == false && shooting == true && champion == false){
+				Instantiate(flyingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(normalFlyingShootingWeight);
+
+			}
+			if(melee == true && shooting == false && champion == true){
+				Instantiate(championFlyingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(championFlyingMeleeWeight);
+
+			}
+			if(melee == false && shooting == true && champion == true){
+				Instantiate(championFlyingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+				CalcWeight(championFlyingShootingWeight);
+
+			}
+		}
+	}
 
 	// Remove chosen transform from list
 		//list.removeat[1]
+	public void RemoveFromList (){
+		enemyList.RemoveAt(chosenEnemy);
+	}
+
+	public void DestroyTempObject(){
+		Destroy(tempSpawnPoint);
+	}
 
 	// Reset booleans
+	public void ResetBooleans (){
+		melee 		= 	false;
+		shooting  	= 	false;
+		champion 	= 	false;
+	}
 
 	// --LOOP-- if maxweight not reached
 
