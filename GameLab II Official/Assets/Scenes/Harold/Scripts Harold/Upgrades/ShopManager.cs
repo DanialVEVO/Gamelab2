@@ -3,22 +3,21 @@ using System.Collections;
 
 public class ShopManager : MonoBehaviour {
 
-	public GameObject upgradeManager;
-	public UpgradeButtons upgradeButtonScript;
+	//public GameObject upgradeManager;
+	//public UpgradeButtons upgradeButtonScript;
+	public GameObject[] shopHudList;
 	public int weaponCounter;
 	
-	void weaponButton1(){
-		weaponCounter = 0;
+	public void weaponButton1(int indexer){
+		weaponCounter = indexer;
+		PutOff();
+		shopHudList[indexer].SetActive(true);
 		//switchweapon
 	}
 
-	void weaponButton2(){
-		weaponCounter = 1;
-		//switchweapon
-	}
-
-	void weaponButton3(){
-		weaponCounter = 2;
-		//switchweapon
+	void PutOff(){
+		for(int i = 0; i < shopHudList.Length; i++){
+			shopHudList[i].SetActive(false);
+		}
 	}
 }

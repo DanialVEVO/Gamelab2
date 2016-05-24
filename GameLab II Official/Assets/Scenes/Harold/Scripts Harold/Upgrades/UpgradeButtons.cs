@@ -6,6 +6,8 @@ public class UpgradeButtons : MonoBehaviour {
 	public UpgradeWeapon upgradeScript;
 	public GameObject upgradeManager;
 	public GameObject currentWeapon;
+	public int[] maxUpgrades;
+	public bool rayWeapon;
 	//public RaycastWeapon weaponScript;
 	public Upgraders upgradeIndexer;
 	//public int temp;
@@ -23,16 +25,23 @@ public class UpgradeButtons : MonoBehaviour {
 
 	public void UpgradeButton(int index){
 		currentWeapon = upgradeScript.currentWeapon;
-		//weaponScript = currentWeapon.GetComponent<RaycastWeapon>();
-		//weaponScript.CalcUpgradeArray();
 		upgradeIndexer.GetVariables(currentWeapon);
+		upgradeIndexer.CheckClass(GetComponent<UpgradeButtons>(), currentWeapon);
 		upgradeScript.currentIndex = index;
 		upgradeScript.currentUpgrade = upgradeIndexer.upgradeVariables[index]; //weaponScript.upgradeVariables[index];// 0 = currentWeapon.list[index];
-		//upgradeScript.currentWeapon = currentWeapon;
-		//upgradeScript.weaponScript = weaponScript;
 		upgradeScript.Upgrade();
+	
+		if(rayWeapon){
+			if(upgradeScript.currentUpgrade == maxUpgrades[0]){
+				upgradeIndexer.maxUpgrades = true;
+			}
+		}
+		else{
+			if(upgradeScript.currentUpgrade == maxUpgrades[1]){
+				upgradeIndexer.maxUpgrades = true;
+			}
+		}
 		upgradeIndexer.upgradeVariables[index] = upgradeScript.currentUpgrade; // temp = currentenWeapon.list[index];
 		upgradeIndexer.SetVariables(currentWeapon);
-		//weaponScript.SetUpgrades();
 	}
 }
