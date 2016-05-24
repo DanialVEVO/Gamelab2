@@ -31,7 +31,6 @@ public class UpgradeButtons : MonoBehaviour {
 		upgradeScript.currentUpgrade = upgradeIndexer.upgradeVariables[index]; //weaponScript.upgradeVariables[index];// 0 = currentWeapon.list[index];
 		upgradeScript.Upgrade();
 	
-
 		if(rayWeapon){
 			if(upgradeScript.currentUpgrade == maxUpgrades[0]){
 				upgradeIndexer.maxUpgrades = true;
