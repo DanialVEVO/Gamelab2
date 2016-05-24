@@ -41,7 +41,7 @@ public class WeaponSwitch : MonoBehaviour {
 				}
 				if(i == curWeapon){
 					weapons[i].SetActive(true);
-					weaponManager.GetComponent<WeaponUpgrade>().currentWeapon = weapons[i];
+					weaponManager.GetComponent<UpgradeWeapon>().currentWeapon = weapons[i];
 				}
 				else{
 					weapons[i].SetActive(false);
