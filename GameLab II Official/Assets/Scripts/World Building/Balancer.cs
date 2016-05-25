@@ -46,14 +46,28 @@ public class Balancer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		FindSpawnPoints();
-		SetTempObjects ();
+		
+		while(currentWeight < weightLimit){
+			print("1");
+			SetTempObjects ();
+			print("2");
+			ChooseAttackType ();
+			print("3");
+			ChooseType ();
+			print("4");
+			SpawnEnemy ();
+			print("5");
+			DestroyTempObject ();
+			print("6");
+			RemoveFromList ();
+			print("7");
+			ResetBooleans ();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(currentWeight <= weightLimit){
-			
-		}
+
 	}
 	
 	void FindSpawnPoints () { 
@@ -103,46 +117,47 @@ public class Balancer : MonoBehaviour {
 
 	//Instantiate enemy on chosen transform
 	public void SpawnEnemy (){
+		Transform spawnPoint = tempSpawnPoint.transform;
 		if(tempSpawnPoint.GetComponent<MakeEnemy>().walking == true && tempSpawnPoint.GetComponent<MakeEnemy>() == false){
 			if(melee == true && shooting == false && champion == false){
-				Instantiate(walkingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+				Transform sp = Instantiate(walkingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(normalWalkingMeleeWeight);
 			}
 
-			if(melee == false && shooting == true && champion == false){
-				Instantiate(walkingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+			else if(melee == false && shooting == true && champion == false){
+				Transform sp = Instantiate(walkingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(normalWalkingShootingWeight);
 			}
 
-			if(melee == true && shooting == false && champion == true){
-				Instantiate(championWalkingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+			else if(melee == true && shooting == false && champion == true){
+				Transform sp = Instantiate(championWalkingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(championWalkingMeleeWeight);
 			}
 
-			if(melee == false && shooting == true && champion == true){
-				Instantiate(championWalkingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+			else if(melee == false && shooting == true && champion == true){
+				Transform sp = Instantiate(championWalkingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(championWalkingShootingWeight);
 			}
 		}
 
 		if(tempSpawnPoint.GetComponent<MakeEnemy>().flying == true && tempSpawnPoint.GetComponent<MakeEnemy>().walking == false){
 			if(melee == true && shooting == false && champion == false){
-				Instantiate(flyingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+				Transform sp = Instantiate(flyingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(normalFlyingMeleeWeight);
 
 			}
-			if(melee == false && shooting == true && champion == false){
-				Instantiate(flyingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+			else if(melee == false && shooting == true && champion == false){
+				Transform sp = Instantiate(flyingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(normalFlyingShootingWeight);
 
 			}
-			if(melee == true && shooting == false && champion == true){
-				Instantiate(championFlyingMelee, tempSpawnPoint.transform.position, Quaternion.identity);
+			else if(melee == true && shooting == false && champion == true){
+				Transform sp = Instantiate(championFlyingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(championFlyingMeleeWeight);
 
 			}
-			if(melee == false && shooting == true && champion == true){
-				Instantiate(championFlyingShooting, tempSpawnPoint.transform.position, Quaternion.identity);
+			else if(melee == false && shooting == true && champion == true){
+				Transform sp = Instantiate(championFlyingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
 				CalcWeight(championFlyingShootingWeight);
 
 			}
@@ -150,12 +165,11 @@ public class Balancer : MonoBehaviour {
 	}
 
 	// Remove chosen transform from list
-		//list.removeat[1]
 	public void RemoveFromList (){
 		enemyList.RemoveAt(chosenEnemy);
 	}
 
-	public void DestroyTempObject(){
+	public void DestroyTempObject (){
 		Destroy(tempSpawnPoint);
 	}
 
@@ -166,7 +180,7 @@ public class Balancer : MonoBehaviour {
 		champion 	= 	false;
 	}
 
-	// --LOOP-- if maxweight not reached
+	// --WhileLOOP-- if maxweight not reached spawn enemies
 
 	public void CalcWeight (int weightReceived){
 		currentWeight += weightReceived;

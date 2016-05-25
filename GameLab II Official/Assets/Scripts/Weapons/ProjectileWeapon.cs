@@ -176,7 +176,7 @@ public class ProjectileWeapon : WeaponScript {
 	public override void CalcRateOfFire(){
 		rateOfFire = 60/fireRatePerMinute;
 		cooldown = rateOfFire;
-		print("The rate of fire is 1 bullet per " +rateOfFire +" second(s)");
+		//print("The rate of fire is 1 bullet per " +rateOfFire +" second(s)");
 	}
 
 	public override void CalcUpgradeArray(){
