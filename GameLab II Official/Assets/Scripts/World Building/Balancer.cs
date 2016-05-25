@@ -118,50 +118,55 @@ public class Balancer : MonoBehaviour {
 	//Instantiate enemy on chosen transform
 	public void SpawnEnemy (){
 		Transform spawnPoint = tempSpawnPoint.transform;
-		if(tempSpawnPoint.GetComponent<MakeEnemy>().walking == true && tempSpawnPoint.GetComponent<MakeEnemy>() == false){
+		if(tempSpawnPoint.GetComponent<MakeEnemy>().walking == true && tempSpawnPoint.GetComponent<MakeEnemy>().flying == false){
 			if(melee == true && shooting == false && champion == false){
-				Transform sp = Instantiate(walkingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(walkingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalWalkingMeleeWeight);
 			}
 
 			else if(melee == false && shooting == true && champion == false){
-				Transform sp = Instantiate(walkingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(walkingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalWalkingShootingWeight);
 			}
 
 			else if(melee == true && shooting == false && champion == true){
-				Transform sp = Instantiate(championWalkingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(championWalkingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championWalkingMeleeWeight);
 			}
 
 			else if(melee == false && shooting == true && champion == true){
-				Transform sp = Instantiate(championWalkingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(championWalkingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championWalkingShootingWeight);
 			}
 		}
 
 		if(tempSpawnPoint.GetComponent<MakeEnemy>().flying == true && tempSpawnPoint.GetComponent<MakeEnemy>().walking == false){
 			if(melee == true && shooting == false && champion == false){
-				Transform sp = Instantiate(flyingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(flyingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalFlyingMeleeWeight);
 
 			}
 			else if(melee == false && shooting == true && champion == false){
-				Transform sp = Instantiate(flyingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(flyingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalFlyingShootingWeight);
 
 			}
 			else if(melee == true && shooting == false && champion == true){
-				Transform sp = Instantiate(championFlyingMelee, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(championFlyingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championFlyingMeleeWeight);
 
 			}
 			else if(melee == false && shooting == true && champion == true){
-				Transform sp = Instantiate(championFlyingShooting, spawnPoint.position, spawnPoint.rotation) as Transform;
+				Instantiate(championFlyingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championFlyingShootingWeight);
 
 			}
 		}
+	}
+
+	//Destroy SpawnPoint
+	public void DestroyTempObject (){
+		Destroy(tempSpawnPoint);
 	}
 
 	// Remove chosen transform from list
@@ -169,9 +174,7 @@ public class Balancer : MonoBehaviour {
 		enemyList.RemoveAt(chosenEnemy);
 	}
 
-	public void DestroyTempObject (){
-		Destroy(tempSpawnPoint);
-	}
+
 
 	// Reset booleans
 	public void ResetBooleans (){
