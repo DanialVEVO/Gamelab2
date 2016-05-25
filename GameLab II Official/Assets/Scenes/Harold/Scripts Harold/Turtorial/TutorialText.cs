@@ -10,26 +10,36 @@ public class TutorialText : MonoBehaviour {
 	void Start () {
 		//movement not allowed
 		TextActivator();
+		textCounter++;
 	}
 
 	void Update () {
 		if(Input.GetButtonDown("Next")){
-			if(textCounter < textList.Length){
+			SetFalse();
+			if(textCounter < textList.Length+1){
 				TextActivator();
-				if(textCounter > 1){
-					textList[textCounter-2].SetActive(false);
-					if(textCounter == textList.Length){
-						//move allowed
-					}
-				}
 			}
+				
+			if(textCounter == textList.Length+1){
+				SetFalse();
+				//move allowed
+			}
+			textCounter++;
 		}
 	}
 
 	public void TextActivator(){
-		print(textCounter);
-		textList[textCounter].SetActive(true);
-		textCounter++;
+		if(textCounter < textList.Length){
+			print(textCounter);
+			textList[textCounter].SetActive(true);
+
+		}
+	}
+
+	void SetFalse(){
+		for(int i = 0; i < textList.Length; i++){
+			textList[i].SetActive(false);
+		}
 	}
 
 }

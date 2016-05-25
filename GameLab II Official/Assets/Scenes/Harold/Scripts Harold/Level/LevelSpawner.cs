@@ -60,15 +60,15 @@ public class LevelSpawner : MonoBehaviour {
 
 	void LanternColorer(){
 		for(int i = 0; i < triggerHits.Length; i++){
-//			if(triggerHits[i].GetComponents<leveldifficulty>().number = 0){
-//				lanterns[i].color = easy;
-//			}
-//			if(triggerHits[i].GetComponents<leveldifficulty>().number = 1){
-//				lanterns[i].color = medium;
-//			}
-//			if(triggerHits[i].GetComponents<leveldifficulty>().number = 2){
-//				lanterns[i].color = hard;
-//			}
+			if(triggerHits[i].tag == "easy"){
+				triggerHits[i].transform.FindChild("GreenFire").gameObject.SetActive(true);
+			}
+			if(triggerHits[i].tag == "medium"){
+				triggerHits[i].transform.FindChild("BlueFire").gameObject.SetActive(true);
+			}
+			if(triggerHits[i].tag == "hard"){
+				triggerHits[i].transform.FindChild("RedFire").gameObject.SetActive(true);
+			}
 		}
 
 	}
