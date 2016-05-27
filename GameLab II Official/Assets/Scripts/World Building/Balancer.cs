@@ -41,43 +41,32 @@ public class Balancer : MonoBehaviour {
 	private	int		chanceMelee;
 	private	int		chanceChampion;
 
-
-
 	// Use this for initialization
 	void Start () {
 		FindSpawnPoints();
-		
-		while(currentWeight < weightLimit){
-			print("1");
-			SetTempObjects ();
-			print("2");
-			ChooseAttackType ();
-			print("3");
-			ChooseType ();
-			print("4");
-			SpawnEnemy ();
-			print("5");
-			DestroyTempObject ();
-			print("6");
-			RemoveFromList ();
-			print("7");
-			ResetBooleans ();
-		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		while(currentWeight < weightLimit){
+			SetTempObjects ();
+			ChooseAttackType ();
+			ChooseType ();
+			SpawnEnemy ();
+			RemoveFromList ();
+			DestroyTempObject ();
+			ResetBooleans ();
+		}	
 	}
 	
 	void FindSpawnPoints () { 
 		enemyList.AddRange(GameObject.FindGameObjectsWithTag("SpawnPoint"));
-		
 	}
 
 	// Function to choose a transform from the list
 	public int ChooseEnemy () {
-		int chosenEnemy = Random.Range(0, enemyList.Count);
+		chosenEnemy = Random.Range(0, enemyList.Count);
 		return chosenEnemy;
 	}
 
@@ -169,14 +158,13 @@ public class Balancer : MonoBehaviour {
 		Destroy(tempSpawnPoint);
 	}
 
-	// Remove chosen transform from list
+	//Remove chosen transform from list
 	public void RemoveFromList (){
+		print("blabla " + chosenEnemy);
 		enemyList.RemoveAt(chosenEnemy);
 	}
 
-
-
-	// Reset booleans
+	//Reset booleans
 	public void ResetBooleans (){
 		melee 		= 	false;
 		shooting  	= 	false;
@@ -185,6 +173,7 @@ public class Balancer : MonoBehaviour {
 
 	// --WhileLOOP-- if maxweight not reached spawn enemies
 
+	//Calculate weight of total enemies
 	public void CalcWeight (int weightReceived){
 		currentWeight += weightReceived;
 		print("weight is calculated");
