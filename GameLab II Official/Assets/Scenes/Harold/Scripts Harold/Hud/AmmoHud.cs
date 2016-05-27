@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class AmmoHud : MonoBehaviour {
 
@@ -8,18 +8,11 @@ public class AmmoHud : MonoBehaviour {
 	public string currentAmmo, ammoPool;
 	public RaycastWeapon rayCastClass;
 	public ProjectileWeapon projectileClass;
+	public GameObject hudAmmoPool, hudCurrentAmmo;
 
 	void Start () {
-		int test = 5;
-		string tester = "1";
-		//tester = test.ToString(test);
-		tester = string.Format("{0}", test);
-		//GUILayout.Label(test.ToString(tester)); 
-		//tester = (string)test;
-		print(tester);
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		CheckHud();
 	}
@@ -35,10 +28,11 @@ public class AmmoHud : MonoBehaviour {
 			ammoPool = string.Format("{0}", projectileClass.ammoPool);
 			currentAmmo = string.Format("{0}", projectileClass.loadedMagazine);
 		}
-			
+		SetHud();
 	}
 
 	public void SetHud(){
-		
+		hudAmmoPool.GetComponent<Text>().text = ammoPool;
+		hudCurrentAmmo.GetComponent<Text>().text = currentAmmo;
 	}
 }
