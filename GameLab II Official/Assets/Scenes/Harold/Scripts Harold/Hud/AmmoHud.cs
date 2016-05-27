@@ -10,13 +10,6 @@ public class AmmoHud : MonoBehaviour {
 	public ProjectileWeapon projectileClass;
 	public GameObject hudAmmoPool, hudCurrentAmmo;
 
-	void Start () {
-	}
-
-	void Update () {
-		CheckHud();
-	}
-
 	public void CheckHud(){
 		if(currentweapon.GetComponent<RaycastWeapon>() == currentweapon.GetComponent<RaycastWeapon>()){
 			rayCastClass = currentweapon.GetComponent<RaycastWeapon>();
