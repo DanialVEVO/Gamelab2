@@ -24,6 +24,7 @@ public class RaycastWeapon : WeaponScript {
 	private float		rateOfFire;
 	public	float		fireRatePerMinute;
 	public 	float 		cooldown = 0;
+	public	float		particleShootPower;
 
 	public	int			loadedMagazine = 6;
 	public 	int 		maxMagazineSize = 6;
@@ -34,6 +35,10 @@ public class RaycastWeapon : WeaponScript {
 	public	RaycastHit	hit;
 
 	public	Transform	muzzle;
+
+	public	GameObject	bulletParticle;
+	public	GameObject	muzzleFlashParticle;
+	public	GameObject	muzzleSmokeParticle;
 
 	//Alt fire stats
 	public	int			revolverAltFire = 4;
@@ -55,6 +60,8 @@ public class RaycastWeapon : WeaponScript {
 	}
 
 	void Update(){
+
+		//dev cheat
 		if(Input.GetKeyDown("j")){
 			CalcAmmoPool(-220);
 		}
@@ -193,6 +200,12 @@ public class RaycastWeapon : WeaponScript {
 
 				break;
 		}
+	}
+
+	public override void InstantiateParticles(){
+		GameObject bulletParticleInstance;
+		bulletParticleInstance = (GameObject)Instantiate(bulletParticle, muzzle.position, muzzle.rotation);
+        bulletParticleInstance.GetComponent<Rigidbody>().velocity = muzzle.forward * particleShootPower;
 	}
 
 	public override void GiveDamage(int sumDamage){

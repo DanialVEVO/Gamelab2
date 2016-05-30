@@ -190,6 +190,10 @@ public class Weapon : WeaponScript {
 		}
 	}
 
+	public override void InstantiateParticles(){
+		
+	}
+
 	public override void GiveDamage(int sumDamage){
 		print("Total damage transferd is " +sumDamage);
 		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);

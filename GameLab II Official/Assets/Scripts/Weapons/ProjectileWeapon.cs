@@ -160,6 +160,10 @@ public class ProjectileWeapon : WeaponScript {
 		}
 	}
 
+	public override void InstantiateParticles(){
+		
+	}
+
 	public override void GiveDamage(int sumDamage){
 
 	}
