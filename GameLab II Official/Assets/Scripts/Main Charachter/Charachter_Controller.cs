@@ -169,7 +169,7 @@ public class Charachter_Controller : MonoBehaviour {
 	void CamRotHorizontal (){
 
 		transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeedHor);
-		weaponCam.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeedHor);
+		//weaponCam.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"),0) * Time.deltaTime * mouseSpeedHor);
 
 	}
 
@@ -178,7 +178,7 @@ public class Charachter_Controller : MonoBehaviour {
 		camRot -= Input.GetAxis("Mouse Y") * mouseSpeedVer;
 		camRot = Mathf.Clamp(camRot, -limit, limit);
 		mainCam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
-		weaponCam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
+		//weaponCam.transform.localRotation = Quaternion.Euler(camRot, 0, 0);
 
 	}
 
