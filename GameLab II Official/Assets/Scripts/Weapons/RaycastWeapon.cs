@@ -35,10 +35,10 @@ public class RaycastWeapon : WeaponScript {
 	public	RaycastHit	hit;
 
 	public	Transform	muzzle;
+	public	Transform	muzzleParticle;
 
 	public	GameObject	bulletParticle;
-	public	GameObject	muzzleFlashParticle;
-	public	GameObject	muzzleSmokeParticle;
+	public	GameObject	flashParticle;
 
 	//Alt fire stats
 	public	int			revolverAltFire = 4;
@@ -112,6 +112,7 @@ public class RaycastWeapon : WeaponScript {
 	public override void FireBullets(){
 		allowFire = false;
 		Debug.DrawRay(muzzle.position, Vector3.forward, Color.green, Mathf.Infinity);
+		InstantiateParticles();
 		if(Physics.Raycast(muzzle.position, Vector3.forward, out hit, Mathf.Infinity)){
 			if(hit.transform.tag == "Enemy"){
 				GiveDamage(damage);
@@ -206,6 +207,10 @@ public class RaycastWeapon : WeaponScript {
 		GameObject bulletParticleInstance;
 		bulletParticleInstance = (GameObject)Instantiate(bulletParticle, muzzle.position, muzzle.rotation);
         bulletParticleInstance.GetComponent<Rigidbody>().velocity = muzzle.forward * particleShootPower;
+
+        GameObject flashParticleInstance;
+        flashParticleInstance = (GameObject)Instantiate(flashParticle, muzzleParticle.position, muzzleParticle.rotation);
+        flashParticleInstance.transform.SetParent(muzzle);
 	}
 
 	public override void GiveDamage(int sumDamage){
