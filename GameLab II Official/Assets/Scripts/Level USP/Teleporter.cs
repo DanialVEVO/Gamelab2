@@ -3,9 +3,7 @@ using System.Collections;
 
 public class Teleporter : MonoBehaviour {
 
-	public Transform [] teleporterPositions;
-
-	public int randomChecker;
+	public Transform targetPoint;
 
 	void Start () {
 	
@@ -17,8 +15,7 @@ public class Teleporter : MonoBehaviour {
 
 	public void OnTriggerEnter (Collider trigger){
 		if(trigger.transform.tag == "Player"){
-				randomChecker = Random.Range(0, teleporterPositions.Length);
-				trigger.transform.position = teleporterPositions[randomChecker].position;
+			trigger.transform.position = targetPoint.position;
 		}
 	}
 }
