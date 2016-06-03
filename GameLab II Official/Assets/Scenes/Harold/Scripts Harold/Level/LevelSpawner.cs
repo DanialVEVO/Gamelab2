@@ -9,7 +9,7 @@ public class LevelSpawner : MonoBehaviour {
 	public GameObject[] difficultyNumber;
 	public GameObject spawnPlatform;
 	public GameObject currentLevel;
-	public GameObject shopLevel, itemLevel, afterSpecialLevel, startLevel;
+	public GameObject shopLevel, itemLevel, afterSpecialLevel, startLevel, afterStartLevel;
 	public GameObject player;
 	public Vector3 spawnPosition;
 	public LevelRandomizer randomLevelMizer;
@@ -26,6 +26,7 @@ public class LevelSpawner : MonoBehaviour {
 		currentLevel = Instantiate(startLevel, new Vector3(0,0,0), transform.rotation) as GameObject;
 		SetSpawn();
 		StartCoroutine(SetLevel());
+		afterSpecialLevel = afterStartLevel;
 	}
 
 	public void AddObjects(){
