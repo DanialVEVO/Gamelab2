@@ -40,9 +40,9 @@
             scrolledUV += fixed2(xScrollValue , yScrollValue);
  
             fixed4 c = tex2D (_MainTex, scrolledUV) * _Color;
-            o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
+            o.Emission = c.rgb;
             o.Alpha = c.a;
         }
         ENDCG
