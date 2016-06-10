@@ -19,6 +19,10 @@ public class HudBar : MonoBehaviour {
 
 	void Update () {	
 
+		if(Input.GetButtonDown("Jump")){
+			DamageCheck(5);
+		}
+
 		if(newBarAmount < currentBarAmount){
 			currentBarAmount-=  0.01F * Time.deltaTime * slideSpeed; 
 			healthBar.GetComponent<Scrollbar>().size = currentBarAmount;
