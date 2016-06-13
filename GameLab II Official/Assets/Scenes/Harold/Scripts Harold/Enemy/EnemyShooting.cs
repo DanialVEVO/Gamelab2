@@ -7,6 +7,7 @@ public class EnemyShooting : MonoBehaviour {
 	public GameObject enemyProjectile;
 	public float shootCoolDown;
 	public float shootCoolDownReset;
+	public Vector3 bulletRotation;
 
 	void Start(){
 		shootCoolDown = shootCoolDownReset;
@@ -25,7 +26,11 @@ public class EnemyShooting : MonoBehaviour {
 	}
 
 	void Shoot(){
-		//Instantiate(enemyProjectile, transform.position, transform.rotation);
+		//bulletRotation = transform.rotation;
+		//float randomNum = Random.Range(-0.01, 0.01); 
+		//bulletRotation.y+= randomNum;
+		GameObject bullet = Instantiate(enemyProjectile, transform.position, transform.rotation) as GameObject;
+		bullet.GetComponent<EnemyBullet>().enemyShooter = gameObject;
 		print("pew pew pew");
 	}
 }

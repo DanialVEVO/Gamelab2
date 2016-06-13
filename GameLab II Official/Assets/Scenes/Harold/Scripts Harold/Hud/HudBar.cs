@@ -10,7 +10,7 @@ public class HudBar : MonoBehaviour {
 	public float damager;
 
 	void Start () {
-		currentBarAmount =  healthBar.GetComponent<Scrollbar>().size; 
+		currentBarAmount =  healthBar.GetComponent<Image>().fillAmount;
 		newBarAmount = currentBarAmount;
 		maxBarAmount = currentBarAmount;
 		currentBarNumber = maxBarNumber;
@@ -20,17 +20,17 @@ public class HudBar : MonoBehaviour {
 	void Update () {	
 
 		if(Input.GetButtonDown("Jump")){
-			DamageCheck(5);
+			DamageCheck(damager);
 		}
 
 		if(newBarAmount < currentBarAmount){
 			currentBarAmount-=  0.01F * Time.deltaTime * slideSpeed; 
-			healthBar.GetComponent<Scrollbar>().size = currentBarAmount;
+			healthBar.GetComponent<Image>().fillAmount = currentBarAmount;
 		}
 
 		if(newBarAmount > currentBarAmount){
 			currentBarAmount+=  0.01F * Time.deltaTime * slideSpeed; 
-			healthBar.GetComponent<Scrollbar>().size =currentBarAmount;
+			healthBar.GetComponent<Image>().fillAmount =currentBarAmount;
 
 		}
 
