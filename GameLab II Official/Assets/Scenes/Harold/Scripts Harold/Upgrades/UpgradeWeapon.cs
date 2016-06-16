@@ -27,7 +27,9 @@ public class UpgradeWeapon : MonoBehaviour {
 		for(int i = forNumber; i <= upgradeIndex.Length; i++){
 			if(upgradeIndex[i] > currentUpgrade){
 				currentUpgrade = upgradeIndex[i];
-				tempAmmo = upgradeCostIndex[i];//9999 = currentWeapon.ammo
+				if(tempAmmo >= upgradeIndex[i]){
+					tempAmmo = upgradeCostIndex[i];//9999 = currentWeapon.ammo
+				}
 				afterForNumber = i;
 				Debug.Log(currentUpgrade);
 				break;
