@@ -7,10 +7,20 @@ public class Unit : MonoBehaviour {
 	public float speed;
 	Vector3[] path;
 	int targetIndex;
+	public float cooldownPath;
 
 	void Start () {
 
+		StartCoroutine(StartNewPathProcess(cooldownPath));
+		
+	}
+
+	IEnumerator StartNewPathProcess (float cooldown){
+
+		yield return new WaitForSeconds(cooldown);
 		PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
+		cooldown = 0;
+
 	}
 
 	public void OnPathFound (Vector3[] newPath, bool pathSuccesful){
@@ -29,6 +39,9 @@ public class Unit : MonoBehaviour {
 			if(transform.position == currentWaypoint){
 				targetIndex ++;
 				if(targetIndex >= path.Length){
+					print("Break");
+					print(path.Length);
+					print(targetIndex);
 					yield break;
 				}
 				currentWaypoint = path[targetIndex];
