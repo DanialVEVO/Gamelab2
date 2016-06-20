@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Gemaakt door Harold mbv tutorial
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;

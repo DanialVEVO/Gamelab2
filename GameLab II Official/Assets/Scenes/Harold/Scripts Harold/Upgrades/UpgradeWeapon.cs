@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Gemaakt door Harold
+
+using UnityEngine;
 using System.Collections;
 
 public class UpgradeWeapon : MonoBehaviour {
@@ -26,9 +28,12 @@ public class UpgradeWeapon : MonoBehaviour {
 		currentUpgradeCount[currentIndex]++;
 		for(int i = forNumber; i <= upgradeIndex.Length; i++){
 			if(upgradeIndex[i] > currentUpgrade){
-				currentUpgrade = upgradeIndex[i];
 				if(tempAmmo >= upgradeIndex[i]){
+					currentUpgrade = upgradeIndex[i];
 					tempAmmo = upgradeCostIndex[i];//9999 = currentWeapon.ammo
+				}
+				else{
+					currentUpgradeCount[currentIndex]--;
 				}
 				afterForNumber = i;
 				Debug.Log(currentUpgrade);
