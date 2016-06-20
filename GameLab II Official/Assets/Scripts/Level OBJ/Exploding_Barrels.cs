@@ -14,10 +14,11 @@ public class Exploding_Barrels : MonoBehaviour {
 	private bool mayRot;
 
 	public GameObject player;
+	public GameObject explodeParticle;
 
 	void Start () {
 
-		player = GameObject.Find("PlayerTest(Clone)");
+		player = GameObject.Find("Player(Clone)");
 
 	}
 	
@@ -35,6 +36,7 @@ public class Exploding_Barrels : MonoBehaviour {
 
 	public void Explode (){
 
+		Instantiate(explodeParticle, transform.position, Quaternion.identity);
 		Vector3 explosionPos = transform.position;
 		Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
 		foreach (Collider hit in colliders){
