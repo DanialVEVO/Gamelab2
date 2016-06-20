@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Gemaakt door Harold
+
+using UnityEngine;
 using System.Collections;
 
 public class LevelSpawner : MonoBehaviour {

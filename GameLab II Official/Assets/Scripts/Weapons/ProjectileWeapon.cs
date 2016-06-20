@@ -168,6 +168,10 @@ public class ProjectileWeapon : WeaponScript {
 
 	}
 
+	public override void ExplodeBarrel(){
+		hit.transform.GetComponent<Exploding_Barrels>().Explode();
+	}
+
 	public override void CalcAmmoPool(int ammo){
 		ammoPool -= ammo;
 		ammoPool = Mathf.Clamp(ammoPool, 0,maxPool);

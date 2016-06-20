@@ -199,6 +199,10 @@ public class Weapon : WeaponScript {
 		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);
 	}
 
+	public override void ExplodeBarrel(){
+		
+	}
+
 	public override void CalcAmmoPool(int ammo){
 		ammoPool -= ammo;
 		ammoPool = Mathf.Clamp(ammoPool, 0,maxPool);
