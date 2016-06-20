@@ -122,6 +122,9 @@ public class RaycastWeapon : WeaponScript {
 				airEnemyDamage = damage + rifleAirDamage;
 				GiveDamage(airEnemyDamage);
 			}
+			if(hit.transform.tag == "Exploding Barrel"){
+				ExplodeBarrel();
+			}
 		}
 		loadedMagazine --;
 	}
@@ -218,9 +221,13 @@ public class RaycastWeapon : WeaponScript {
 		hit.transform.GetComponent<EnemyBaseClass>().Health(sumDamage);
 	}
 
+	public override void ExplodeBarrel(){
+		hit.transform.GetComponent<Exploding_Barrels>().Explode();
+	}
+
 	public override void CalcAmmoPool(int ammo){
 		ammoPool -= ammo;
-		ammoPool = Mathf.Clamp(ammoPool, 0,maxPool);
+		ammoPool = Mathf.Clamp(ammoPool, 0, maxPool);
 	}
 
 	public override void SetAmmoPool(int poolUpgrade){
