@@ -9,9 +9,12 @@ public class EnemyBullet : MonoBehaviour {
 	public int bulletDamage;
 	public Rigidbody rb;
 	public float bulletSpeed;
+	public Transform playerTarget;
 	//public Vector3 rotation;
 
 	void Start () {
+		playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+		transform.LookAt(playerTarget);
 		rb = GetComponent<Rigidbody>();
 		Vector3 rotation = transform.eulerAngles;
 		float randomNum = Random.Range(-0.001F, 0.001F);
@@ -23,7 +26,8 @@ public class EnemyBullet : MonoBehaviour {
 	}
 
 	void Update(){
-		rb.velocity = new Vector3(0, bulletSpeed, 0);
+		rb.velocity = transform.forward * bulletSpeed * Time.deltaTime;
+		//rb.velocity = new Vector3(bulletSpeed, 0, 0);
 	}
 
 	void OnCollisionEnter(Collision hit){
