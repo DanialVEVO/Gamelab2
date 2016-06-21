@@ -22,17 +22,17 @@ public class EnemyBullet : MonoBehaviour {
 		rotation.x += randomNum;
 		//rotation.z = transform.rotation.z;
 		transform.eulerAngles = rotation;
-		rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+		//rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
 	}
 
 	void Update(){
 		rb.velocity = transform.forward * bulletSpeed * Time.deltaTime;
-		//rb.velocity = new Vector3(bulletSpeed, 0, 0);
+		//rb.velocity = new Vector3(0, 0, bulletSpeed);
 	}
 
 	void OnCollisionEnter(Collision hit){
 		if(hit.transform.tag == "Player"){
-			DealDamage(bulletDamage);
+			DealDamage(hit.gameObject, bulletDamage);
 			Destroy(gameObject);
 		}
 		else{
@@ -40,7 +40,7 @@ public class EnemyBullet : MonoBehaviour {
 		}
 	}
 
-	void DealDamage(int damage){
+	void DealDamage(GameObject player, int damage){
 		
 	}
 }
