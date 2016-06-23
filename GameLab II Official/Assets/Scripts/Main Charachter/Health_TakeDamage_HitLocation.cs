@@ -26,8 +26,8 @@ public class Health_TakeDamage_HitLocation : MonoBehaviour {
 		mayUpgrade = true;
 		//enemyPos = GameObject.FindWithTag("Enemy").GetComponent<Transform>();
 
-		healthBar = GameObject.Find("HealthBar");
-		shieldBar = GameObject.Find("ShieldBar");
+		healthBar = GameObject.Find("HudHealthTop");
+		shieldBar = GameObject.Find("HudShieldTop");
 
 		healthBar.GetComponent<HudBar>().maxBarNumber = maxHealth;
 		shieldBar.GetComponent<HudBar>().maxBarNumber = maxShield;

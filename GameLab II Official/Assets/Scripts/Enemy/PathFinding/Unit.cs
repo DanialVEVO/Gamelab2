@@ -17,11 +17,6 @@ public class Unit : MonoBehaviour {
 		
 	}
 
-	void Update () {
-
-		transform.LookAt(target);
-	}
-
 	IEnumerator StartNewPathProcess (float cooldown){
 
 		yield return new WaitForSeconds(cooldown);
