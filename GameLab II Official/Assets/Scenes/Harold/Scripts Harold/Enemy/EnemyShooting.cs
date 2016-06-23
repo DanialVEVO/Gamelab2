@@ -10,7 +10,7 @@ public class EnemyShooting : MonoBehaviour {
 	public float shootCoolDown;
 	public float shootCoolDownReset;
 	public Vector3 bulletRotation;
-	public int enemyShootDamage;
+	public float enemyShootDamage;
 
 
 	void Start(){

@@ -6,7 +6,7 @@ using System.Collections;
 public class EnemyBullet : MonoBehaviour {
 
 	public GameObject enemyShooter;
-	public int bulletDamage;
+	public float bulletDamage;
 	public Rigidbody rb;
 	public float bulletSpeed;
 	public Transform playerTarget;
@@ -40,7 +40,7 @@ public class EnemyBullet : MonoBehaviour {
 		}
 	}
 
-	void DealDamage(GameObject player, int damage){
-		
+	void DealDamage(GameObject player, float damage){
+		player.GetComponent<Health_TakeDamage_HitLocation>().HealthCalculator(damage);
 	}
 }

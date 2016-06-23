@@ -9,6 +9,7 @@ public class ShopManager : MonoBehaviour {
 	//public UpgradeButtons upgradeButtonScript;
 	public GameObject[] shopHudList;
 	public int weaponCounter;
+	public GameObject shopObject;
 	
 	public void weaponButton1(int indexer){
 		weaponCounter = indexer;
@@ -21,5 +22,13 @@ public class ShopManager : MonoBehaviour {
 		for(int i = 0; i < shopHudList.Length; i++){
 			shopHudList[i].SetActive(false);
 		}
+	}
+
+	public void ShopOpen(){
+		shopObject.SetActive(true);
+	}
+
+	public void ShopClose(){
+		shopObject.SetActive(false);
 	}
 }

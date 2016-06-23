@@ -49,6 +49,8 @@ public class Interaction : MonoBehaviour {
 
 			case 2 : 
 				print ("Shop");
+				GameObject shopManager = GameObject.FindGameObjectWithTag("ShopManager");
+				shopManager.GetComponent<ShopManager>().ShopOpen();
 				break;
 
 			case 3 :
