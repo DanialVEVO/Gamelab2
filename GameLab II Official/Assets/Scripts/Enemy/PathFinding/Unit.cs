@@ -11,8 +11,15 @@ public class Unit : MonoBehaviour {
 
 	void Start () {
 
+		target = GameObject.Find("Player(Clone)").GetComponent<Transform>();
+
 		StartCoroutine(StartNewPathProcess(cooldownPath));
 		
+	}
+
+	void Update () {
+
+		transform.LookAt(target);
 	}
 
 	IEnumerator StartNewPathProcess (float cooldown){
