@@ -16,6 +16,8 @@ public class WeaponSwitch : MonoBehaviour {
 
 
 	void Start () {
+
+		GetComponent<WeaponChecker>().CheckWeapon();
 	
 		weapons[0].SetActive(true);
 
@@ -47,6 +49,7 @@ public class WeaponSwitch : MonoBehaviour {
 					weapons[i].SetActive(false);
 				}
 			}
+			GetComponent<WeaponChecker>().CheckWeapon();
 		}
 	}
 
