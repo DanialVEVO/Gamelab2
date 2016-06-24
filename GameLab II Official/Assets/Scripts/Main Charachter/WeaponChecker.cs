@@ -4,6 +4,7 @@ using System.Collections;
 public class WeaponChecker : MonoBehaviour {
 
 	public GameObject currentWeapon;
+	public GameObject shopManager, ammoObject, weaponObject;
 
 	public int weaponInt;	
 
@@ -20,6 +21,15 @@ public class WeaponChecker : MonoBehaviour {
 	public void CheckWeapon () {
 
 		currentWeapon = GetComponent<WeaponSwitch>().weapons[weaponInt];
+
+		shopManager.GetComponent<UpgradeWeapon>().currentWeapon = currentWeapon;
+
+		ammoObject.GetComponent<AmmoHud>().currentWeapon = currentWeapon;
+
+		weaponObject.GetComponent<WeaponSelect>().currentWeapon = currentWeapon;
+
+
+
 
 	}
 }

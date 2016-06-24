@@ -6,20 +6,20 @@ using UnityEngine.UI;
 
 public class AmmoHud : MonoBehaviour {
 
-	public GameObject currentweapon;
+	public GameObject currentWeapon;
 	public string currentAmmo, ammoPool;
 	public RaycastWeapon rayCastClass;
 	public ProjectileWeapon projectileClass;
 	public GameObject hudAmmoPool, hudCurrentAmmo;
 
 	public void CheckHud(){
-		if(currentweapon.GetComponent<RaycastWeapon>() == currentweapon.GetComponent<RaycastWeapon>()){
-			rayCastClass = currentweapon.GetComponent<RaycastWeapon>();
+		if(currentWeapon.GetComponent<RaycastWeapon>() == currentWeapon.GetComponent<RaycastWeapon>()){
+			rayCastClass = currentWeapon.GetComponent<RaycastWeapon>();
 			ammoPool = string.Format("{0}", rayCastClass.ammoPool);
 			currentAmmo = string.Format("{0}",rayCastClass.loadedMagazine);
 		}
 		else{
-			projectileClass = currentweapon.GetComponent<ProjectileWeapon>();
+			projectileClass = currentWeapon.GetComponent<ProjectileWeapon>();
 			ammoPool = string.Format("{0}", projectileClass.ammoPool);
 			currentAmmo = string.Format("{0}", projectileClass.loadedMagazine);
 		}
