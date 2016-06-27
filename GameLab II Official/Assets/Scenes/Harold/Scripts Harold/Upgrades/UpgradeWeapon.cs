@@ -6,6 +6,7 @@ using System.Collections;
 public class UpgradeWeapon : MonoBehaviour {
 
 	public int[] upgradeIndex, upgradeCostIndex;
+	public int[] pistolList, launcherList, riffleList, smgList;
 	public int[] currentUpgradeCount;
 	public int currentUpgrade;
 	public GameObject currentWeapon;
@@ -24,6 +25,7 @@ public class UpgradeWeapon : MonoBehaviour {
 	}
 
 	public void Upgrade(){
+		CheckWhatList();
 		forNumber = currentIndex * upgradeAmount;
 		currentUpgradeCount[currentIndex]++;
 		for(int i = forNumber; i <= upgradeIndex.Length; i++){
@@ -42,5 +44,32 @@ public class UpgradeWeapon : MonoBehaviour {
 		}
 		afterForNumber++;
 		//shopChangeScript.changeHud(afterForNumber);
+	}
+
+	void CheckWhatList(){
+		if(currentWeapon.transform.tag == "0"){
+			for(int i = 0; i <= pistolList.Length; i++){
+				upgradeIndex[i] = pistolList[i];
+			}
+		}
+
+		if(currentWeapon.transform.tag == "1"){
+			for(int i = 0; i <= pistolList.Length; i++){
+				upgradeIndex[i] = riffleList[i];
+			}
+		}
+
+		if(currentWeapon.transform.tag == "2"){
+			for(int i = 0; i <= pistolList.Length; i++){
+				upgradeIndex[i] = smgList[i];
+			}
+		}
+
+		if(currentWeapon.transform.tag == "3"){
+			for(int i = 0; i <= pistolList.Length; i++){
+				upgradeIndex[i] = launcherList[i];
+			}
+		}
+
 	}
 }
