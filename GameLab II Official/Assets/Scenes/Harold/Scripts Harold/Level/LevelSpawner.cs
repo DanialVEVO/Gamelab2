@@ -28,7 +28,10 @@ public class LevelSpawner : MonoBehaviour {
 		currentLevel = Instantiate(startLevel, new Vector3(0,0,0), transform.rotation) as GameObject;
 		SetSpawn();
 		StartCoroutine(SetLevel());
-		afterSpecialLevel = afterStartLevel;
+		if(player.GetComponent<TutorialCheck>().tutorialOn == true){
+			afterSpecialLevel = afterStartLevel;
+			player.GetComponent<TutorialCheck>().tutorialOn = false;
+		}
 	}
 
 	public void AddObjects(){
@@ -82,6 +85,12 @@ public class LevelSpawner : MonoBehaviour {
 		GameObject tempLevel = currentLevel;
 		Destroy(currentLevel);
 		currentLevel = null;
+
+		if(player.GetComponent<TutorialCheck>().dropPodOn < 1){
+			GameObject.FindGameObjectWithTag("DropPod").SetActive (true);
+			player.GetComponent<TutorialCheck>().dropPodOn++;
+		}
+
 		if(blockCounter == 3){
 			afterSpecialLevel = triggerHits[number];
 			currentLevel = Instantiate(itemLevel, new Vector3(0,0,0),  tempLevel.transform.rotation) as GameObject;
