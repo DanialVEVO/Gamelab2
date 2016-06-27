@@ -164,7 +164,7 @@ public class Main_Menu : MonoBehaviour {
 		audioMenu = GameObject.Find("Audio Menu");
 		pauzeMenu = GameObject.Find("Pauze Menu");
 		gameManager = GameObject.Find("_GameManager");
-		backGround = GameObject.Find("Background");
+		backGround = GameObject.Find("BackgroundMM");
 
 
 	}
