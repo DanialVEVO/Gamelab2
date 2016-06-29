@@ -24,6 +24,7 @@ public class EnemyShooting : MonoBehaviour {
 			}
 			else{
 				Shoot();
+				GetComponent<EnemieAnimation>().MummyShoot();
 				//shootCoolDown =  shootCoolDownReset;
 			}
 		}
