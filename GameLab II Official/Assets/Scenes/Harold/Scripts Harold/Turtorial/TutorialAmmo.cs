@@ -10,7 +10,7 @@ public class TutorialAmmo : MonoBehaviour {
 	public  float time, waitTime;
 
 	void Start (){ 
-		currentWeapon = GameObject.FindGameObjectWithTag("StartWeapon");
+		currentWeapon = GameObject.FindGameObjectWithTag("0");
 		weaponScript = currentWeapon.GetComponent<RaycastWeapon>();
 	}
 

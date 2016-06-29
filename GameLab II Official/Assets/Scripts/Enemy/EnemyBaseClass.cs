@@ -18,6 +18,7 @@ public int	hp = 10;
 	public void Health (int takenDamage) {
 		hp -= takenDamage;
 		if(hp < 1){
+			GetComponent<EnemieAnimation>().EnemyDead();
 			Destroy(gameObject);
 		}
 	}

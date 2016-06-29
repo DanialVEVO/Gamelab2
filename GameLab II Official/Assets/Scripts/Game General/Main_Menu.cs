@@ -10,6 +10,7 @@ public class Main_Menu : MonoBehaviour {
 	public GameObject audioMenu;
 	public GameObject pauzeMenu;
 	public GameObject gameManager;
+	public GameObject backGround;
 
 	public int checkLevel;
 
@@ -62,6 +63,7 @@ public class Main_Menu : MonoBehaviour {
 			creditsMenu.SetActive(false);
 			graphicsMenu.SetActive(false);
 			audioMenu.SetActive(false);
+			backGround.SetActive(false);
 
 		}
 
@@ -72,6 +74,7 @@ public class Main_Menu : MonoBehaviour {
 			checkLevel --;
 
 			mainMenuButtons.SetActive(true);
+			backGround.SetActive(true);
 			optionsMenuButtons.SetActive(false);
 			creditsMenu.SetActive(false);
 			graphicsMenu.SetActive(false);
@@ -161,6 +164,7 @@ public class Main_Menu : MonoBehaviour {
 		audioMenu = GameObject.Find("Audio Menu");
 		pauzeMenu = GameObject.Find("Pauze Menu");
 		gameManager = GameObject.Find("_GameManager");
+		backGround = GameObject.Find("BackgroundMM");
 
 
 	}

@@ -13,12 +13,15 @@ public class WeaponSelect : MonoBehaviour {
 
 
 	void Start () {
-		listCounter = 1;
+		WeaponLister();
+		SelectedWeapon();
+		//listCounter = 1;
+
 	}
 
 	void Update () {
 		if(Input.GetButtonDown("Jump")){
-			WeaponLister();
+
 		}
 	}
 
@@ -34,13 +37,13 @@ public class WeaponSelect : MonoBehaviour {
 		SetHighlightOff();
 		weaponCounterString = string.Format("{0}", weaponCounter);
 		if(currentWeapon.tag == weaponCounterString){
-			weaponBarsObject[weaponCounter].transform.FindChild(highLighertName).gameObject.SetActive(true);//HighLighter name
-		}	
+			weaponBarsObject[listCounter].transform.FindChild(weaponNameList[listCounter]).gameObject.transform.FindChild(highLighertName).gameObject.SetActive(true);//HighLighter name
+		}
 	}
 
 	void SetHighlightOff(){
 		for(int i = 0; i < weaponBarsObject.Length; i++){
-			weaponBarsObject[i].transform.FindChild(highLighertName).gameObject.SetActive(false);//HighLighter name
+			weaponBarsObject[i].transform.FindChild(weaponNameList[i]).transform.FindChild(highLighertName).gameObject.SetActive(false);//HighLighter name
 		}
 	}
 }
