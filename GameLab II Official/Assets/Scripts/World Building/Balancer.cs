@@ -34,6 +34,7 @@ public class Balancer : MonoBehaviour {
 	public	int		chosenEnemy;
 	public	int		weightLimit;
 	public	int 	currentWeight;
+	public	int		enemyAmount;
 
 	public	List<GameObject> enemyList = new List<GameObject>();
 
