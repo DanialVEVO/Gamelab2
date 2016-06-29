@@ -8,20 +8,23 @@ public class Unit : MonoBehaviour {
 	Vector3[] path;
 	int targetIndex;
 	public float cooldownPath;
+	public float repeatRate;
 
 	void Start () {
 
-		target = GameObject.Find("Player(Clone)").GetComponent<Transform>();
+		//target = GameObject.Find("Player(Clone)").GetComponent<Transform>();
+		target = GameObject.Find("CharachterController").GetComponent<Transform>();
 
-		StartCoroutine(StartNewPathProcess(cooldownPath));
+		InvokeRepeating("StartNewPathProcess", 0, repeatRate);
+
+		//PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
 		
 	}
 
-	IEnumerator StartNewPathProcess (float cooldown){
+	void StartNewPathProcess (){
 
-		yield return new WaitForSeconds(cooldown);
+		print("InvokeRepeating");
 		PathRequestManager.RequestPath (transform.position, target.position, OnPathFound);
-		cooldown = 0;
 
 	}
 
@@ -41,9 +44,6 @@ public class Unit : MonoBehaviour {
 			if(transform.position == currentWaypoint){
 				targetIndex ++;
 				if(targetIndex >= path.Length){
-					print("Break");
-					print(path.Length);
-					print(targetIndex);
 					yield break;
 				}
 				currentWaypoint = path[targetIndex];
