@@ -8,7 +8,7 @@ public class WeaponSelect : MonoBehaviour {
 	public GameObject[] weaponBarsObject;
 	public string[] weaponNameList;
 	public string weaponCounterString, highLighertName;
-	public int listCounter, weaponCounter;
+	public int listCounter, weaponCounter, currentCounter;
 	public GameObject currentWeapon;
 
 
@@ -17,12 +17,6 @@ public class WeaponSelect : MonoBehaviour {
 		SelectedWeapon();
 		//listCounter = 1;
 
-	}
-
-	void Update () {
-		if(Input.GetButtonDown("Jump")){
-
-		}
 	}
 
 	public void WeaponLister(){
@@ -37,13 +31,17 @@ public class WeaponSelect : MonoBehaviour {
 		SetHighlightOff();
 		weaponCounterString = string.Format("{0}", weaponCounter);
 		if(currentWeapon.tag == weaponCounterString){
-			weaponBarsObject[listCounter].transform.FindChild(weaponNameList[listCounter]).gameObject.transform.FindChild(highLighertName).gameObject.SetActive(true);//HighLighter name
+			for(int i = 0; i < weaponBarsObject.Length; i++){
+				GameObject temp = weaponBarsObject[i].transform.FindChild(weaponNameList[weaponCounter]).gameObject;
+				temp.transform.FindChild(highLighertName).gameObject.SetActive(true);
+			}
 		}
 	}
 
 	void SetHighlightOff(){
 		for(int i = 0; i < weaponBarsObject.Length; i++){
-			weaponBarsObject[i].transform.FindChild(weaponNameList[i]).transform.FindChild(highLighertName).gameObject.SetActive(false);//HighLighter name
+			GameObject temp = weaponBarsObject[i].transform.FindChild(weaponNameList[i]).gameObject;
+			temp.transform.FindChild(highLighertName).gameObject.SetActive(false);
 		}
 	}
 }
