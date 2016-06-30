@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/* [Code]
+ * Door Opener - Opens the doors when all enemies are dead
+ * Scripted by Danial
+ */
+using UnityEngine;
 using System.Collections;
 
 public class OpenDoors : MonoBehaviour {
