@@ -20,6 +20,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
 	public void Health (int takenDamage) {
 		enemyHealth  -= takenDamage;
+		print(enemyHealth);
 		if(enemyHealth < 1){
 			GetComponent<EnemieAnimation>().EnemyDead();
 			Destroy(gameObject);

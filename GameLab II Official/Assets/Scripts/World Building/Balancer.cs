@@ -45,7 +45,6 @@ public class Balancer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		FindSpawnPoints();
-
 	}
 	
 	// Update is called once per frame
@@ -58,7 +57,7 @@ public class Balancer : MonoBehaviour {
 			RemoveFromList ();
 			DestroyTempObject ();
 			ResetBooleans ();
-		}	
+		}
 	}
 	
 	void FindSpawnPoints () { 
