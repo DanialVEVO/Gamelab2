@@ -112,21 +112,25 @@ public class Balancer : MonoBehaviour {
 			if(melee == true && shooting == false && champion == false){
 				Instantiate(walkingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalWalkingMeleeWeight);
+				enemyAmount++;
 			}
 
 			else if(melee == false && shooting == true && champion == false){
 				Instantiate(walkingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalWalkingShootingWeight);
+				enemyAmount++;
 			}
 
 			else if(melee == true && shooting == false && champion == true){
 				Instantiate(championWalkingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championWalkingMeleeWeight);
+				enemyAmount++;
 			}
 
 			else if(melee == false && shooting == true && champion == true){
 				Instantiate(championWalkingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championWalkingShootingWeight);
+				enemyAmount++;
 			}
 		}
 
@@ -134,22 +138,22 @@ public class Balancer : MonoBehaviour {
 			if(melee == true && shooting == false && champion == false){
 				Instantiate(flyingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalFlyingMeleeWeight);
-
+				enemyAmount++;
 			}
 			else if(melee == false && shooting == true && champion == false){
 				Instantiate(flyingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(normalFlyingShootingWeight);
-
+				enemyAmount++;
 			}
 			else if(melee == true && shooting == false && champion == true){
 				Instantiate(championFlyingMelee, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championFlyingMeleeWeight);
-
+				enemyAmount++;
 			}
 			else if(melee == false && shooting == true && champion == true){
 				Instantiate(championFlyingShooting, spawnPoint.position, spawnPoint.rotation);
 				CalcWeight(championFlyingShootingWeight);
-
+				enemyAmount++;
 			}
 		}
 	}
@@ -161,7 +165,6 @@ public class Balancer : MonoBehaviour {
 
 	//Remove chosen transform from list
 	public void RemoveFromList (){
-		print("blabla " + chosenEnemy);
 		enemyList.RemoveAt(chosenEnemy);
 	}
 
@@ -177,6 +180,11 @@ public class Balancer : MonoBehaviour {
 	//Calculate weight of total enemies
 	public void CalcWeight (int weightReceived){
 		currentWeight += weightReceived;
-		print("weight is calculated");
+	}
+
+	public void CheckDoor (){
+		if(enemyAmount <= 0){
+			GetComponent<OpenDoors>().OpenTheGates();
+		}
 	}
 }
