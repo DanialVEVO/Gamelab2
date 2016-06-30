@@ -26,7 +26,7 @@ public class SoundSystem : MonoBehaviour {
 
 		randomAmbient = Random.Range(0, ambientSounds.Length);
 		print(randomAmbient);
-		//audio.PlayOneShot(ambientSounds[randomAmbient], volume);
+		audio.PlayOneShot(ambientSounds[randomAmbient], volume);
 
 	}
 

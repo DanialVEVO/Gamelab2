@@ -11,9 +11,15 @@ public class EnemyShooting : MonoBehaviour {
 	public float shootCoolDownReset;
 	public Vector3 bulletRotation;
 	public float enemyShootDamage;
+	public AudioSource audio;
+	public AudioClip shoot, randomSound;
 
 
 	void Start(){
+		audio = GetComponent<AudioSource>();
+
+		InvokeRepeating("RandomSound", 3, 4);
+
 		shootCoolDown = shootCoolDownReset;
 	}
 
@@ -34,10 +40,16 @@ public class EnemyShooting : MonoBehaviour {
 		//bulletRotation = transform.rotation;
 		//float randomNum = Random.Range(-0.01, 0.01); 
 		//bulletRotation.y+= randomNum;
+		audio.PlayOneShot(shoot, 1f);
 		GameObject bullet = Instantiate(enemyProjectile, enemyGun.transform.position, transform.rotation) as GameObject;
 		bullet.GetComponent<EnemyBullet>().enemyShooter = gameObject;
 		bullet.GetComponent<EnemyBullet>().bulletDamage = enemyShootDamage;
 		print("pew pew pew");
 		shootCoolDown = shootCoolDownReset;
+	}
+
+	void RandomSound (){
+
+		audio.PlayOneShot(randomSound, 0.7f);
 	}
 }
