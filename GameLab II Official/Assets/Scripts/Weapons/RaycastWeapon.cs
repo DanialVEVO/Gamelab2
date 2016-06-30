@@ -40,6 +40,9 @@ public class RaycastWeapon : WeaponScript {
 	public	GameObject	bulletParticle;
 	public	GameObject	flashParticle;
 
+	public AudioSource audio;
+	public AudioClip [] shootSounds;
+
 	//Alt fire stats
 	public	int			revolverAltFire = 4;
 	public	int			rifleAirDamage = 2;
@@ -55,6 +58,8 @@ public class RaycastWeapon : WeaponScript {
 	public float[]		upgradeVariables = new float[8];
 
 	void Start(){
+		audio = GetComponent<AudioSource>();
+
 		CalcRateOfFire();
 		CalcUpgradeArray();
 	}
