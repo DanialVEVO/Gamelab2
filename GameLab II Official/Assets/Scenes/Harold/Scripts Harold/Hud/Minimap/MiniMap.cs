@@ -51,6 +51,10 @@ public class MiniMap : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+	}
+
 	void Update(){
 		DrawMapDots();
 	}
