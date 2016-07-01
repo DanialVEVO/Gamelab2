@@ -14,6 +14,8 @@ public class WeaponChecker : MonoBehaviour {
 	
 	void Update () {
 
+		CheckWeapon ();
+
 		weaponInt = GetComponent<WeaponSwitch>().curWeapon;
 	
 	}
