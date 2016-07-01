@@ -48,25 +48,25 @@ public class UpgradeWeapon : MonoBehaviour {
 
 	void CheckWhatList(){
 		if(currentWeapon.transform.tag == "0"){
-			for(int i = 0; i <= pistolList.Length; i++){
+			for(int i = 0; i < pistolList.Length; i++){
 				upgradeIndex[i] = pistolList[i];
 			}
 		}
 
 		if(currentWeapon.transform.tag == "1"){
-			for(int i = 0; i <= pistolList.Length; i++){
+			for(int i = 0; i < pistolList.Length; i++){
 				upgradeIndex[i] = riffleList[i];
 			}
 		}
 
 		if(currentWeapon.transform.tag == "2"){
-			for(int i = 0; i <= pistolList.Length; i++){
+			for(int i = 0; i < pistolList.Length; i++){
 				upgradeIndex[i] = smgList[i];
 			}
 		}
 
 		if(currentWeapon.transform.tag == "3"){
-			for(int i = 0; i <= pistolList.Length; i++){
+			for(int i = 0; i < pistolList.Length; i++){
 				upgradeIndex[i] = launcherList[i];
 			}
 		}

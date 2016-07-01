@@ -21,6 +21,8 @@ public class EnemyShooting : MonoBehaviour {
 		InvokeRepeating("RandomSound", 3, 4);
 
 		shootCoolDown = shootCoolDownReset;
+
+		playerTarget = GameObject.FindGameObjectWithTag("player").transform;
 	}
 
 	void Update() {
