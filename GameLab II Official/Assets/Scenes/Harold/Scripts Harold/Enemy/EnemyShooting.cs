@@ -23,6 +23,8 @@ public class EnemyShooting : MonoBehaviour {
 		shootCoolDown = shootCoolDownReset;
 
 		playerTarget = GameObject.FindGameObjectWithTag("player").transform;
+
+		enemyGun = gameObject.transform.FindChild("Gun").gameObject;
 	}
 
 	void Update() {
